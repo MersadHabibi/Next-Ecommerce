@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import Loader from "@/components/modules/Loader";
-import { signUpAction } from "@/actions/authActions";
+import { signInAction } from "@/actions/authActions";
 import { Noto_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
 
@@ -28,7 +28,7 @@ const formSchema = z.object({
   password: z.string().min(4).max(12),
 });
 
-export function SignUpForm() {
+export function SignInForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -50,27 +50,16 @@ export function SignUpForm() {
     formData.append("username", values.username);
     formData.append("password", values.password);
 
-    const res = await signUpAction(formData);
+    const res = await signInAction(formData);
 
     setIsLoading(false);
 
-    if (res.status === 201) {
+    if (res.status === 200) {
       router.push("/");
-
-      return toast({
-        description: "sign up successfully",
-      });
     }
 
-    if (res.status === 409) {
-      return toast({
-        description: "This name has already been used",
-      });
-    }
-
-    // server error
-    return toast({
-      description: "Try later",
+    toast({
+      description: res.message,
     });
   }
 
@@ -81,7 +70,7 @@ export function SignUpForm() {
         onSubmit={form.handleSubmit(formSubmitHandler)}
         className="w-80 space-y-7 rounded-xl bg-gray-200/70 px-7 py-7 shadow-xl dark:bg-gray-800">
         <h1 className={cn("text-center text-2xl", notoSans.className)}>
-          Sign Up
+          Sign In
         </h1>
         <FormField
           control={form.control}
@@ -128,4 +117,5 @@ export function SignUpForm() {
     </Form>
   );
 }
-export default SignUpForm;
+
+export default SignInForm;

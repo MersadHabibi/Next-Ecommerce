@@ -4,7 +4,7 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import ThemeProvider from "@/providers/theme-provider";
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500"] });
+const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500" , "700"] });
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
