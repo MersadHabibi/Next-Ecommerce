@@ -1,6 +1,11 @@
 "use server";
 
-import { checkPassword, createHash, generateToken } from "@/lib/authUtils";
+import {
+  checkPassword,
+  createHash,
+  generateToken,
+  verifyToken,
+} from "@/lib/authUtils";
 import { PrismaClient } from "@prisma/client";
 import { cookies } from "next/headers";
 import { json } from "stream/consumers";
@@ -170,6 +175,70 @@ export async function signInAction(formData: FormData) {
       JSON.stringify({
         message: "error in server",
         error,
+        status: 500,
+      }),
+    );
+  }
+}
+
+export async function getMeAction() {
+  try {
+    const token = cookies().get("token")?.value;
+
+    if (!token) {
+      return JSON.parse(
+        JSON.stringify({
+          message: "token not found",
+          isLogin: false,
+          status: 404,
+        }),
+      );
+    }
+
+    let payload: { username: string } | null = null;
+
+    try {
+      payload = await verifyToken(token);
+    } catch (error) {
+      return JSON.parse(
+        JSON.stringify({
+          message: "token invalid",
+          isLogin: false,
+          status: 401,
+        }),
+      );
+    }
+
+    const prisma = new PrismaClient();
+
+    const user = await prisma.user.findUnique({
+      where: {
+        username: payload?.username,
+      },
+    });
+
+    if (!user) {
+      return JSON.parse(
+        JSON.stringify({
+          message: "user not found",
+          isLogin: false,
+          status: 404,
+        }),
+      );
+    }
+
+    return JSON.parse(
+      JSON.stringify({
+        username: user.username,
+        isLogin: true,
+        status: 200,
+      }),
+    );
+  } catch (error) {
+    return JSON.parse(
+      JSON.stringify({
+        error,
+        isLogin: false,
         status: 500,
       }),
     );
