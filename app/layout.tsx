@@ -5,7 +5,10 @@ import { cn } from "@/lib/utils";
 import ThemeProvider from "@/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
 
-const roboto = Roboto({ subsets: ["latin"], weight: ["400", "500", "700"] });
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+});
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
@@ -21,7 +24,7 @@ export default async function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={cn(roboto.className)}>
+      <body className={cn("bg-white dark:bg-black", roboto.className)}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

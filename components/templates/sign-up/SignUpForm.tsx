@@ -79,7 +79,7 @@ export function SignUpForm() {
       <form
         // action={formSubmitHandler}
         onSubmit={form.handleSubmit(formSubmitHandler)}
-        className="w-80 space-y-7 rounded-xl bg-gray-200/70 px-7 py-7 shadow-xl dark:bg-gray-800">
+        className="dark:bg-primary-dark border-secondry dark:border-secondry-dark w-80 space-y-7 rounded-xl border px-7 py-7 shadow-md dark:shadow-none">
         <h1 className={cn("text-center text-2xl", notoSans.className)}>
           Sign Up
         </h1>
@@ -88,12 +88,14 @@ export function SignUpForm() {
           name="username"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-md font-medium">Username : </FormLabel>
+              <FormLabel className="text-md font-normal text-gray-700 dark:text-gray-300">
+                Username :{" "}
+              </FormLabel>
               <FormControl>
                 <Input
                   placeholder="username"
                   {...field}
-                  className="h-11 border-2 bg-gray-200 shadow-none dark:bg-gray-700"
+                  className="border-secondry dark:border-secondry-dark h-11 bg-white shadow-none dark:bg-transparent"
                 />
               </FormControl>
               <FormMessage />
@@ -105,12 +107,14 @@ export function SignUpForm() {
           name="password"
           render={({ field }) => (
             <FormItem>
-              <FormLabel className="text-md font-medium">Password : </FormLabel>
+              <FormLabel className="text-md font-normal text-gray-700 dark:text-gray-300">
+                Password :{" "}
+              </FormLabel>
               <FormControl>
                 <Input
                   placeholder="password"
                   {...field}
-                  className="h-11 border-2 bg-gray-200 shadow-none dark:bg-gray-700"
+                  className="border-secondry dark:border-secondry-dark h-11 bg-white shadow-none dark:bg-transparent"
                 />
               </FormControl>
               {/* <FormDescription>This is your public display name.</FormDescription> */}
@@ -121,7 +125,7 @@ export function SignUpForm() {
         <Button
           type="submit"
           disabled={isLoading}
-          className="h-10 w-full font-medium disabled:opacity-70">
+          className="border-secondry dark:border-secondry-dark bg-primary-dark h-10 w-full border font-medium text-white shadow-none disabled:opacity-70">
           {isLoading ? <Loader /> : "Submit"}
         </Button>
       </form>
