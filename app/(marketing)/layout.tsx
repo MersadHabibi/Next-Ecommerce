@@ -13,7 +13,7 @@ export default async function authLayout({
     <div className="h-dvh pt-16">
       <Navbar />
 
-      <div className="container">{children}</div>
+      <div>{children}</div>
     </div>
   );
 }

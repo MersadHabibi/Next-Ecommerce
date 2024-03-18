@@ -86,4 +86,53 @@
   html.dark .banner-inverted-border::after {
     box-shadow: 10px 10px 0 black;
   }
+
+  .card-inverted-border {
+    position: relative;
+    /* box-sizing: content-box; */
+  }
+  .card-inverted-border::before {
+    margin-bottom: -0.9px;
+    margin-right: -0.9px;
+    z-index: 20;
+    content: "";
+    position: absolute;
+    bottom: 60.8px;
+    right: 0;
+    border-bottom-right-radius: 8px;
+    width: 17px;
+    height: 17px;
+    background: transparent;
+    border-bottom: solid 0.8px rgb(209 213 219);
+    border-right: solid 0.8px rgb(209 213 219);
+    box-shadow: 10px 10px 0 white;
+    /* box-shadow: 1px 1px 0 black; */
+  }
+  .card-inverted-border::after {
+    margin-bottom: -0.9px;
+    margin-right: -0.9px;
+    z-index: 20;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 60.8px;
+    border-bottom-right-radius: 8px;
+    width: 17px;
+    height: 17px;
+    background: transparent;
+    border-bottom: solid 0.8px rgb(209 213 219);
+    border-right: solid 0.8px rgb(209 213 219);
+    box-shadow: 10px 10px 0 white;
+  }
+
+  html.dark .card-inverted-border::before {
+    border-bottom: solid 0.8px rgb(64 64 64);
+    border-right: solid 0.8px rgb(64 64 64);
+    box-shadow: 10px 10px 0 black;
+  }
+  html.dark .card-inverted-border::after {
+    border-bottom: solid 0.8px rgb(64 64 64);
+    border-right: solid 0.8px rgb(64 64 64);
+    box-shadow: 10px 10px 0 black;
+  }
 }

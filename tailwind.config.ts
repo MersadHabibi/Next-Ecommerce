@@ -15,9 +15,13 @@ const config = {
       padding: "2rem",
       screens: {
         "2xl": "1400px",
+        // xs: "480px",
       },
     },
     extend: {
+      container: {
+        screens: {},
+      },
       keyframes: {
         "accordion-down": {
           from: { height: "0" },
@@ -42,7 +46,7 @@ const config = {
         gray: {
           950: "rgb(10 10 10)",
           800: "rgb(64 64 64)",
-          200: "rgb(209 213 219)"
+          200: "rgb(209 213 219)",
         },
       },
     },

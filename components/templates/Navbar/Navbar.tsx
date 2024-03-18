@@ -9,7 +9,7 @@ import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
   return (
-    <header className="fixed left-0 right-0 top-0 h-16 w-full border-b border-secondry dark:border-secondry-dark dark:bg-primary-dark">
+    <header className="fixed left-0 right-0 top-0 z-30 h-16 w-full border-b border-secondry bg-white dark:border-secondry-dark dark:bg-primary-dark">
       <div className="container flex h-full items-center justify-between">
         <div className="flex items-center gap-x-2 md:gap-x-10">
           <Logo classname="w-20 h-20" />
@@ -21,8 +21,6 @@ export default function Navbar() {
 
           <Search />
 
-          
-
           <Button
             className=" !bg-transparent hover:!bg-secondry dark:hover:!bg-secondry-dark"
             variant="outline"
@@ -33,8 +31,7 @@ export default function Navbar() {
         </div>
 
         {/* Mobile menu toggle */}
-        <MobileMenu/>
-        
+        <MobileMenu />
       </div>
     </header>
   );
