@@ -4,6 +4,10 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import ThemeProvider from "@/providers/theme-provider";
 import { Toaster } from "@/components/ui/toaster";
+import Navbar from "@/components/templates/Navbar/Navbar";
+import { redirect } from "next/navigation";
+import { getMeAction } from "@/actions/authActions";
+import CheckAuthUser from "@/components/modules/CheckAuthUser";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -22,9 +26,13 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const { isLogin, username }: { isLogin: boolean; username: string } =
+    await getMeAction();
+
   return (
     <html lang="en">
       <body className={cn("bg-white dark:bg-black", roboto.className)}>
+        {isLogin ? <CheckAuthUser username={username} /> : null}
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

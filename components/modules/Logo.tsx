@@ -7,10 +7,10 @@ export default function Logo({ classname }: { classname?: string }) {
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 192.756 192.756"
       fill="currentColor">
-      <g fill="currentColor" fill-rule="evenodd" clip-rule="evenodd">
+      <g fill="currentColor" fillRule="evenodd" clipRule="evenodd">
         <path
           fill="currentColor"
-          fill-opacity="0"
+          fillOpacity="0"
           d="M0 0h192.756v192.756H0V0z"
         />
         <path

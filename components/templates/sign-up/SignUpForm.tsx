@@ -20,6 +20,7 @@ import Loader from "@/components/modules/Loader";
 import { signUpAction } from "@/actions/authActions";
 import { Noto_Sans } from "next/font/google";
 import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
@@ -112,6 +113,7 @@ export function SignUpForm() {
               </FormLabel>
               <FormControl>
                 <Input
+                  type="password"
                   placeholder="password"
                   {...field}
                   className="border-secondry dark:border-secondry-dark h-11 bg-white shadow-none dark:bg-transparent"
@@ -122,12 +124,22 @@ export function SignUpForm() {
             </FormItem>
           )}
         />
-        <Button
-          type="submit"
-          disabled={isLoading}
-          className="border-secondry dark:border-secondry-dark bg-primary-dark h-10 w-full border font-medium text-white shadow-none disabled:opacity-70">
-          {isLoading ? <Loader /> : "Submit"}
-        </Button>
+        <div>
+          <Button
+            type="submit"
+            disabled={isLoading}
+            className="border-secondry dark:border-secondry-dark bg-primary-dark h-10 w-full border font-medium text-white shadow-none disabled:opacity-70">
+            {isLoading ? <Loader /> : "Submit"}
+          </Button>
+          <p className="mt-3 text-center text-sm font-normal text-gray-700 dark:text-gray-300">
+            Do you have an account?
+            <Link
+              className="font-medium text-black underline dark:text-white"
+              href="./sign-in">
+              Sign In
+            </Link>
+          </p>
+        </div>
       </form>
     </Form>
   );

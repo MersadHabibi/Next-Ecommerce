@@ -39,6 +39,11 @@ const config = {
         "secondry-dark": "rgb(64 64 64)",
         text: "#171717",
         "text-dark": "rgb(64 64 64)",
+        gray: {
+          950: "rgb(10 10 10)",
+          800: "rgb(64 64 64)",
+          200: "rgb(209 213 219)"
+        },
       },
     },
   },

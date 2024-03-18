@@ -244,3 +244,34 @@ export async function getMeAction() {
     );
   }
 }
+
+export async function logoutAction() {
+  try {
+    const token = cookies().get("token")?.value;
+
+    if (!token) {
+      return JSON.parse(
+        JSON.stringify({
+          message: "you are not login",
+          status: 401,
+        }),
+      );
+    }
+
+    cookies().delete("token");
+
+    return JSON.parse(
+      JSON.stringify({
+        message: "logout successfully",
+        status: 200,
+      }),
+    );
+  } catch (error) {
+    return JSON.parse(
+      JSON.stringify({
+        message: "server error",
+        status: 500,
+      }),
+    );
+  }
+}

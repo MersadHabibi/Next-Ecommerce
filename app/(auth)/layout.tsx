@@ -1,16 +1,18 @@
+import { getMeAction } from "@/actions/authActions";
 import Logo from "@/components/modules/Logo";
 import ThemeToggle from "@/components/modules/ThemeToggle";
+import { redirect } from "next/navigation";
 
 export default async function authLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  // const { isLogin }: { isLogin: boolean } = await getMeAction();
+  const { isLogin }: { isLogin: boolean } = await getMeAction();
 
-  // if (isLogin) {
-  //   redirect("/");
-  // }
+  if (isLogin) {
+    redirect("/");
+  }
 
   return (
     <div className="flex-center h-dvh ">
