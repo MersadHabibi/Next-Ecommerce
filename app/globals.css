@@ -48,4 +48,42 @@
       clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0);
     }
   }
+
+  /* Inverted Border */
+
+  .banner-inverted-border {
+    position: relative;
+  }
+
+  .banner-inverted-border::before {
+    z-index: 10;
+    content: "";
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    background: transparent;
+    box-shadow: 10px 10px 0 white;
+  }
+  html.dark .banner-inverted-border::before {
+    box-shadow: 10px 10px 0 black;
+  }
+
+  .banner-inverted-border::after {
+    z-index: 10;
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 130px;
+    border-radius: 50%;
+    width: 17px;
+    height: 17px;
+    background: transparent;
+    box-shadow: 10px 10px 0 white;
+  }
+  html.dark .banner-inverted-border::after {
+    box-shadow: 10px 10px 0 black;
+  }
 }

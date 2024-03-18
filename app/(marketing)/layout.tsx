@@ -10,10 +10,10 @@ export default async function authLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="flex-center h-dvh ">
+    <div className="h-dvh pt-16">
       <Navbar />
 
-      {children}
+      <div className="container">{children}</div>
     </div>
   );
 }
