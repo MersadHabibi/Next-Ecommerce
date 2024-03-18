@@ -5,6 +5,7 @@ import { Menu as MenuIcon, ShoppingBasket } from "lucide-react";
 import Menu from "@/components/templates/Navbar/Menu";
 import UserBtn from "./UserBtn";
 import Search from "./Search";
+import MobileMenu from "./MobileMenu";
 
 export default function Navbar() {
   return (
@@ -20,6 +21,8 @@ export default function Navbar() {
 
           <Search />
 
+          
+
           <Button
             className=" !bg-transparent hover:!bg-secondry dark:hover:!bg-secondry-dark"
             variant="outline"
@@ -30,9 +33,8 @@ export default function Navbar() {
         </div>
 
         {/* Mobile menu toggle */}
-        <Button className="sm:hidden" variant="ghost" size="icon">
-          <MenuIcon />
-        </Button>
+        <MobileMenu/>
+        
       </div>
     </header>
   );
