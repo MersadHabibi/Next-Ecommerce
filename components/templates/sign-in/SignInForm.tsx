@@ -53,6 +53,8 @@ export function SignInForm() {
 
     const res = await signInAction(formData);
 
+    console.log(res)
+
     setIsLoading(false);
 
     if (res.status === 200) {
