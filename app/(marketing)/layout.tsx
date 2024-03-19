@@ -1,8 +1,5 @@
-import { getMeAction } from "@/actions/authActions";
-import Logo from "@/components/modules/Logo";
+import Footer from "@/components/templates/Footer/Footer";
 import Navbar from "@/components/templates/Navbar/Navbar";
-import ThemeToggle from "@/components/modules/ThemeToggle";
-import { redirect } from "next/navigation";
 
 export default async function authLayout({
   children,
@@ -14,6 +11,8 @@ export default async function authLayout({
       <Navbar />
 
       <div>{children}</div>
+
+      <Footer />
     </div>
   );
 }

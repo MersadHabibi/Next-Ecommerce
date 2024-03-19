@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 import CategoryItem from "../Category/CategoryItem";
 import SectionHeader from "@/components/modules/SectionHeader";
 
@@ -13,9 +12,9 @@ export default function Categories() {
       />
 
       <div
-        className={cn(
-          "mt-3 grid grid-cols-1 grid-rows-1 gap-5 sm:grid-cols-2 lg:grid-cols-4",
-        )}>
+        className=
+          "mt-3 grid grid-cols-1 grid-rows-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
+        >
         <CategoryItem
           title="Running shoes"
           imageSrc="/images/categories/running-shoes.png"

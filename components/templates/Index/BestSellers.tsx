@@ -1,4 +1,3 @@
-import { cn } from "@/lib/utils";
 
 import { Noto_Sans } from "next/font/google";
 import ProductCard from "@/components/modules/ProductCard";
@@ -16,10 +15,7 @@ export default function BestSellers() {
         hasButton={true}
       />
 
-      <div
-        className={cn(
-          "mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4",
-        )}>
+      <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
         <ProductCard />
         <ProductCard />
         <ProductCard />

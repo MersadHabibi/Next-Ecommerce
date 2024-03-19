@@ -129,15 +129,11 @@ export async function signInAction(formData: FormData) {
 
     const prisma = new PrismaClient();
 
-    console.log(prisma);
-
     const user = await prisma.user.findUnique({
       where: {
         username,
       },
     });
-
-    console.log(user);
 
     if (!user) {
       return JSON.parse(
@@ -150,8 +146,6 @@ export async function signInAction(formData: FormData) {
 
     const isTruePassword = checkPassword(password, user.password); // Check password
 
-    console.log(isTruePassword);
-
     if (!isTruePassword) {
       return JSON.parse(
         JSON.stringify({
@@ -162,8 +156,6 @@ export async function signInAction(formData: FormData) {
     }
 
     const token = generateToken({ username }); // Generate token
-
-    console.log(token);
 
     cookies().set({
       name: "token",
