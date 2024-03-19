@@ -1,20 +1,15 @@
-import SectionTitle from "@/components/modules/SectionTitle";
-import { Button } from "@/components/ui/button";
-
 import { cn } from "@/lib/utils";
-import { Heart, ShoppingBag, ShoppingBasket } from "lucide-react";
-import Image from "next/image";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 import { Noto_Sans } from "next/font/google";
 import ProductCard from "@/components/modules/ProductCard";
+import SectionHeader from "@/components/modules/SectionHeader";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
 export default function BestSellers() {
   return (
     <section>
-      <SectionTitle
+      <SectionHeader
         title="Best Sellers"
         description="Get best product"
         classname="mt-10"

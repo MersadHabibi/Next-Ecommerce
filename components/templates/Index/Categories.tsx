@@ -1,20 +1,20 @@
-import SectionTitle from "@/components/modules/SectionTitle";
 import { cn } from "@/lib/utils";
 import CategoryItem from "../Category/CategoryItem";
+import SectionHeader from "@/components/modules/SectionHeader";
 
 export default function Categories() {
   return (
     <section>
-      <SectionTitle
+      <SectionHeader
         title="Categories"
         description="choose that you want"
-        classname="mt-20"
+        classname="mt-32"
         hasButton={false}
       />
 
       <div
         className={cn(
-          "mt-3 grid grid-cols-1 grid-rows-1 gap-5 pb-52 sm:grid-cols-2 lg:grid-cols-4",
+          "mt-3 grid grid-cols-1 grid-rows-1 gap-5 sm:grid-cols-2 lg:grid-cols-4",
         )}>
         <CategoryItem
           title="Running shoes"
