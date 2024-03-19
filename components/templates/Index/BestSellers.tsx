@@ -18,11 +18,12 @@ export default function BestSellers() {
         title="Best Sellers"
         description="Get best product"
         classname="mt-10"
+        hasButton={true}
       />
 
       <div
         className={cn(
-          "mt-3 grid grid-cols-1 gap-5 pb-52 md:grid-cols-2 lg:grid-cols-4",
+          "mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4",
         )}>
         <ProductCard />
         <ProductCard />

@@ -35,7 +35,7 @@ export default async function RootLayout({
         {isLogin ? <CheckAuthUser username={username} /> : null}
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange>
           {children}

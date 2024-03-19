@@ -12,14 +12,14 @@ export default function Banners() {
         <Image
           className={cn("relative h-full w-full rounded-lg object-cover")}
           src="/images/nike-banner-1.jfif"
-          width={1100}
-          height={1100}
-          quality={100}
+          width={900}
+          height={500}
+          quality={80}
           alt="Banner"
         />
         <div
           className={cn(
-            "absolute bottom-0 right-0 rounded-ss-lg bg-white p-3 dark:bg-black",
+            "absolute bottom-0 right-0 rounded-ss-lg bg-white p-3 outline outline-[3px] -outline-offset-[2px] outline-white dark:bg-black dark:outline-black",
           )}>
           <Button variant="outline">SHOP NOW</Button>
         </div>
@@ -28,9 +28,9 @@ export default function Banners() {
         <Image
           className={cn("relative h-full w-full rounded-lg object-cover")}
           src="/images/nike-banner-2.jpg"
-          width={1100}
-          height={1100}
-          quality={100}
+          width={400}
+          height={500}
+          quality={80}
           alt="Banner"
         />
       </div>

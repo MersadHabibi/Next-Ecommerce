@@ -34,8 +34,8 @@ export default function ProductCard() {
           <Image
             className={cn("rounded-md object-cover")}
             src="/images/products/product-1.png"
-            width={400}
-            height={400}
+            width={300}
+            height={300}
             alt="product"
           />
         </div>
@@ -57,7 +57,7 @@ export default function ProductCard() {
       </CardFooter>
       <div
         className={cn(
-          "absolute bottom-0 right-0 z-10 size-fit rounded-ss-xl  bg-white outline outline-[.7px] outline-white dark:bg-black dark:outline-black",
+          "absolute bottom-0 right-0 z-10 size-fit rounded-ss-xl bg-white outline outline-[1px] -outline-offset-0 outline-white dark:bg-black dark:outline-black",
         )}>
         <div
           className={cn(

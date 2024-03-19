@@ -5,10 +5,12 @@ export default function SectionTitle({
   title,
   description,
   classname,
+  hasButton,
 }: {
   title: string;
   description: string;
   classname?: string;
+  hasButton: boolean;
 }) {
   return (
     <div
@@ -20,7 +22,7 @@ export default function SectionTitle({
         <p className={cn("text-gray-700 dark:text-gray-300")}>{description}</p>
         <h2 className={cn("text-3xl font-semibold")}>{title}</h2>
       </div>
-      <Button variant="outline"> View all product </Button>
+      {hasButton ? <Button variant="outline"> View all product </Button> : null}
     </div>
   );
 }
