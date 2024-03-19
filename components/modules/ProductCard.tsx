@@ -2,12 +2,7 @@
 
 import { cn } from "@/lib/utils";
 import Image from "next/image";
-import {
-  Card,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, ShoppingBag } from "lucide-react";
 import { Noto_Sans } from "next/font/google";
 import { Button } from "../ui/button";
@@ -57,7 +52,7 @@ export default function ProductCard() {
       </CardFooter>
       <div
         className={cn(
-          "absolute bottom-0 right-0 z-10 size-fit rounded-ss-xl bg-white outline outline-[1px] -outline-offset-0 outline-white dark:bg-black dark:outline-black",
+          "absolute bottom-0 right-0 z-10 size-fit rounded-ss-xl bg-white outline outline-[2px]  outline-white dark:bg-black dark:outline-black",
         )}>
         <div
           className={cn(

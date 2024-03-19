@@ -8,7 +8,7 @@ export default function SectionHeader({
   hasButton,
 }: {
   title: string;
-  description: string;
+  description?: string;
   classname?: string;
   hasButton: boolean;
 }) {
@@ -19,7 +19,12 @@ export default function SectionHeader({
         classname,
       )}>
       <div>
-        <p className={cn("text-gray-700 dark:text-gray-300")}>{description}</p>
+        {description ? (
+          <p className={cn("text-gray-700 dark:text-gray-300")}>
+            {description}
+          </p>
+        ) : null}
+
         <h2 className={cn("text-3xl font-semibold")}>{title}</h2>
       </div>
       {hasButton ? <Button variant="outline"> View all product </Button> : null}
