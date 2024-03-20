@@ -6,7 +6,7 @@ import { NewestProducts } from "@/components/templates/Index/NewestProducts";
 
 export default function Home() {
   return (
-    <div className="container w-full">
+    <div className="w-full">
       <Banners />
 
       <BestSellers />

@@ -10,7 +10,7 @@ export default async function authLayout({
     <div className="h-dvh pt-16">
       <Navbar />
 
-      <div>{children}</div>
+      <div className="container">{children}</div>
 
       <Footer />
     </div>
