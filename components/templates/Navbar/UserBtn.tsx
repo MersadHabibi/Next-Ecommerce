@@ -66,7 +66,7 @@ export default function UserBtn() {
           <DialogHeader>
             {/* <div className="border-secondry dark:border-secondry-dark w-full border-b"></div> */}
             <div className="w-full pt-6">
-              <Link href="./sign-in">
+              <Link href="/sign-in">
                 <Button
                   variant="outline"
                   className="w-full justify-start gap-x-3">
@@ -74,7 +74,7 @@ export default function UserBtn() {
                   Sign-In
                 </Button>
               </Link>
-              <Link href="./sign-up">
+              <Link href="/sign-up">
                 <Button
                   variant="outline"
                   className="!mt-3 w-full justify-start gap-x-3">

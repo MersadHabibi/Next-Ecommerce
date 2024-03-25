@@ -136,3 +136,9 @@
     box-shadow: 10px 10px 0 black;
   }
 }
+
+@layer utilities {
+  .select-color .active {
+    @apply outline outline-offset-2 outline-green-500;
+  }
+}
