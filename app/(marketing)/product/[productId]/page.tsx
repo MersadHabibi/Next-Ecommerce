@@ -1,7 +1,7 @@
 import ProductDetails from "@/components/templates/Product/ProductDetails";
 import ProductGallery from "@/components/templates/Product/ProductGallery";
 
-export default function productId() {
+export default function ProductPage() {
   return (
     <div className="flex flex-col gap-8 pt-10 lg:flex-row xl:gap-x-10">
       <div className="w-full">

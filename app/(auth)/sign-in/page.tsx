@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "...",
 };
 
-const signInPage = () => {
+const SignInPage = () => {
   return (
     <div className="">
       <SignInForm />
@@ -14,4 +14,4 @@ const signInPage = () => {
   );
 };
 
-export default signInPage;
+export default SignInPage;

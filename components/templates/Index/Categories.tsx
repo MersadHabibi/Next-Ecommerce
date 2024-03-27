@@ -1,4 +1,4 @@
-import CategoryItem from "../Category/CategoryItem";
+import CategoryItem from "./Category/CategoryItem";
 import SectionHeader from "@/components/modules/SectionHeader";
 
 export default function Categories() {

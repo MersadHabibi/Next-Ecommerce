@@ -1,7 +1,7 @@
 import SectionHeader from "@/components/modules/SectionHeader";
-import ChooseUsAccordions from "../ChooseUs/ChooseUsAccordions";
-import Subscribe from "../ChooseUs/Subscribe";
-import OurBranches from "../ChooseUs/OurBranches";
+import ChooseUsAccordions from "./ChooseUs/ChooseUsAccordions";
+import Subscribe from "./ChooseUs/Subscribe";
+import OurBranches from "./ChooseUs/OurBranches";
 
 export default function ChooseUs() {
   return (

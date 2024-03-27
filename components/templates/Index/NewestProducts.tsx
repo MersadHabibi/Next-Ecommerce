@@ -1,5 +1,5 @@
 import SectionHeader from "@/components/modules/SectionHeader";
-import NewestProductsSwiper from "../NewestProducts/NewestProductsSwiper";
+import NewestProductsSwiper from "./NewestProducts/NewestProductsSwiper";
 
 export function NewestProducts() {
   return (

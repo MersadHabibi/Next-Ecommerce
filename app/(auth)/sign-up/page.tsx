@@ -6,7 +6,7 @@ export const metadata: Metadata = {
   description: "...",
 };
 
-const signUpPage = () => {
+const SignUpPage = () => {
   return (
     <div className="">
       <SignUpForm />
@@ -14,4 +14,4 @@ const signUpPage = () => {
   );
 };
 
-export default signUpPage;
+export default SignUpPage;
