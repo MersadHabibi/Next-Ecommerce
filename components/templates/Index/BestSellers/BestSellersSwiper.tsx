@@ -11,14 +11,14 @@ import {
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
 
-export default function NewestProductsSwiper() {
+export default function BestSellersSwiper() {
   return (
     <Carousel
       opts={{
         align: "start",
         active: true,
       }}
-      className="w-full">
+      className="mt-3 w-full">
       <CarouselContent>
         {Array.from({ length: 5 }).map((_, index) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">

@@ -9,7 +9,7 @@ export default function ChooseUs() {
       <SectionHeader
         title="Why Should You Choose Us"
         hasButton={false}
-        classname="mt-32"
+        classname="mt-24"
       />
 
       <div className="flex flex-col gap-5 pt-5 lg:flex-row">

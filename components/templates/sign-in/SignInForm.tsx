@@ -53,15 +53,19 @@ export function SignInForm() {
 
     const res = await signInAction(formData);
 
-    console.log(res)
+    console.log(res);
 
     setIsLoading(false);
 
     if (res.status === 200) {
-      router.push("/");
+      toast({
+        description: res.message,
+      });
+      return router.push("/");
     }
 
     toast({
+      variant: "destructive",
       description: res.message,
     });
   }
@@ -71,7 +75,7 @@ export function SignInForm() {
       <form
         // action={formSubmitHandler}
         onSubmit={form.handleSubmit(formSubmitHandler)}
-        className="dark:bg-primary-dark border-secondry dark:border-secondry-dark w-80 space-y-7 rounded-xl border px-7 py-7 shadow-md dark:shadow-none">
+        className="w-80 space-y-7 rounded-xl border border-secondry px-7 py-7 shadow-md dark:border-secondry-dark dark:bg-primary-dark dark:shadow-none">
         <h1 className={cn("text-center text-2xl", notoSans.className)}>
           Sign In
         </h1>
@@ -87,7 +91,7 @@ export function SignInForm() {
                 <Input
                   placeholder="username"
                   {...field}
-                  className="border-secondry dark:border-secondry-dark h-11 bg-white shadow-none dark:bg-transparent"
+                  className="h-11 border-secondry bg-white shadow-none dark:border-secondry-dark dark:bg-transparent"
                 />
               </FormControl>
               <FormMessage />
@@ -107,7 +111,7 @@ export function SignInForm() {
                   type="password"
                   placeholder="password"
                   {...field}
-                  className="border-secondry dark:border-secondry-dark h-11 bg-white shadow-none dark:bg-transparent"
+                  className="h-11 border-secondry bg-white shadow-none dark:border-secondry-dark dark:bg-transparent"
                 />
               </FormControl>
               {/* <FormDescription>This is your public display name.</FormDescription> */}
@@ -119,7 +123,7 @@ export function SignInForm() {
           <Button
             type="submit"
             disabled={isLoading}
-            className="border-secondry dark:border-secondry-dark bg-primary-dark h-10 w-full border font-medium text-white shadow-none disabled:opacity-70">
+            className="h-10 w-full border border-secondry bg-primary-dark font-medium text-white shadow-none disabled:opacity-70 dark:border-secondry-dark">
             {isLoading ? <Loader /> : "Submit"}
           </Button>
           <p className="mt-3 text-center text-sm font-normal text-gray-700 dark:text-gray-300">

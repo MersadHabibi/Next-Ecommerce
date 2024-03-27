@@ -2,6 +2,7 @@
 import { Noto_Sans } from "next/font/google";
 import ProductCard from "@/components/modules/ProductCard";
 import SectionHeader from "@/components/modules/SectionHeader";
+import BestSellersSwiper from "./BestSellers/BestSellersSwiper";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
@@ -15,12 +16,7 @@ export default function BestSellers() {
         hasButton={true}
       />
 
-      <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-4">
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-        <ProductCard />
-      </div>
+      <BestSellersSwiper  />
     </section>
   );
 }

@@ -7,14 +7,11 @@ export default function Categories() {
       <SectionHeader
         title="Categories"
         description="choose that you want"
-        classname="mt-32"
+        classname="mt-24"
         hasButton={false}
       />
 
-      <div
-        className=
-          "mt-3 grid grid-cols-1 grid-rows-1 gap-5 sm:grid-cols-2 lg:grid-cols-4"
-        >
+      <div className="mt-3 grid grid-cols-1 grid-rows-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
         <CategoryItem
           title="Running shoes"
           imageSrc="/images/categories/running-shoes.png"
