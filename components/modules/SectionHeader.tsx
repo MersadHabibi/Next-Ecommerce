@@ -1,5 +1,8 @@
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
+import { Noto_Sans } from "next/font/google";
+
+const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
 export default function SectionHeader({
   title,
@@ -25,7 +28,9 @@ export default function SectionHeader({
           </p>
         ) : null}
 
-        <h2 className={cn("text-3xl font-semibold")}>{title}</h2>
+        <h2 className={cn("text-3xl font-semibold", notoSans.className)}>
+          {title}
+        </h2>
       </div>
       {hasButton ? <Button variant="outline"> View all product </Button> : null}
     </div>
