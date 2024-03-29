@@ -24,19 +24,17 @@ export default function Header() {
           1 Product
         </p>
       </div>
-      <Button variant="ghost" size="icon">
-        <DropdownMenu>
-          <DropdownMenuTrigger>
-            <EllipsisVertical />
-          </DropdownMenuTrigger>
-          <DropdownMenuContent>
-            <DropdownMenuItem className="flex items-center gap-x-2">
-              <Trash className="size-5" />
-              Delete all
-            </DropdownMenuItem>
-          </DropdownMenuContent>
-        </DropdownMenu>
-      </Button>
+      <DropdownMenu>
+        <DropdownMenuTrigger>
+          <EllipsisVertical />
+        </DropdownMenuTrigger>
+        <DropdownMenuContent>
+          <DropdownMenuItem className="flex items-center gap-x-2">
+            <Trash className="size-5" />
+            Delete all
+          </DropdownMenuItem>
+        </DropdownMenuContent>
+      </DropdownMenu>
     </div>
   );
 }
