@@ -7,7 +7,7 @@ import { useState } from "react";
 
 const fakeContent = [
   // "/images/products/product-4.jpg",
-  "/images/products/product-5.webp",
+  "/images/products/product-2.png",
   "/images/products/product-6.jpg",
   "/images/products/product-7.jfif",
   "/images/products/product-8.jpg",
@@ -22,7 +22,7 @@ export default function ProductGallery() {
 
   return (
     <>
-      <div className="w-full rounded-sm border border-secondry dark:border-secondry-dark lg:rounded-md">
+      <div className="w-full rounded-sm border border-secondry bg-neutral-200 dark:border-secondry-dark dark:bg-neutral-950 lg:rounded-md">
         <AspectRatio
           ratio={16 / 13}
           className={cn(

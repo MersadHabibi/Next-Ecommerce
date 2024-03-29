@@ -13,10 +13,10 @@ export default function Topbar() {
   const openNavBar = useAdminNavbar((state) => state.open);
 
   return (
-    <div className="flex w-full items-center justify-between border-b border-secondry px-5 py-2 dark:border-secondry-dark ">
+    <div className="flex w-full items-center justify-between border-b border-secondry px-5 py-2 dark:border-secondry-dark dark:bg-neutral-950">
       <p className={cn("text-lg ", notoSans.className)}>Mersad Habibi</p>
       <div className="flex items-center gap-x-3">
-        <ThemeToggle />
+        <ThemeToggle classname="shadow-none" />
         <Button
           variant="outline"
           size="icon"

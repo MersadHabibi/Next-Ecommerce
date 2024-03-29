@@ -46,14 +46,16 @@ export default function Sidebar() {
           </Button>
         </div>
         <div className="py-5">
-          <Button
-            variant="outline"
-            className="active flex w-full items-center gap-x-2 text-start text-gray-700 dark:text-gray-300 [&.active]:!bg-neutral-200/60 dark:[&.active]:!bg-neutral-900">
-            <Home className="size-5" />
-            <Link href="/admin" className="b w-full py-2">
+          <Link
+            href="/admin"
+            className="active flex h-fit justify-start rounded-md text-gray-700 dark:text-gray-300 [&.active]:!bg-neutral-200/60 dark:[&.active]:!bg-neutral-900">
+            <Button
+              variant="outline"
+              className="active w-full justify-start gap-x-2 [&.active]:hover:!bg-transparent">
+              <Home className="size-5" />
               Home
-            </Link>
-          </Button>
+            </Button>
+          </Link>
         </div>
         <div>
           <p
@@ -64,22 +66,26 @@ export default function Sidebar() {
             Products Management
           </p>
           <div className="space-y-2 pl-3">
-            <Button
-              variant="outline"
-              className="flex w-full items-center gap-x-2 text-start text-gray-700 dark:text-gray-300">
-              <Boxes className="size-5" />
-              <Link href="/" className=" w-full py-2">
+            <Link
+              href="/admin"
+              className="flex h-fit justify-start rounded-md text-gray-700 dark:text-gray-300 [&.active]:!bg-neutral-200/60 dark:[&.active]:!bg-neutral-900">
+              <Button
+                variant="outline"
+                className="w-full justify-start gap-x-2 [&.active]:hover:!bg-transparent">
+                <Boxes className="size-5" />
                 Products
-              </Link>
-            </Button>
-            <Button
-              variant="outline"
-              className="flex w-full items-center gap-x-2 text-start text-gray-700 dark:text-gray-300">
-              <PackagePlus className="size-5" />
-              <Link href="/" className=" w-full py-2">
+              </Button>
+            </Link>
+            <Link
+              href="/admin"
+              className="flex h-fit justify-start rounded-md text-gray-700 dark:text-gray-300 [&.active]:!bg-neutral-200/60 dark:[&.active]:!bg-neutral-900">
+              <Button
+                variant="outline"
+                className="w-full justify-start gap-x-2 [&.active]:hover:!bg-transparent">
+                <PackagePlus className="size-5" />
                 Add Product
-              </Link>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </div>
