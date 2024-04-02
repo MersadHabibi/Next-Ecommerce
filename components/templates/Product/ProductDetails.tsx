@@ -38,10 +38,10 @@ export default function ProductDetails() {
           Colors:
         </span>
         <div className="select-color flex gap-x-3 pt-3">
-          <button className="active size-9 rounded-full bg-red-500"></button>
-          <button className="size-9 rounded-full bg-red-500 "></button>
-          <button className="size-9 rounded-full bg-red-500 "></button>
-          <button className="size-9 rounded-full bg-red-500 "></button>
+          <button className="active size-9 rounded-full border bg-red-500 [&.active]:outline [&.active]:outline-offset-2 [&.active]:outline-green-500"></button>
+          <button className="size-9 rounded-full border bg-red-500 [&.active]:outline [&.active]:outline-offset-2 [&.active]:outline-green-500"></button>
+          <button className="size-9 rounded-full border bg-red-500 [&.active]:outline [&.active]:outline-offset-2 [&.active]:outline-green-500"></button>
+          <button className="size-9 rounded-full border bg-red-500 [&.active]:outline [&.active]:outline-offset-2 [&.active]:outline-green-500"></button>
         </div>
       </div>
 

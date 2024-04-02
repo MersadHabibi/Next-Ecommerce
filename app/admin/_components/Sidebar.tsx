@@ -77,7 +77,7 @@ export default function Sidebar() {
               </Button>
             </Link>
             <Link
-              href="/admin"
+              href="/admin/add-product"
               className="flex h-fit justify-start rounded-md text-gray-700 dark:text-gray-300 [&.active]:!bg-neutral-200/60 dark:[&.active]:!bg-neutral-900">
               <Button
                 variant="outline"

@@ -138,10 +138,6 @@
 }
 
 @layer utilities {
-  .select-color .active {
-    @apply outline outline-offset-2 outline-green-500;
-  }
-
   .category-sort .active {
     @apply border-b border-t border-black text-gray-700 dark:border-white dark:text-gray-300;
   }
