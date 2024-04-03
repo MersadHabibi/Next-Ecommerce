@@ -6,6 +6,18 @@
   .flex-center {
     @apply flex items-center justify-center;
   }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 }
 @layer components {
   .loader {

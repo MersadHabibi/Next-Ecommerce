@@ -1,15 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import { cn, isValidColor } from "@/lib/utils";
 import { Noto_Sans } from "next/font/google";
 import { Label } from "@/components/ui/label";
@@ -21,7 +12,6 @@ import {
   AlertDialogAction,
   AlertDialogCancel,
   AlertDialogContent,
-  AlertDialogDescription,
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
@@ -37,12 +27,13 @@ export default function Colors() {
   const { toast } = useToast();
 
   const addColor = (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
-    if (!newColor) return;
+    if (!newColor || newColor === "transparent") return;
 
     const isDuplicate = colors.some((color) => color === newColor);
 
     if (isDuplicate) {
       return toast({
+        variant: "destructive",
         title: "This color is added before",
       });
     }
@@ -122,12 +113,16 @@ export default function Colors() {
                   className="col-span-3"
                 />
               </div>
-              <AlertDialogFooter className="flex items-center gap-x-2 pt-4">
+              <AlertDialogFooter className="flex !flex-row items-center justify-end gap-x-2 pt-4">
                 <button
-                  className="size-7 rounded-full border"
+                  className="size-7 rounded-full"
                   style={{ backgroundColor: newColor! }}></button>
 
-                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogCancel
+                  className="mt-0"
+                  onClick={(event) => setNewColor("transparent")}>
+                  Cancel
+                </AlertDialogCancel>
                 <AlertDialogAction
                   type="submit"
                   onClick={addColor}

@@ -1,6 +1,7 @@
 "use client";
 
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
+import { Edit } from "lucide-react";
+import { Noto_Sans } from "next/font/google";
 
 import {
   Accordion,
@@ -10,11 +11,15 @@ import {
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { Edit, Minus, Plus } from "lucide-react";
-import { Noto_Sans } from "next/font/google";
-import Colors from "./Colors";
 
-const inputResetStyles = "w-full border-none bg-transparent outline-none";
+import Colors from "./Colors";
+import Sizes from "./Sizes";
+import Quantity from "./Quantity";
+
+const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
+
+export const inputResetStyles =
+  "w-full border-none bg-transparent outline-none";
 
 export default function AddProductDetails() {
   function deleteValueOnFocus(
@@ -66,7 +71,7 @@ export default function AddProductDetails() {
           <input
             type="number"
             id="product-price"
-            defaultValue="128.2"
+            defaultValue="100"
             className={cn("ap m-0 appearance-none", inputResetStyles)}
             onFocus={deleteValueOnFocus}
           />
@@ -95,57 +100,9 @@ export default function AddProductDetails() {
 
       <Colors />
 
-      <div className="mt-4">
-        <span className="text-lg font-medium text-gray-700 dark:text-gray-300">
-          Select Size:
-        </span>
-        <div className="select-size flex gap-x-2 pt-2">
-          <Button
-            variant="outline"
-            className="size-9 rounded-none text-base text-gray-700 dark:text-gray-300">
-            35
-          </Button>
-          <Button
-            variant="outline"
-            className="size-9 rounded-none text-base text-gray-700 dark:text-gray-300">
-            35
-          </Button>
-          <Button
-            variant="outline"
-            className="size-9 rounded-none text-base text-gray-700 dark:text-gray-300">
-            35
-          </Button>
-          <Button
-            variant="outline"
-            className="size-9 rounded-none text-base text-gray-700 dark:text-gray-300">
-            35
-          </Button>
-        </div>
-      </div>
+      <Sizes />
 
-      <div className="mt-5 xl:mt-7">
-        <span className="text-lg font-medium text-gray-700 dark:text-gray-300">
-          Quantity
-        </span>
-        <div className="mt-3 grid grid-cols-5 sm:h-12">
-          <div className="col-span-5 mb-2 h-10 w-24 sm:col-span-1 sm:mb-0 sm:h-full sm:w-auto sm:p-1 sm:pr-2">
-            <div className="flex h-full items-center justify-around bg-gray-200/40 text-lg text-gray-700 dark:bg-neutral-900 dark:text-gray-300">
-              <button className="flex-center w-full">
-                <Minus className="size-4" />
-              </button>
-              <span className="flex-center w-full">1</span>
-              <button className="flex-center w-full">
-                <Plus className="size-4" />
-              </button>
-            </div>
-          </div>
-          <Button
-            variant="default"
-            className="col-span-5 h-12 rounded-none bg-black text-base text-white/90 shadow-none sm:col-span-4 sm:h-full">
-            Add to cart
-          </Button>
-        </div>
-      </div>
+      <Quantity />
 
       <div className="mt-10">
         <Accordion type="single" collapsible>

@@ -23,13 +23,11 @@ export default function AddProductImages() {
 
   return (
     <>
-      <div className="w-full rounded-sm border border-secondry bg-neutral-200 dark:border-secondry-dark dark:bg-neutral-950 lg:rounded-md">
+      <div className="w-full rounded-md border border-secondry bg-neutral-200 dark:border-secondry-dark dark:bg-neutral-950 lg:rounded-md">
         {mainImage?.image ? (
           <AspectRatio
             ratio={16 / 14}
-            className={cn(
-              "flex-center relative overflow-hidden rounded-sm lg:rounded-md",
-            )}>
+            className={cn("flex-center relative overflow-hidden rounded-md")}>
             <FileInput
               id="mainImage-2"
               classname="absolute top-3 right-3 size-12 bg-neutral-100/50 hover:bg-neutral-100/80 dark:bg-neutral-900/50 dark:hover:bg-neutral-900/80 transition-colors"
