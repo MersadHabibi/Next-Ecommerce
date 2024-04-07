@@ -70,6 +70,8 @@ export function SignUpForm() {
       });
     }
 
+    console.log(res);
+
     // server error
     return toast({
       variant: "destructive",

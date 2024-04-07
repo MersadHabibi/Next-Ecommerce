@@ -70,7 +70,6 @@ function StatusList({
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup value="backlog">
           {statuses.map((status) => {
-            console.log(status);
             return (
               <CommandItem
                 className={cn("data")}
@@ -80,7 +79,6 @@ function StatusList({
                 data-disabled={false}
                 disabled={false}
                 onSelect={(value) => {
-                  console.log(value);
                   setSelectedStatus(
                     statuses.find((priority) => priority.value === value) ||
                       null,

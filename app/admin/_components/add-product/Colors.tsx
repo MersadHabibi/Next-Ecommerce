@@ -17,12 +17,15 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { useNewProduct } from "@/stores/newProductImages";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
 
 export default function Colors() {
   const [newColor, setNewColor] = useState<string>("");
-  const [colors, setColors] = useState<string[]>([]);
+  const colors = useNewProduct((state) => state.colors);
+  const setColors = useNewProduct((state) => state.setColors);
+  const removeColors = useNewProduct((state) => state.removeColor);
 
   const { toast } = useToast();
 
@@ -38,7 +41,7 @@ export default function Colors() {
       });
     }
 
-    setColors((prev) => [...prev, newColor]);
+    setColors(newColor);
     event.currentTarget.value = "";
     setNewColor("transparent");
 
@@ -51,8 +54,7 @@ export default function Colors() {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     color: string,
   ) => {
-    const newColors = colors.filter((prevColor) => prevColor !== color);
-    setColors(newColors);
+    removeColors(color);
 
     return toast({
       description: `Color "${color}" removed`,

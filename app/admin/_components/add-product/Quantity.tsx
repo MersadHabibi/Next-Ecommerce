@@ -4,10 +4,12 @@ import { useState } from "react";
 import { cn } from "@/lib/utils";
 
 import { inputResetStyles } from "./Details";
-import { boolean } from "zod";
+import { UseFormRegister } from "react-hook-form";
+import { useNewProduct } from "@/stores/newProductImages";
 
 export default function Quantity() {
-  const [quantity, setQuantity] = useState<number | string>(1);
+  const quantity = useNewProduct((state) => state.quantity);
+  const setQuantity = useNewProduct((state) => state.setQuantity);
 
   return (
     <div className="mt-5 xl:mt-7">
@@ -18,9 +20,10 @@ export default function Quantity() {
         <div className="col-span-5 mb-2 h-10 w-24 sm:col-span-1 sm:mb-0 sm:h-full sm:w-auto sm:p-1 sm:pr-2">
           <div className="flex h-full items-center justify-around bg-gray-200/40 text-lg text-gray-700 dark:bg-neutral-900 dark:text-gray-300">
             <button
+              type="button"
               className="flex-center w-full"
               onClick={() =>
-                setQuantity((prev) => (prev ? (prev as number) - 1 : 0))
+                setQuantity(quantity ? (quantity as number) - 1 : 0)
               }>
               <Minus className="size-4" />
             </button>
@@ -32,8 +35,6 @@ export default function Quantity() {
               type="number"
               value={quantity}
               onChange={(event) => {
-                console.log(Number(event.currentTarget.value));
-
                 if (event.currentTarget.value.startsWith("-")) {
                   setQuantity("");
                   return;
@@ -44,8 +45,9 @@ export default function Quantity() {
               maxLength={4}
             />
             <button
+              type="button"
               className="flex-center w-full"
-              onClick={() => setQuantity((prev) => (prev as number) + 1)}>
+              onClick={() => setQuantity(Number(quantity as number) + 1)}>
               <Plus className="size-4" />
             </button>
           </div>

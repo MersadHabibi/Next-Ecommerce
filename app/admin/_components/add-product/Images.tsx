@@ -8,39 +8,36 @@ import { FolderSync, ImagePlus } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import FileInput from "../FileInput";
+import { useNewProduct } from "@/stores/newProductImages";
 
-type imageType = {
+export type imageType = {
   sortId: number;
-  image: FileList;
+  image: File;
 };
 
 export default function AddProductImages() {
-  const [mainImage, setMainImage] = useState<imageType | null>();
-
-  const [images, setImages] = useState<imageType[]>([]);
-
-  console.log(images);
+  const mainImage = useNewProduct((state) => state.mainImage);
+  const setMainImage = useNewProduct((state) => state.setMainImage);
+  const images = useNewProduct((state) => state.images);
+  const setImages = useNewProduct((state) => state.setImages);
 
   return (
     <>
       <div className="w-full rounded-md border border-secondry bg-neutral-200 dark:border-secondry-dark dark:bg-neutral-950 lg:rounded-md">
-        {mainImage?.image ? (
+        {mainImage ? (
           <AspectRatio
             ratio={16 / 14}
             className={cn("flex-center relative overflow-hidden rounded-md")}>
             <FileInput
               id="mainImage-2"
               classname="absolute top-3 right-3 size-12 bg-neutral-100/50 hover:bg-neutral-100/80 dark:bg-neutral-900/50 dark:hover:bg-neutral-900/80 transition-colors"
-              onchange={(event) =>
-                setMainImage({
-                  sortId: 0,
-                  image: event.target.files as FileList,
-                })
-              }>
+              onchange={(event) => {
+                if (event.target.files) setMainImage(event.target.files[0]);
+              }}>
               <FolderSync className="size-6" />
             </FileInput>
             <Image
-              src={URL.createObjectURL(mainImage.image[0])}
+              src={URL.createObjectURL(mainImage)}
               className="h-full w-full object-cover"
               alt="none"
               width={500}
@@ -51,12 +48,9 @@ export default function AddProductImages() {
           <AspectRatio ratio={16 / 14} className="">
             <FileInput
               id="mainImage"
-              onchange={(event) =>
-                setMainImage({
-                  sortId: 0,
-                  image: event.target.files as FileList,
-                })
-              }>
+              onchange={(event) => {
+                if (event.target.files) setMainImage(event.target.files[0]);
+              }}>
               <ImagePlus className="size-12" />
               <span className="mt-2">Choose Image</span>
             </FileInput>
@@ -80,13 +74,14 @@ export default function AddProductImages() {
                       (item) => item.sortId !== index,
                     );
 
-                    setImages((items) => [
-                      ...newImages,
-                      {
-                        sortId: index,
-                        image: event.target.files as FileList,
-                      },
-                    ]);
+                    if (event.target.files)
+                      setImages([
+                        ...newImages,
+                        {
+                          sortId: index,
+                          image: event.target.files[0],
+                        },
+                      ]);
                   }}></FileInput>
 
                 <AspectRatio
@@ -96,7 +91,7 @@ export default function AddProductImages() {
                   )}>
                   <Image
                     className={cn("h-full w-full object-cover")}
-                    src={URL.createObjectURL(isSelected.image[0])}
+                    src={URL.createObjectURL(isSelected.image)}
                     alt=""
                     width={100}
                     height={100}
@@ -112,13 +107,14 @@ export default function AddProductImages() {
                   id={`image-${index}`}
                   classname="size-full bg-neutral-200 dark:bg-neutral-950"
                   onchange={(event) => {
-                    setImages((items) => [
-                      ...items,
-                      {
-                        sortId: index,
-                        image: event.target.files as FileList,
-                      },
-                    ]);
+                    if (event.target.files)
+                      setImages([
+                        ...images,
+                        {
+                          sortId: index,
+                          image: event.target.files[0],
+                        },
+                      ]);
                   }}>
                   <ImagePlus className="size-6" />
                 </FileInput>

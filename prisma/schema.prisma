@@ -18,3 +18,15 @@ model User {
   username String @unique
   password String
 }
+
+model Product {
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  title       String
+  price       String
+  description String
+  colors      String[]
+  sizes       Int[]
+  quantity    Int
+  mainImage   String
+  images      String[]
+}

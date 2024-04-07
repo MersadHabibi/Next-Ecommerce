@@ -18,12 +18,16 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+import { useNewProduct } from "@/stores/newProductImages";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
 
 export default function Sizes() {
   const [newSize, setNewSize] = useState<number>(0);
-  const [sizes, setSizes] = useState<number[]>([]);
+
+  const sizes = useNewProduct((state) => state.sizes);
+  const setSizes = useNewProduct((state) => state.setSizes);
+  const removeSizes = useNewProduct((state) => state.removeSize);
 
   const { toast } = useToast();
 
@@ -34,12 +38,31 @@ export default function Sizes() {
       </span>
       <div className="select-size flex gap-x-2 pt-2">
         {sizes?.map((size) => (
-          <Button
-            key={size}
-            variant="outline"
-            className="size-9 rounded-none text-base text-gray-700 dark:text-gray-300">
-            {size}
-          </Button>
+          <AlertDialog key={size}>
+            <AlertDialogTrigger className="size-9 rounded-none border border-secondry text-base text-gray-700 dark:border-secondry-dark dark:text-gray-300">
+              {size}
+            </AlertDialogTrigger>
+            <AlertDialogContent>
+              <AlertDialogHeader>
+                <AlertDialogTitle>
+                  Do you want remove this size?
+                </AlertDialogTitle>
+              </AlertDialogHeader>
+              <AlertDialogFooter>
+                <AlertDialogCancel>Cancel</AlertDialogCancel>
+                <AlertDialogAction
+                  className="bg-black dark:bg-white"
+                  onClick={(event) => {
+                    removeSizes(size);
+                    toast({
+                      description: `Size ${size} deleted`,
+                    });
+                  }}>
+                  Remove
+                </AlertDialogAction>
+              </AlertDialogFooter>
+            </AlertDialogContent>
+          </AlertDialog>
         ))}
         <AlertDialog>
           <AlertDialogTrigger className="flex-center size-9 rounded-md bg-neutral-200/50 transition hover:bg-neutral-200 dark:bg-neutral-950 dark:hover:bg-neutral-900">
@@ -79,7 +102,7 @@ export default function Sizes() {
                       });
                     }
 
-                    setSizes((prev) => [...(prev as number[]), newSize]);
+                    setSizes(newSize);
                     setNewSize(0);
                   }}
                   type="submit"
