@@ -29,4 +29,5 @@ model Product {
   quantity    Int
   mainImage   String
   images      String[]
+  gender      String
 }

@@ -5,7 +5,7 @@ import { cn } from "@/lib/utils";
 
 import { inputResetStyles } from "./Details";
 import { UseFormRegister } from "react-hook-form";
-import { useNewProduct } from "@/stores/newProductImages";
+import { useNewProduct } from "@/stores/newProduct";
 
 export default function Quantity() {
   const quantity = useNewProduct((state) => state.quantity);

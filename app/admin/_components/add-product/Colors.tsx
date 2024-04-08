@@ -17,7 +17,7 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { useNewProduct } from "@/stores/newProductImages";
+import { useNewProduct } from "@/stores/newProduct";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
 

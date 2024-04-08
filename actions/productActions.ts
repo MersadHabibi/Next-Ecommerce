@@ -11,6 +11,7 @@ const schema = z.object({
   colors: z.string().array().min(1).max(8),
   sizes: z.number().array().min(1).max(8),
   quantity: z.number().min(1),
+  gender: z.string(),
 });
 
 export async function addProductAction(formData: FormData) {
@@ -21,6 +22,7 @@ export async function addProductAction(formData: FormData) {
     colors,
     sizes,
     quantity,
+    gender,
   }: {
     title: string;
     price: string;
@@ -28,6 +30,7 @@ export async function addProductAction(formData: FormData) {
     colors: string[];
     sizes: number[];
     quantity: number;
+    gender: string;
   } = JSON.parse(JSON.parse(JSON.stringify(formData.get("details"))));
 
   const mainImage = formData.get("mainImage") as File;
@@ -42,12 +45,13 @@ export async function addProductAction(formData: FormData) {
   // Validation
 
   const validatedFields = schema.safeParse({
-    title: title,
-    price: price,
-    description: description,
-    colors: colors,
-    sizes: sizes,
-    quantity: quantity,
+    title,
+    price,
+    description,
+    colors,
+    sizes,
+    quantity,
+    gender,
   });
 
   console.log(title);
@@ -95,6 +99,7 @@ export async function addProductAction(formData: FormData) {
         quantity,
         mainImage: uploadImageRes.pathes.mainImage,
         images: uploadImageRes.pathes.images,
+        gender
       },
     });
 

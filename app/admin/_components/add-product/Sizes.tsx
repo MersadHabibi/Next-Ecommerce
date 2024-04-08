@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
-import { useNewProduct } from "@/stores/newProductImages";
+import { useNewProduct } from "@/stores/newProduct";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
 

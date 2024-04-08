@@ -16,6 +16,7 @@ import Colors from "./Colors";
 import Sizes from "./Sizes";
 import Quantity from "./Quantity";
 import { UseFormRegister } from "react-hook-form";
+import Gender from "./Gender";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
 
@@ -113,13 +114,15 @@ export default function AddProductDetails({
         />
       </div>
 
-      <Colors  />
+      <Gender />
+
+      <Colors />
 
       <Sizes />
 
       <Quantity />
 
-      <div className="mt-10">
+      {/* <div className="mt-10">
         <Accordion type="single" collapsible>
           <AccordionItem value="item-1">
             <AccordionTrigger className={cn("text-lg font-medium")}>
@@ -133,7 +136,7 @@ export default function AddProductDetails({
             </AccordionContent>
           </AccordionItem>
         </Accordion>
-      </div>
+      </div> */}
     </>
   );
 }
