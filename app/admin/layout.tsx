@@ -11,7 +11,7 @@ export default function AdminLayout({
       <Sidebar />
       <div className="lg:col-span-3 xl:col-span-4">
         <Topbar />
-        <div className="h-dvh overflow-y-auto pb-20">{children}</div>
+        <div className="h-dvh overflow-y-auto pb-20 px-6 pt-6">{children}</div>
       </div>
     </div>
   );

@@ -31,3 +31,9 @@ model Product {
   images      String[]
   gender      String
 }
+
+model Category {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  title String
+  image String
+}

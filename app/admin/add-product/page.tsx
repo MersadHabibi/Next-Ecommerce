@@ -1,8 +1,5 @@
 "use client";
 
-import { Noto_Sans } from "next/font/google";
-import { cn } from "@/lib/utils";
-
 import AddProductImages from "../_components/add-product/Images";
 import AddProductDetails from "../_components/add-product/Details";
 import { Button } from "@/components/ui/button";
@@ -10,13 +7,11 @@ import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useNewProduct } from "@/stores/newProduct";
-import { json } from "stream/consumers";
 import { addProductAction } from "@/actions/productActions";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import Loader from "@/components/modules/Loader";
-
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
+import PageTitle from "../_components/PageTitle";
 
 const formSchema = z.object({
   title: z
@@ -102,19 +97,11 @@ export default function AddProductPage() {
   }
 
   return (
-    <div className="relative pt-5 sm:pt-10">
-      <div className="absolute left-0 top-0 rounded-ee-md border-b border-r bg-neutral-100 px-5 py-2 dark:border-secondry-dark dark:bg-neutral-900">
-        <p
-          className={cn(
-            "text-gray-700 dark:text-gray-300",
-            notoSans.className,
-          )}>
-          Add Product
-        </p>
-      </div>
+    <div className="relative">
+      <PageTitle title="Add Product" />
 
-      <form action="" onSubmit={form.handleSubmit(formSubmitHandler)}>
-        <div className="flex flex-col gap-8 px-5 pt-10 sm:px-10 lg:flex-row xl:gap-x-10">
+      <form action="" onSubmit={form.handleSubmit(formSubmitHandler)} className="sm:px-5 pt-8">
+        <div className="flex flex-col gap-8 lg:flex-row xl:gap-x-10">
           <div className="w-full">
             <AddProductImages />
           </div>
@@ -123,7 +110,7 @@ export default function AddProductPage() {
           </div>
         </div>
 
-        <div className="mx-10 mt-10 flex justify-end border-t border-secondry pt-6 dark:border-secondry-dark">
+        <div className="mt-10 flex justify-end border-t border-secondry pt-6 dark:border-secondry-dark">
           <Button
             type="submit"
             className="bg-black dark:bg-white"

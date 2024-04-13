@@ -1,6 +1,7 @@
 "use client";
 
 import Logo from "@/components/modules/Logo";
+import NavLink from "@/components/modules/NavLink";
 import ThemeToggle from "@/components/modules/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -12,6 +13,7 @@ import {
   PackageSearch,
   PlusCircle,
   PlusSquare,
+  SquareLibrary,
   X,
 } from "lucide-react";
 import { Noto_Sans } from "next/font/google";
@@ -22,6 +24,9 @@ const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 export default function Sidebar() {
   const isOpenNavBar = useAdminNavbar((state) => state.isOpen);
   const closeNavBar = useAdminNavbar((state) => state.close);
+
+  const NavLinkStyles =
+    "flex h-fit justify-start rounded-md text-gray-700 hover:bg-neutral-200 dark:text-gray-300 dark:hover:bg-neutral-900 transition-colors [&.active]:!bg-neutral-200/60 [&.active]:hover:!bg-neutral-200/60 dark:[&.active]:!bg-neutral-900 dark:[&.active]:hover:!bg-neutral-900";
 
   return (
     <>
@@ -46,46 +51,61 @@ export default function Sidebar() {
           </Button>
         </div>
         <div className="py-5">
-          <Link
-            href="/admin"
-            className="active flex h-fit justify-start rounded-md text-gray-700 dark:text-gray-300 [&.active]:!bg-neutral-200/60 dark:[&.active]:!bg-neutral-900">
+          <NavLink href="/admin" className={NavLinkStyles}>
             <Button
               variant="outline"
-              className="active w-full justify-start gap-x-2 [&.active]:hover:!bg-transparent">
+              className="w-full justify-start gap-x-2 hover:!bg-transparent dark:hover:!bg-transparent">
               <Home className="size-5" />
               Home
             </Button>
-          </Link>
+          </NavLink>
         </div>
+        {/* Product Managment */}
         <div>
           <p
             className={cn(
               "mb-3 text-gray-700 dark:text-gray-300",
               notoSans.className,
             )}>
-            Products Management
+            Product Management
           </p>
           <div className="space-y-2 pl-3">
-            <Link
-              href="/admin"
-              className="flex h-fit justify-start rounded-md text-gray-700 dark:text-gray-300 [&.active]:!bg-neutral-200/60 dark:[&.active]:!bg-neutral-900">
+            <NavLink href="/admin" className={NavLinkStyles}>
               <Button
                 variant="outline"
-                className="w-full justify-start gap-x-2 [&.active]:hover:!bg-transparent">
+                className="w-full justify-start gap-x-2 hover:!bg-transparent dark:hover:!bg-transparent">
                 <Boxes className="size-5" />
                 Products
               </Button>
-            </Link>
-            <Link
-              href="/admin/add-product"
-              className="flex h-fit justify-start rounded-md text-gray-700 dark:text-gray-300 [&.active]:!bg-neutral-200/60 dark:[&.active]:!bg-neutral-900">
+            </NavLink>
+            <NavLink href="/admin/add-product" className={NavLinkStyles}>
               <Button
                 variant="outline"
-                className="w-full justify-start gap-x-2 [&.active]:hover:!bg-transparent">
+                className="w-full justify-start gap-x-2 hover:!bg-transparent dark:hover:!bg-transparent">
                 <PackagePlus className="size-5" />
                 Add Product
               </Button>
-            </Link>
+            </NavLink>
+          </div>
+        </div>
+        {/* Category Managment */}
+        <div className="mt-5">
+          <p
+            className={cn(
+              "mb-3 text-gray-700 dark:text-gray-300",
+              notoSans.className,
+            )}>
+            Category Managment
+          </p>
+          <div className="space-y-2 pl-3">
+            <NavLink href="/admin/categories" className={NavLinkStyles}>
+              <Button
+                variant="outline"
+                className="w-full justify-start gap-x-2 hover:!bg-transparent dark:hover:!bg-transparent">
+                <SquareLibrary className="size-5" />
+                Categories
+              </Button>
+            </NavLink>
           </div>
         </div>
       </div>
