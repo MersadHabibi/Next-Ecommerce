@@ -7,12 +7,15 @@ export default function FileInput({
   children,
   onchange,
   classname,
+  key,
 }: {
   id: string;
   children?: React.ReactNode;
   onchange: (event: React.ChangeEvent<HTMLInputElement>) => void;
   classname?: string;
+  key?: number;
 }) {
+  console.log(key);
   return (
     <>
       <Label
@@ -26,6 +29,7 @@ export default function FileInput({
       <Input
         onChange={(event) => onchange(event)}
         id={id}
+        key={key}
         type="file"
         className="hidden"
       />

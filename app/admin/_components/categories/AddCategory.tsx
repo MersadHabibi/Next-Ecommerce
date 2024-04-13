@@ -19,16 +19,62 @@ import { cn } from "@/lib/utils";
 import { Noto_Sans } from "next/font/google";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import FileInput from "../FileInput";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Image from "next/image";
+import { useToast } from "@/components/ui/use-toast";
+import { addCategoryAction } from "@/actions/categoryActions";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
 
 export default function AddCategpry() {
-  const [image, setImage] = useState<File>();
+  const titleRef = useRef("");
+  const [image, setImage] = useState<File | null>(null);
+
+  const { toast } = useToast();
 
   function onSelectImage(event: React.ChangeEvent<HTMLInputElement>) {
     if (event.target.files) setImage(event.target.files[0]);
+  }
+
+  async function onAddCategory() {
+    const title = titleRef.current;
+
+    // Validation
+    if (!image)
+      return toast({
+        variant: "destructive",
+        description: "you must choose image",
+      });
+
+    if (!title)
+      return toast({
+        variant: "destructive",
+        description: "you must write title",
+      });
+
+    //
+
+    const formData = new FormData();
+
+    formData.append("image", image);
+    formData.append("title", title);
+
+    const res = await addCategoryAction(formData);
+
+    console.log(res);
+
+    if (res.status === 201) {
+      setImage(null);
+
+      return toast({
+        description: res.message,
+      });
+    }
+
+    toast({
+      variant: "destructive",
+      description: res.message,
+    });
   }
 
   return (
@@ -47,7 +93,13 @@ export default function AddCategpry() {
             <Label htmlFor="image" className="text-right">
               Title
             </Label>
-            <Input placeholder="title" className="col-span-3" />
+            <Input
+              placeholder="title"
+              className="col-span-3"
+              onChange={(event) => {
+                titleRef.current = event.target.value;
+              }}
+            />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="image" className="text-right">
@@ -76,7 +128,10 @@ export default function AddCategpry() {
           </div>
           <AlertDialogFooter className="flex !flex-row items-center justify-end gap-x-2 pt-4">
             <AlertDialogCancel className="mt-0">Cancel</AlertDialogCancel>
-            <AlertDialogAction type="submit" className="bg-black dark:bg-white">
+            <AlertDialogAction
+              type="submit"
+              className="bg-black dark:bg-white"
+              onClick={onAddCategory}>
               Add
             </AlertDialogAction>
           </AlertDialogFooter>
