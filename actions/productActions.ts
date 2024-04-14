@@ -3,6 +3,7 @@
 import { saveFile } from "@/lib/saveFile";
 import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
+import { getMeAction } from "./authActions";
 
 const schema = z.object({
   title: z.string().min(4).max(40),
@@ -15,6 +16,16 @@ const schema = z.object({
 });
 
 export async function addProductAction(formData: FormData) {
+  const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
+
+  if (role === "USER")
+    return JSON.parse(
+      JSON.stringify({
+        status: 401,
+        message: "You are not access",
+      }),
+    );
+
   const {
     title,
     price,
@@ -99,7 +110,7 @@ export async function addProductAction(formData: FormData) {
         quantity,
         mainImage: uploadImageRes.pathes.mainImage,
         images: uploadImageRes.pathes.images,
-        gender
+        gender,
       },
     });
 

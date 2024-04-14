@@ -229,6 +229,7 @@ export async function getMeAction() {
     return JSON.parse(
       JSON.stringify({
         username: user.username,
+        role: user.role,
         isLogin: true,
         status: 200,
       }),

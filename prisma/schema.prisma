@@ -15,6 +15,7 @@ datasource db {
 
 model User {
   id       String @id @default(auto()) @map("_id") @db.ObjectId
+  role     String @default("USER")
   username String @unique
   password String
 }

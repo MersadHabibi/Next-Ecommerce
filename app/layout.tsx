@@ -26,13 +26,17 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const { isLogin, username }: { isLogin: boolean; username: string } =
+  const {
+    isLogin,
+    username,
+    role,
+  }: { isLogin: boolean; username: string; role: "ADMIN" | "USER" } =
     await getMeAction();
 
   return (
     <html lang="en">
       <body className={cn("bg-white dark:bg-black", roboto.className)}>
-        {isLogin ? <CheckAuthUser username={username} /> : null}
+        {isLogin ? <CheckAuthUser username={username} role={role} /> : null}
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"

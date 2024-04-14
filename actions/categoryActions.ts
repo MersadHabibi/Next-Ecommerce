@@ -3,6 +3,7 @@
 import { saveFile } from "@/lib/saveFile";
 import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
+import { getMeAction } from "./authActions";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = ["image/png", "image/webp"];
@@ -19,6 +20,16 @@ const schema = z.object({
 });
 
 export async function addCategoryAction(formData: FormData) {
+  const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
+
+  if (role === "USER")
+    return JSON.parse(
+      JSON.stringify({
+        status: 401,
+        message: "You are not access",
+      }),
+    );
+
   const title = formData.getAll("title")[0] as string;
   const image = formData.getAll("image")[0] as File;
 
@@ -89,6 +100,16 @@ export async function addCategoryAction(formData: FormData) {
 }
 
 export async function deleteCategpryAction(categoryId: string) {
+  const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
+
+  if (role === "USER")
+    return JSON.parse(
+      JSON.stringify({
+        status: 401,
+        message: "You are not access",
+      }),
+    );
+
   const prisma = new PrismaClient();
 
   try {

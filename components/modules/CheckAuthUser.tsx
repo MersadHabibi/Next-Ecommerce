@@ -2,10 +2,16 @@
 
 import { useAuthStore } from "@/stores/authStore";
 
-export default function CheckAuthUser({ username }: { username: string }) {
+export default function CheckAuthUser({
+  username,
+  role,
+}: {
+  username: string;
+  role?: "ADMIN" | "USER";
+}) {
   const signIn = useAuthStore((state) => state.signIn);
 
-  signIn(username);
+  signIn(username, role);
 
   return <></>;
 }
