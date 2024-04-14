@@ -23,12 +23,17 @@ import { useRef, useState } from "react";
 import Image from "next/image";
 import { useToast } from "@/components/ui/use-toast";
 import { addCategoryAction } from "@/actions/categoryActions";
+import Loader from "@/components/modules/Loader";
+import { useCategoriesStore } from "@/stores/categoriesStore";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
 
 export default function AddCategpry() {
+  const [isLoading, setIsLoading] = useState(false);
   const titleRef = useRef("");
   const [image, setImage] = useState<File | null>(null);
+
+  const setCategories = useCategoriesStore((state) => state.setCategories);
 
   const { toast } = useToast();
 
@@ -54,6 +59,8 @@ export default function AddCategpry() {
 
     //
 
+    setIsLoading(true);
+
     const formData = new FormData();
 
     formData.append("image", image);
@@ -61,9 +68,11 @@ export default function AddCategpry() {
 
     const res = await addCategoryAction(formData);
 
-    console.log(res);
+    setIsLoading(false);
 
     if (res.status === 201) {
+      console.log(res.categories);
+      setCategories(res.categories);
       setImage(null);
 
       return toast({
@@ -79,8 +88,10 @@ export default function AddCategpry() {
 
   return (
     <AlertDialog>
-      <AlertDialogTrigger className="flex-center size-9 rounded-md bg-black text-white transition hover:bg-black/80 dark:bg-white dark:text-black dark:hover:bg-white/80">
-        <Plus />
+      <AlertDialogTrigger
+        disabled={isLoading}
+        className="flex-center size-9 rounded-md bg-black text-white transition hover:bg-black/80 disabled:opacity-70 dark:bg-white dark:text-black dark:hover:bg-white/80">
+        {isLoading ? <Loader /> : <Plus />}
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader className="border-b border-secondry pb-4 dark:border-secondry-dark">

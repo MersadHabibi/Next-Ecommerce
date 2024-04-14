@@ -17,14 +17,14 @@ export const saveFile = async (file: File, filePath: string) => {
   const filename = file.name.replaceAll(" ", "_");
 
   const newFilePath =
-    `public/assets/${filePath ? filePath + "/" : ""}` +
+    `assets/${filePath ? filePath + "/" : ""}` +
     Math.random() * 10000 +
     "-" +
     filename;
 
   try {
     // Write the file to the specified directory (public/assets) with the modified filename
-    await writeFile(path.join(process.cwd(), newFilePath), buffer);
+    await writeFile(path.join(process.cwd(), "/public/", newFilePath), buffer);
 
     // Return a JSON response with a success message and a 201 status code
     return { Message: "Success", status: 201, path: newFilePath };

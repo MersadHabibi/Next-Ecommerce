@@ -68,11 +68,13 @@ export async function addCategoryAction(formData: FormData) {
       },
     });
 
+    const categories = await prisma.category.findMany();
+
     return JSON.parse(
       JSON.stringify({
         status: 201,
         message: "New category created",
-        category,
+        categories,
       }),
     );
   } catch (error) {
@@ -80,6 +82,34 @@ export async function addCategoryAction(formData: FormData) {
       JSON.stringify({
         status: 500,
         message: "create category failed",
+        error,
+      }),
+    );
+  }
+}
+
+export async function deleteCategpryAction(categoryId: string) {
+  const prisma = new PrismaClient();
+
+  try {
+    const category = await prisma.category.delete({
+      where: { id: categoryId },
+    });
+
+    const categories = await prisma.category.findMany();
+
+    return JSON.parse(
+      JSON.stringify({
+        status: 202,
+        message: "Delete category successfully",
+        categories,
+      }),
+    );
+  } catch (error) {
+    return JSON.parse(
+      JSON.stringify({
+        status: 500,
+        message: "Delete category failed",
         error,
       }),
     );
