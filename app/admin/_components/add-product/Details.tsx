@@ -17,6 +17,7 @@ import Sizes from "./Sizes";
 import Quantity from "./Quantity";
 import { UseFormRegister } from "react-hook-form";
 import Gender from "./Gender";
+import Category from "./Category";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
 
@@ -113,6 +114,8 @@ export default function AddProductDetails({
           )}
         />
       </div>
+
+      <Category />
 
       <Gender />
 

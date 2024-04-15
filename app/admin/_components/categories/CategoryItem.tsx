@@ -69,7 +69,7 @@ export default function CatgeoryItem({ category }: { category: CategoryType }) {
             </div>
             <CardTitle
               className={cn("text-center text-2xl", notoSans.className)}>
-              Sandals
+              {category.title}
             </CardTitle>
           </CardContent>
         </Card>

@@ -11,6 +11,7 @@ export type State = {
   mainImage: File | null;
   images: imageType[];
   gender: "men" | "women";
+  category: string;
 };
 
 export type Actions = {
@@ -23,6 +24,7 @@ export type Actions = {
   setQuantity: (quantity: number | string) => void;
   reset: () => void;
   setGender: (gender: "men" | "women") => void;
+  setCategory: (categoryId: string) => void;
 };
 
 export const useNewProduct = create<State & Actions>()((set) => ({
@@ -32,6 +34,7 @@ export const useNewProduct = create<State & Actions>()((set) => ({
   sizes: [],
   quantity: 1,
   gender: "men",
+  category: "",
   setMainImage: (newMainImage) => set({ mainImage: newMainImage }),
   setImages: (newImages) => set({ images: newImages }),
   setColors: (color) => set((state) => ({ colors: [...state.colors, color] })),
@@ -48,6 +51,14 @@ export const useNewProduct = create<State & Actions>()((set) => ({
     }),
   setQuantity: (quantity) => set({ quantity }),
   reset: () =>
-    set({ mainImage: null, images: [], colors: [], sizes: [], quantity: 1 }),
+    set({
+      mainImage: null,
+      images: [],
+      colors: [],
+      sizes: [],
+      quantity: 1,
+      category: "",
+    }),
   setGender: (gender) => set({ gender }),
+  setCategory: (categoryId) => set({ category: categoryId }),
 }));

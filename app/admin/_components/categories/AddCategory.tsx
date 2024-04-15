@@ -71,7 +71,6 @@ export default function AddCategpry() {
     setIsLoading(false);
 
     if (res.status === 201) {
-      console.log(res.categories);
       setCategories(res.categories);
       setImage(null);
 

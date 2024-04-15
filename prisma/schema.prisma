@@ -31,6 +31,7 @@ model Product {
   mainImage   String
   images      String[]
   gender      String
+  category    String   @db.ObjectId
 }
 
 model Category {

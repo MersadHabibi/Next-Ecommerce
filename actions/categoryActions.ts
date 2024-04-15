@@ -33,8 +33,6 @@ export async function addCategoryAction(formData: FormData) {
   const title = formData.getAll("title")[0] as string;
   const image = formData.getAll("image")[0] as File;
 
-  console.log(title, image);
-
   // Validation
 
   const validatedFields = schema.safeParse({
@@ -131,6 +129,28 @@ export async function deleteCategpryAction(categoryId: string) {
       JSON.stringify({
         status: 500,
         message: "Delete category failed",
+        error,
+      }),
+    );
+  }
+}
+
+export async function getAllCategoriesAction() {
+  try {
+    const prisma = new PrismaClient();
+
+    const categories = await prisma.category.findMany();
+
+    return JSON.parse(
+      JSON.stringify({
+        categories,
+      }),
+    );
+  } catch (error) {
+    return JSON.parse(
+      JSON.stringify({
+        status: 500,
+        message: "server error",
         error,
       }),
     );

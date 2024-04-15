@@ -91,7 +91,7 @@ export default function AddProductPage() {
       });
     }
 
-    console.log(res);
+    console.log(res.error);
 
     toast({ description: res.message, variant: "destructive" });
   }
@@ -100,7 +100,10 @@ export default function AddProductPage() {
     <div className="relative">
       <PageTitle title="Add Product" />
 
-      <form action="" onSubmit={form.handleSubmit(formSubmitHandler)} className="sm:px-5 pt-8">
+      <form
+        action=""
+        onSubmit={form.handleSubmit(formSubmitHandler)}
+        className="pt-8 sm:px-5">
         <div className="flex flex-col gap-8 lg:flex-row xl:gap-x-10">
           <div className="w-full">
             <AddProductImages />

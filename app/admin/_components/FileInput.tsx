@@ -15,7 +15,6 @@ export default function FileInput({
   classname?: string;
   key?: number;
 }) {
-  console.log(key);
   return (
     <>
       <Label

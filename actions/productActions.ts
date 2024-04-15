@@ -13,6 +13,7 @@ const schema = z.object({
   sizes: z.number().array().min(1).max(8),
   quantity: z.number().min(1),
   gender: z.string(),
+  category: z.string(),
 });
 
 export async function addProductAction(formData: FormData) {
@@ -34,6 +35,7 @@ export async function addProductAction(formData: FormData) {
     sizes,
     quantity,
     gender,
+    category,
   }: {
     title: string;
     price: string;
@@ -42,6 +44,7 @@ export async function addProductAction(formData: FormData) {
     sizes: number[];
     quantity: number;
     gender: string;
+    category: string;
   } = JSON.parse(JSON.parse(JSON.stringify(formData.get("details"))));
 
   const mainImage = formData.get("mainImage") as File;
@@ -63,9 +66,8 @@ export async function addProductAction(formData: FormData) {
     sizes,
     quantity,
     gender,
+    category
   });
-
-  console.log(title);
 
   // Return early if the form data is invalid
   if (!validatedFields.success) {
@@ -111,6 +113,7 @@ export async function addProductAction(formData: FormData) {
         mainImage: uploadImageRes.pathes.mainImage,
         images: uploadImageRes.pathes.images,
         gender,
+        category
       },
     });
 
