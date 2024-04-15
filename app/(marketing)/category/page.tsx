@@ -2,10 +2,8 @@ import Filter from "@/components/templates/Category/Filter";
 import Products from "@/components/templates/Category/Products";
 import Search from "@/components/templates/Category/Search";
 import Sort from "@/components/templates/Category/Sort";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { ArrowDownUp, SortAsc } from "lucide-react";
+import { Suspense } from "react";
+import Loading from "../loading";
 
 export default function CategoryPage() {
   return (
@@ -18,7 +16,9 @@ export default function CategoryPage() {
       <div className="col-span-4 space-y-4 lg:col-span-3 xl:space-y-6">
         <Sort />
 
-        <Products />
+        <Suspense fallback={<Loading />}>
+          <Products />
+        </Suspense>
       </div>
     </div>
   );
