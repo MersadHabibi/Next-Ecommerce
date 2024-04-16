@@ -17,7 +17,7 @@ const config = {
     extend: {
       container: {
         screens: {
-          "2xl": "1400px",
+          "2xl": "1440px",
           xl: "1280px",
           lg: "1024px",
           md: "768px",

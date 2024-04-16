@@ -1,7 +1,7 @@
 "use server";
 
 import { saveFile } from "@/lib/saveFile";
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 import { z } from "zod";
 import { getMeAction } from "./authActions";
 
@@ -66,7 +66,7 @@ export async function addProductAction(formData: FormData) {
     sizes,
     quantity,
     gender,
-    category
+    category,
   });
 
   // Return early if the form data is invalid
@@ -113,7 +113,7 @@ export async function addProductAction(formData: FormData) {
         mainImage: uploadImageRes.pathes.mainImage,
         images: uploadImageRes.pathes.images,
         gender,
-        category
+        category,
       },
     });
 
@@ -161,4 +161,26 @@ async function uploadImages(mainImage: File, images: File[]) {
   return {
     pathes,
   };
+}
+
+export async function getAllProducts() {
+  try {
+    const prisma = new PrismaClient();
+
+    const products = await prisma.product.findMany();
+
+    return JSON.parse(
+      JSON.stringify({
+        status: 200,
+        products,
+      }),
+    );
+  } catch (error) {
+    return JSON.parse(
+      JSON.stringify({
+        status: 500,
+        error,
+      }),
+    );
+  }
 }

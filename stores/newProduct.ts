@@ -1,6 +1,6 @@
 "use client";
 
-import { imageType } from "@/app/admin/_components/add-product/Images";
+import { imageType } from "@/app/admin/_components/(products)/add-product/Images";
 
 import { create } from "zustand";
 

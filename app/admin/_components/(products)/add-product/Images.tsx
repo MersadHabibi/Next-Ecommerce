@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import { FolderSync, ImagePlus } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
-import FileInput from "../FileInput";
+import FileInput from "../../FileInput";
 import { useNewProduct } from "@/stores/newProduct";
 
 export type imageType = {

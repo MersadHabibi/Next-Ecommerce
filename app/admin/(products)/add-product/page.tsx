@@ -1,7 +1,7 @@
 "use client";
 
-import AddProductImages from "../_components/add-product/Images";
-import AddProductDetails from "../_components/add-product/Details";
+import AddProductImages from "../../_components/(products)/add-product/Images";
+import AddProductDetails from "../../_components/(products)/add-product/Details";
 import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
@@ -11,7 +11,7 @@ import { addProductAction } from "@/actions/productActions";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
 import Loader from "@/components/modules/Loader";
-import PageTitle from "../_components/PageTitle";
+import PageTitle from "../../_components/PageTitle";
 
 const formSchema = z.object({
   title: z

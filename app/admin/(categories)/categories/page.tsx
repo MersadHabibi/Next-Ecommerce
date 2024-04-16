@@ -1,8 +1,7 @@
-import PageTitle from "../_components/PageTitle";
-import CategoryList from "../_components/categories/CategoryList";
-import AddCategpry from "../_components/categories/AddCategory";
+import PageTitle from "../../_components/PageTitle";
+import CategoryList from "../../_components/(categories)/categories/CategoryList";
+import AddCategpry from "../../_components/(categories)/categories/AddCategory";
 import { PrismaClient } from "@prisma/client";
-
 
 export default async function CategoriesPage() {
   const prisma = new PrismaClient();

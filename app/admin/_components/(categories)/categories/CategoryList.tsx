@@ -26,8 +26,6 @@ export default function CategoryList({
     setCategories(categoriesEntry);
   }, [categoriesEntry, setCategories]);
 
-  function onDeleteCategory(catgeoryId: string) {}
-
   return (
     <div className="grid grid-cols-1 grid-rows-1 gap-5 pt-8 sm:grid-cols-2 md:grid-cols-3 md:px-5 xl:grid-cols-4">
       {categories?.map((category) => (

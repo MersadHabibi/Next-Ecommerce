@@ -18,7 +18,7 @@ import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 import { Noto_Sans } from "next/font/google";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import FileInput from "../FileInput";
+import FileInput from "../../FileInput";
 import { useRef, useState } from "react";
 import Image from "next/image";
 import { useToast } from "@/components/ui/use-toast";

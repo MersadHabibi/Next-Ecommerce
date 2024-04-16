@@ -70,7 +70,7 @@ export default function Sidebar() {
             Product Management
           </p>
           <div className="space-y-2 pl-3">
-            <NavLink href="/admin" className={NavLinkStyles}>
+            <NavLink href="/admin/products" className={NavLinkStyles}>
               <Button
                 variant="outline"
                 className="w-full justify-start gap-x-2 hover:!bg-transparent dark:hover:!bg-transparent">

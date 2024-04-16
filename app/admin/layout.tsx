@@ -12,7 +12,7 @@ export default async function AdminLayout({
 }) {
   const { isLogin }: { isLogin: boolean } = await getMeAction();
 
-  if (!isLogin) redirect("/");
+  // if (!isLogin) redirect("/");
 
   return (
     <div className="grid h-dvh w-full overflow-y-hidden lg:grid-cols-4 xl:grid-cols-5">
