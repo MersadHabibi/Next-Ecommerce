@@ -21,7 +21,7 @@ import { useState } from "react";
 import Loader from "@/components/modules/Loader";
 import { deleteCategpryAction } from "@/actions/categoryActions";
 import { useToast } from "@/components/ui/use-toast";
-import { useCategoriesStore } from "@/stores/categoriesStore";
+import { useCategoriesStore } from "@/app/admin/_stores/categoriesStore";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 

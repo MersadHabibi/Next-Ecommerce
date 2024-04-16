@@ -5,7 +5,7 @@ import NavLink from "@/components/modules/NavLink";
 import ThemeToggle from "@/components/modules/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useAdminNavbar } from "@/stores/adminNavbar";
+import { useAdminNavbar } from "../_stores/adminNavbar";
 import {
   Boxes,
   Home,

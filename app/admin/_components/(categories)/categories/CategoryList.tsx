@@ -1,9 +1,7 @@
 "use client";
 
-import { Noto_Sans } from "next/font/google";
-
 import { useEffect } from "react";
-import { useCategoriesStore } from "@/stores/categoriesStore";
+import { useCategoriesStore } from "@/app/admin/_stores/categoriesStore";
 import CategoryItem from "./CategoryItem";
 
 export type CategoryType = {
@@ -11,8 +9,6 @@ export type CategoryType = {
   title: string;
   image: string;
 };
-
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
 export default function CategoryList({
   categoriesEntry,

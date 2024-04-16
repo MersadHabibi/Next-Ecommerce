@@ -1,6 +1,6 @@
 "use client";
 
-import { CategoryType } from "@/app/admin/_components/(categories)/categories/CategoryList";
+import { CategoryType } from "../_components/(categories)/categories/CategoryList";
 import { create } from "zustand";
 
 export type State = {

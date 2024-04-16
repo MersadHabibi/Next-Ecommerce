@@ -19,7 +19,7 @@ const schema = z.object({
 export async function addProductAction(formData: FormData) {
   const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
 
-  if (role === "USER")
+  if (role !== "USER")
     return JSON.parse(
       JSON.stringify({
         status: 401,
@@ -163,7 +163,7 @@ async function uploadImages(mainImage: File, images: File[]) {
   };
 }
 
-export async function getAllProducts() {
+export async function getAllProductsAction() {
   try {
     const prisma = new PrismaClient();
 
@@ -173,6 +173,54 @@ export async function getAllProducts() {
       JSON.stringify({
         status: 200,
         products,
+      }),
+    );
+  } catch (error) {
+    return JSON.parse(
+      JSON.stringify({
+        status: 500,
+        error,
+      }),
+    );
+  }
+}
+
+export async function deleteProductAction(id: string) {
+  const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
+
+  if (role !== "USER")
+    return JSON.parse(
+      JSON.stringify({
+        status: 401,
+        message: "You are not access",
+      }),
+    );
+
+  if (!id) {
+    return JSON.parse(
+      JSON.stringify({
+        status: 403,
+        message: "data invalid",
+      }),
+    );
+  }
+
+  try {
+    const prisma = new PrismaClient();
+
+    const product = await prisma.product.delete({
+      where: {
+        id,
+      },
+    });
+
+    const allProducts = await prisma.product.findMany();
+
+    return JSON.parse(
+      JSON.stringify({
+        status: 202,
+        message: "Product deleted",
+        allProducts,
       }),
     );
   } catch (error) {

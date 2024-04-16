@@ -3,7 +3,7 @@
 import ThemeToggle from "@/components/modules/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useAdminNavbar } from "@/stores/adminNavbar";
+import { useAdminNavbar } from "../_stores/adminNavbar";
 import { useAuthStore } from "@/stores/authStore";
 import { Menu } from "lucide-react";
 import { Noto_Sans } from "next/font/google";

@@ -22,7 +22,7 @@ const schema = z.object({
 export async function addCategoryAction(formData: FormData) {
   const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
 
-  if (role === "USER")
+  if (role !== "USER")
     return JSON.parse(
       JSON.stringify({
         status: 401,
@@ -100,7 +100,7 @@ export async function addCategoryAction(formData: FormData) {
 export async function deleteCategpryAction(categoryId: string) {
   const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
 
-  if (role === "USER")
+  if (role !== "USER")
     return JSON.parse(
       JSON.stringify({
         status: 401,

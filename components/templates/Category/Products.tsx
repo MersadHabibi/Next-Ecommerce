@@ -1,6 +1,6 @@
 "use client";
 
-import { getAllProducts } from "@/actions/productActions";
+import { getAllProductsAction } from "@/actions/productActions";
 import ProductCard from "@/components/modules/ProductCard";
 import ProductCardSkeleton from "@/components/modules/ProductCardSkeleton";
 import { Product } from "@/types/Product";
@@ -12,7 +12,7 @@ export default function Products() {
 
   useEffect(() => {
     async function fetchProducts() {
-      const allProducts: Product[] = (await getAllProducts()).products;
+      const allProducts: Product[] = (await getAllProductsAction()).products;
 
       setProducts(allProducts);
       setIsLoading(false);

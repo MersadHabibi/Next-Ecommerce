@@ -24,7 +24,7 @@ import Image from "next/image";
 import { useToast } from "@/components/ui/use-toast";
 import { addCategoryAction } from "@/actions/categoryActions";
 import Loader from "@/components/modules/Loader";
-import { useCategoriesStore } from "@/stores/categoriesStore";
+import { useCategoriesStore } from "@/app/admin/_stores/categoriesStore";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
 

@@ -39,7 +39,7 @@ export default function ProductCard(product: Product) {
           ${product.price}
         </span>
       </CardFooter>
-      <ProductCardActions />
+      <ProductCardActions {...product} />
     </Card>
   );
 }
