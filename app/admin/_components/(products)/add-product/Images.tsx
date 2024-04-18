@@ -8,7 +8,7 @@ import { FolderSync, ImagePlus } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import FileInput from "../../FileInput";
-import { useNewProduct } from "@/stores/newProduct";
+import { useNewProduct } from "@/app/admin/_stores/newProduct";
 
 export type imageType = {
   sortId: number;

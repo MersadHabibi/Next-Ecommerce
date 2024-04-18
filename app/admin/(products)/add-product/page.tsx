@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { z } from "zod";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useNewProduct } from "@/stores/newProduct";
+import { useNewProduct } from "../../_stores/newProduct";
 import { addProductAction } from "@/actions/productActions";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
@@ -90,8 +90,6 @@ export default function AddProductPage() {
         description: res.message,
       });
     }
-
-    console.log(res.error);
 
     toast({ description: res.message, variant: "destructive" });
   }

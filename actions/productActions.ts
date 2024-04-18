@@ -1,7 +1,7 @@
 "use server";
 
 import { saveFile } from "@/lib/saveFile";
-import { Prisma, PrismaClient } from "@prisma/client";
+import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
 import { getMeAction } from "./authActions";
 
@@ -19,7 +19,7 @@ const schema = z.object({
 export async function addProductAction(formData: FormData) {
   const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
 
-  if (role !== "USER")
+  if (role !== "ADMIN")
     return JSON.parse(
       JSON.stringify({
         status: 401,
@@ -188,7 +188,7 @@ export async function getAllProductsAction() {
 export async function deleteProductAction(id: string) {
   const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
 
-  if (role !== "USER")
+  if (role !== "ADMIN")
     return JSON.parse(
       JSON.stringify({
         status: 401,
@@ -220,6 +220,102 @@ export async function deleteProductAction(id: string) {
       JSON.stringify({
         status: 202,
         message: "Product deleted",
+        allProducts,
+      }),
+    );
+  } catch (error) {
+    return JSON.parse(
+      JSON.stringify({
+        status: 500,
+        error,
+      }),
+    );
+  }
+}
+
+export async function updateProductAction(formData: FormData) {
+  console.log(formData);
+  const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
+
+  if (role !== "ADMIN")
+    return JSON.parse(
+      JSON.stringify({
+        status: 401,
+        message: "You are not access",
+      }),
+    );
+
+  const {
+    id,
+    title,
+    price,
+    description,
+    colors,
+    sizes,
+    quantity,
+    gender,
+    category,
+  }: {
+    id: string;
+    title: string;
+    price: string;
+    description: string;
+    colors: string[];
+    sizes: number[];
+    quantity: number;
+    gender: string;
+    category: string;
+  } = JSON.parse(JSON.parse(JSON.stringify(formData.get("data"))));
+
+  // Validation
+
+  const validatedFields = schema.safeParse({
+    title,
+    price,
+    description,
+    colors,
+    sizes,
+    quantity,
+    gender,
+    category,
+  });
+
+  // Return early if the form data is invalid
+  if (!validatedFields.success) {
+    return JSON.parse(
+      JSON.stringify({
+        errors: validatedFields.error.flatten().fieldErrors,
+        message: "datas invalid",
+        status: 403,
+      }),
+    );
+  }
+
+  try {
+    const prisma = new PrismaClient();
+
+    const product = await prisma.product.update({
+      where: {
+        id,
+      },
+      data: {
+        title,
+        price,
+        description,
+        colors,
+        sizes,
+        quantity,
+        gender,
+        category,
+      },
+    });
+
+    const allProducts = await prisma.product.findMany();
+
+    return JSON.parse(
+      JSON.stringify({
+        status: 200,
+        message: "Product updated",
         allProducts,
       }),
     );

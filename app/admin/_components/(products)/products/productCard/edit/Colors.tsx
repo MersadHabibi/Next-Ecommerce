@@ -1,11 +1,11 @@
+import { useEditProductStore } from "@/app/admin/_stores/editProductStore";
+import ColorsUi from "../../../ColorsUi";
 import { useToast } from "@/components/ui/use-toast";
-import { useNewProduct } from "@/app/admin/_stores/newProduct";
-import ColorsUi from "../ColorsUi";
 
 export default function Colors() {
-  const colors = useNewProduct((state) => state.colors);
-  const setColors = useNewProduct((state) => state.setColors);
-  const removeColors = useNewProduct((state) => state.removeColor);
+  const colors = useEditProductStore((state) => state.colors);
+  const addColor = useEditProductStore((state) => state.addColor);
+  const removeColor = useEditProductStore((state) => state.removeColor);
 
   const { toast } = useToast();
 
@@ -13,7 +13,7 @@ export default function Colors() {
     event: React.MouseEvent<HTMLButtonElement, MouseEvent>,
     newColor: string,
   ) {
-    setColors(newColor);
+    addColor(newColor);
 
     return toast({
       description: `Color ${newColor} added`,
@@ -21,7 +21,7 @@ export default function Colors() {
   }
 
   function onRemove(color: string) {
-    removeColors(color);
+    removeColor(color);
 
     return toast({
       description: `Color "${color}" removed`,

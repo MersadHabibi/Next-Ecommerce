@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import { useNewProduct } from "@/stores/newProduct";
+import { useNewProduct } from "@/app/admin/_stores/newProduct";
 
 export default function Gender() {
   const gender = useNewProduct((state) => state.gender);

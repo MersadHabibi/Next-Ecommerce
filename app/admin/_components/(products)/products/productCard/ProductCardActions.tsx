@@ -9,7 +9,7 @@ export default function ProductCardActions(product: Product) {
     <div className="mt-4 flex w-full flex-wrap items-center justify-end gap-4 border-t border-secondry pt-4 dark:border-secondry-dark">
       <View />
       <Info />
-      <Edit />
+      <Edit product={product} />
       <Delete id={product.id} />
     </div>
   );
