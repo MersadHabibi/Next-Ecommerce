@@ -22,10 +22,12 @@ import Loader from "@/components/modules/Loader";
 import { deleteCategpryAction } from "@/actions/categoryActions";
 import { useToast } from "@/components/ui/use-toast";
 import { useCategoriesStore } from "@/app/admin/_stores/categoriesStore";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
 export default function CatgeoryItem({ category }: { category: CategoryType }) {
+  const [isImageError, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
   const setCategpries = useCategoriesStore((state) => state.setCategories);
@@ -58,14 +60,19 @@ export default function CatgeoryItem({ category }: { category: CategoryType }) {
       <Link href="./">
         <Card className="bg-neutral-100 shadow-none transition-colors hover:bg-neutral-200 dark:bg-neutral-950 dark:hover:bg-neutral-900">
           <CardContent className="p-0 pb-6">
-            <div className="flex-center h-36 w-full">
-              <Image
-                className="h-full w-full object-contain"
-                src={`/${category.image}`}
-                alt="running shoes"
-                width={250}
-                height={250}
-              />
+            <div className="flex-center w-full p-4">
+              <AspectRatio ratio={16 / 9}>
+                <Image
+                  className="h-full w-full object-cover rounded-md"
+                  src={`/${isImageError ? "images/no-image.jpg" : category.image}`}
+                  alt="running shoes"
+                  width={250}
+                  height={250}
+                  onError={(event) => {
+                    setImageError(true);
+                  }}
+                />
+              </AspectRatio>
             </div>
             <CardTitle
               className={cn("text-center text-2xl", notoSans.className)}>

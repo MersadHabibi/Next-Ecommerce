@@ -8,10 +8,13 @@ import { Noto_Sans } from "next/font/google";
 import { Button } from "../ui/button";
 import Link from "next/link";
 import { Product } from "@/types/Product";
+import { useState } from "react";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
 export default function ProductCard({ id, title, mainImage, price }: Product) {
+  const [isImageError, setImageError] = useState(false);
+
   return (
     <Card className="card-inverted-border relative bg-neutral-100 shadow-none dark:bg-neutral-950">
       <CardHeader className="relative bg-transparent p-4">
@@ -20,10 +23,13 @@ export default function ProductCard({ id, title, mainImage, price }: Product) {
         <div className="flex-center max-h-56 w-full overflow-hidden rounded-md sm:h-72 sm:max-h-none md:h-60 lg:h-[145px] xl:h-44">
           <Image
             className="rounded-md object-cover"
-            src={`/${mainImage}`}
+            src={`/${isImageError ? "images/no-image.jpg" : mainImage}`}
             width={300}
             height={300}
             alt={title}
+            onError={(event) => {
+              setImageError(true);
+            }}
           />
         </div>
         <CardTitle className="mb-2 line-clamp-1 pt-2 text-2xl md:text-2xl lg:text-xl xl:text-2xl">

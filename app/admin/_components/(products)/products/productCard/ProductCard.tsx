@@ -7,10 +7,13 @@ import { Noto_Sans } from "next/font/google";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import ProductCardActions from "./ProductCardActions";
 import { Product } from "@/types/Product";
+import { useState } from "react";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
 export default function ProductCard(product: Product) {
+  const [isImageError, setImageError] = useState(false);
+
   return (
     <Card className="relative bg-neutral-100 p-4 shadow-none dark:bg-neutral-950">
       <CardHeader className="relative bg-transparent p-0">
@@ -19,10 +22,13 @@ export default function ProductCard(product: Product) {
         <AspectRatio ratio={16 / 11}>
           <Image
             className="size-full rounded-md object-cover"
-            src={`/${product.mainImage}`}
+            src={`/${isImageError ? "images/no-image.jpg" : product.mainImage}`}
             width={300}
             height={300}
             alt="product"
+            onError={(event) => {
+              setImageError(true);
+            }}
           />
         </AspectRatio>
 
