@@ -1,7 +1,8 @@
+import { Category } from "@/types/Category";
 import CategoryItem from "./Category/CategoryItem";
 import SectionHeader from "@/components/modules/SectionHeader";
 
-export default function Categories() {
+export default function Categories({ categories }: { categories: Category[] }) {
   return (
     <section>
       <SectionHeader
@@ -12,22 +13,13 @@ export default function Categories() {
       />
 
       <div className="mt-3 grid grid-cols-1 grid-rows-1 gap-5 sm:grid-cols-2 lg:grid-cols-4">
-        <CategoryItem
-          title="Running shoes"
-          imageSrc="/images/categories/running-shoes.png"
-        />
-        <CategoryItem
-          title="Slippers"
-          imageSrc="/images/categories/slippers.webp"
-        />
-        <CategoryItem
-          title="Platform sneakers"
-          imageSrc="/images/categories/platform-sneakers.webp"
-        />
-        <CategoryItem
-          title="Sandals"
-          imageSrc="/images/categories/sandals.webp"
-        />
+        {categories.splice(0, 4).map((category) => (
+          <CategoryItem
+            key={category.id}
+            title={category.title}
+            imageSrc={`/${category.image}`}
+          />
+        ))}
       </div>
     </section>
   );

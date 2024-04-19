@@ -24,7 +24,7 @@ export default function CategoryItem({
             <Image
               className={cn("h-full w-full object-contain")}
               src={imageSrc}
-              alt="running shoes"
+              alt={title}
               width={300}
               height={300}
             />

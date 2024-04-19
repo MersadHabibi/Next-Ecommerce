@@ -10,8 +10,19 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
+import { Product } from "@/types/Product";
 
-export default function NewestProductsSwiper() {
+export default function NewestProductsSwiper({
+  products,
+}: {
+  products: Product[];
+}) {
+  const sortedProducts = products.sort((a, b) => {
+    return a.createdAt > b.createdAt ? -1 : b.createdAt > a.createdAt ? 1 : 0;
+  });
+
+  console.log(sortedProducts);
+
   return (
     <Carousel
       opts={{
@@ -20,9 +31,9 @@ export default function NewestProductsSwiper() {
       }}
       className="w-full">
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
+        {sortedProducts.map((product, index) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-            <ProductCard />
+            <ProductCard {...product} />
           </CarouselItem>
         ))}
       </CarouselContent>

@@ -12,5 +12,7 @@ export type Product = {
   images: string[];
   gender: string;
   categoryId: string;
+  createdAt: Date;
+  updatedAt: Date;
   Category: Category;
 };

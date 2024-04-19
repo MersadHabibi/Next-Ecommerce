@@ -10,8 +10,14 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import { cn } from "@/lib/utils";
+import { Product } from "@/types/Product";
+import { useEffect, useState } from "react";
 
-export default function BestSellersSwiper() {
+export default function BestSellersSwiper({
+  products,
+}: {
+  products: Product[];
+}) {
   return (
     <Carousel
       opts={{
@@ -20,9 +26,9 @@ export default function BestSellersSwiper() {
       }}
       className="mt-3 w-full">
       <CarouselContent>
-        {Array.from({ length: 5 }).map((_, index) => (
+        {products.map((product, index) => (
           <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/4">
-            <ProductCard />
+            <ProductCard {...product} />
           </CarouselItem>
         ))}
       </CarouselContent>

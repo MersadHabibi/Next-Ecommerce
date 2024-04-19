@@ -1,7 +1,8 @@
 import SectionHeader from "@/components/modules/SectionHeader";
 import NewestProductsSwiper from "./NewestProducts/NewestProductsSwiper";
+import { Product } from "@/types/Product";
 
-export function NewestProducts() {
+export function NewestProducts({ products }: { products: Product[] }) {
   return (
     <section>
       <SectionHeader
@@ -11,7 +12,7 @@ export function NewestProducts() {
         classname="mt-32 mb-3"
       />
 
-      <NewestProductsSwiper />
+      <NewestProductsSwiper products={products} />
     </section>
   );
 }
