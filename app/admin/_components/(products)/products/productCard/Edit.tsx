@@ -84,7 +84,7 @@ export default function Edit({ product }: { product: Product }) {
         ...values,
         sizes,
         colors,
-        category: product.category,
+        category: product.categoryId,
         gender: product.gender,
       }),
     );

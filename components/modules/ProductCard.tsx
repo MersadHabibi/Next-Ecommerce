@@ -6,8 +6,8 @@ import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Heart, ShoppingBag } from "lucide-react";
 import { Noto_Sans } from "next/font/google";
 import { Button } from "../ui/button";
-import { Product } from "@/app/admin/_components/(products)/products/ProductsContainer";
 import Link from "next/link";
+import { Product } from "@/types/Product";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 

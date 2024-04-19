@@ -1,3 +1,5 @@
+import { Category } from "./Category";
+
 export type Product = {
   id: string;
   title: string;
@@ -9,5 +11,6 @@ export type Product = {
   mainImage: string;
   images: string[];
   gender: string;
-  category: string;
+  categoryId: string;
+  Category: Category;
 };

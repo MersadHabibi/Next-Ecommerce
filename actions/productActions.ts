@@ -113,7 +113,7 @@ export async function addProductAction(formData: FormData) {
         mainImage: uploadImageRes.pathes.mainImage,
         images: uploadImageRes.pathes.images,
         gender,
-        category,
+        categoryId: category,
       },
     });
 
@@ -167,7 +167,11 @@ export async function getAllProductsAction() {
   try {
     const prisma = new PrismaClient();
 
-    const products = await prisma.product.findMany();
+    const products = await prisma.product.findMany({
+      include: {
+        Category: true,
+      },
+    });
 
     return JSON.parse(
       JSON.stringify({
@@ -214,7 +218,11 @@ export async function deleteProductAction(id: string) {
       },
     });
 
-    const allProducts = await prisma.product.findMany();
+    const allProducts = await prisma.product.findMany({
+      include: {
+        Category: true,
+      },
+    });
 
     return JSON.parse(
       JSON.stringify({
@@ -305,12 +313,14 @@ export async function updateProductAction(formData: FormData) {
         colors,
         sizes,
         quantity,
-        gender,
-        category,
       },
     });
 
-    const allProducts = await prisma.product.findMany();
+    const allProducts = await prisma.product.findMany({
+      include: {
+        Category: true,
+      },
+    });
 
     return JSON.parse(
       JSON.stringify({

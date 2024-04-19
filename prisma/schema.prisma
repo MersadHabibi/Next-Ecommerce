@@ -31,11 +31,13 @@ model Product {
   mainImage   String
   images      String[]
   gender      String
-  category    String   @db.ObjectId
+  categoryId  String   @db.ObjectId
+  Category    Category @relation(fields: [categoryId], references: [id])
 }
 
 model Category {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  title String
-  image String
+  id       String    @id @default(auto()) @map("_id") @db.ObjectId
+  title    String
+  image    String
+  Products Product[]
 }
