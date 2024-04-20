@@ -189,38 +189,38 @@ export async function getAllProductsAction() {
   }
 }
 
-export async function getProductById(id: string) {
-  try {
-    const prisma = new PrismaClient();
+// export async function getProductById(id: string) {
+//   try {
+//     const prisma = new PrismaClient();
 
-    const product = await prisma.product.findFirst({
-      where: {
-        id,
-      },
-    });
+//     const product = await prisma.product.findFirst({
+//       where: {
+//         id,
+//       },
+//     });
 
-    if (!product)
-      return JSON.parse(
-        JSON.stringify({
-          status: 404,
-        }),
-      );
+//     if (!product)
+//       return JSON.parse(
+//         JSON.stringify({
+//           status: 404,
+//         }),
+//       );
 
-    return JSON.parse(
-      JSON.stringify({
-        status: 200,
-        product,
-      }),
-    );
-  } catch (error) {
-    return JSON.parse(
-      JSON.stringify({
-        status: 500,
-        error,
-      }),
-    );
-  }
-}
+//     return JSON.parse(
+//       JSON.stringify({
+//         status: 200,
+//         product,
+//       }),
+//     );
+//   } catch (error) {
+//     return JSON.parse(
+//       JSON.stringify({
+//         status: 500,
+//         error,
+//       }),
+//     );
+//   }
+// }
 
 export async function deleteProductAction(id: string) {
   const { role }: { role: "ADMIN" | "USER" } = await getMeAction();

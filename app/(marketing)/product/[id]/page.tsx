@@ -36,7 +36,7 @@ export default async function ProductPage({
           <Gallery product={product as Product} />
         </div>
         <div className="w-full pt-5 xl:pt-8">
-          <Details />
+          <Details product={product as Product} />
         </div>
       </div>
     </Suspense>

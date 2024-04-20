@@ -35,7 +35,7 @@ export default function Gallery({ product }: { product: Product }) {
 
   return (
     <>
-      <div className="w-full rounded-sm border-secondry bg-neutral-200 dark:border-secondry-dark dark:bg-neutral-950/80 lg:rounded-md">
+      <div className="w-full rounded-sm border border-secondry bg-neutral-200 dark:border-secondry-dark dark:bg-neutral-950/80 lg:rounded-md lg:border-none">
         <AspectRatio
           ratio={16 / 13}
           className={cn(
@@ -61,7 +61,7 @@ export default function Gallery({ product }: { product: Product }) {
             <AspectRatio
               ratio={16 / 16}
               className={cn(
-                "flex-center overflow-hidden rounded-sm lg:rounded-md",
+                "flex-center overflow-hidden rounded-sm border border-secondry dark:border-secondry-dark lg:rounded-md",
               )}>
               <Image
                 onClick={(event) => imageClickHandler(event, image)}
