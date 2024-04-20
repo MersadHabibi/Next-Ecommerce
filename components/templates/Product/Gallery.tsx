@@ -2,6 +2,7 @@
 
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { cn } from "@/lib/utils";
+import { Product } from "@/types/Product";
 import Image from "next/image";
 import { useState } from "react";
 
@@ -13,16 +14,28 @@ const fakeContent = [
   "/images/products/product-8.jpg",
 ];
 
-export default function ProductGallery() {
-  const [mainImage, setMainImage] = useState<string>(fakeContent[0]);
+export default function Gallery({ product }: { product: Product }) {
+  const [mainImage, setMainImage] = useState(product.mainImage);
+  const [images, setImages] = useState(product.images);
 
-  function imageClickHandler(image: string): void {
+  function imageClickHandler(
+    event: React.MouseEvent<HTMLImageElement, MouseEvent>,
+    image: string,
+  ): void {
+    const newImages = images.map((oldImage) => {
+      if (oldImage === image) {
+        return mainImage;
+      }
+
+      return oldImage;
+    });
+    setImages(newImages);
     setMainImage(image);
   }
 
   return (
     <>
-      <div className="w-full rounded-sm border border-secondry bg-neutral-200 dark:border-secondry-dark dark:bg-neutral-950 lg:rounded-md">
+      <div className="w-full rounded-sm border-secondry bg-neutral-200 dark:border-secondry-dark dark:bg-neutral-950/80 lg:rounded-md">
         <AspectRatio
           ratio={16 / 13}
           className={cn(
@@ -30,7 +43,7 @@ export default function ProductGallery() {
           )}>
           <Image
             className={cn("h-full w-full object-cover")}
-            src={mainImage}
+            src={`/${mainImage}`}
             alt="none"
             width={500}
             height={500}
@@ -38,7 +51,7 @@ export default function ProductGallery() {
         </AspectRatio>
       </div>
       <div className="mt-2 grid w-full grid-cols-4 gap-2 sm:mt-3 sm:gap-3">
-        {fakeContent.map((image) => (
+        {images.map((image) => (
           <div
             key={image}
             className={cn(
@@ -51,13 +64,16 @@ export default function ProductGallery() {
                 "flex-center overflow-hidden rounded-sm lg:rounded-md",
               )}>
               <Image
-                onClick={() => imageClickHandler(image)}
+                onClick={(event) => imageClickHandler(event, image)}
                 className={cn("h-full w-full object-cover")}
-                src={image}
+                src={`/${image}`}
                 alt=""
                 width={100}
                 height={100}
                 quality={60}
+                onError={(event) => {
+                  event.currentTarget.src = "/images/no-image.jpg";
+                }}
               />
             </AspectRatio>
           </div>

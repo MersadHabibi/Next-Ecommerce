@@ -1,7 +1,7 @@
 "use server";
 
 import { saveFile } from "@/lib/saveFile";
-import { PrismaClient } from "@prisma/client";
+import { Prisma, PrismaClient } from "@prisma/client";
 import { z } from "zod";
 import { getMeAction } from "./authActions";
 
@@ -177,6 +177,39 @@ export async function getAllProductsAction() {
       JSON.stringify({
         status: 200,
         products,
+      }),
+    );
+  } catch (error) {
+    return JSON.parse(
+      JSON.stringify({
+        status: 500,
+        error,
+      }),
+    );
+  }
+}
+
+export async function getProductById(id: string) {
+  try {
+    const prisma = new PrismaClient();
+
+    const product = await prisma.product.findFirst({
+      where: {
+        id,
+      },
+    });
+
+    if (!product)
+      return JSON.parse(
+        JSON.stringify({
+          status: 404,
+        }),
+      );
+
+    return JSON.parse(
+      JSON.stringify({
+        status: 200,
+        product,
       }),
     );
   } catch (error) {

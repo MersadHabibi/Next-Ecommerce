@@ -11,7 +11,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-export default function ProductDetails() {
+export default function Details() {
   return (
     <>
       <h1 className="line-clamp-1 text-3xl font-semibold sm:text-4xl">
