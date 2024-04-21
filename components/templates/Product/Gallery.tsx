@@ -15,6 +15,7 @@ const fakeContent = [
 ];
 
 export default function Gallery({ product }: { product: Product }) {
+  const [isImageNotFound, setIsImageNotFound] = useState(false);
   const [mainImage, setMainImage] = useState(product.mainImage);
   const [images, setImages] = useState(product.images);
 
@@ -22,12 +23,12 @@ export default function Gallery({ product }: { product: Product }) {
     event: React.MouseEvent<HTMLImageElement, MouseEvent>,
     image: string,
   ): void {
-    const newImages = images.map((oldImage) => {
-      if (oldImage === image) {
+    const newImages = images.map((prevImage) => {
+      if (prevImage === image) {
         return mainImage;
       }
 
-      return oldImage;
+      return prevImage;
     });
     setImages(newImages);
     setMainImage(image);
@@ -43,10 +44,11 @@ export default function Gallery({ product }: { product: Product }) {
           )}>
           <Image
             className={cn("h-full w-full object-cover")}
-            src={`/${mainImage}`}
+            src={`/${isImageNotFound ? "images/no-image.jpg" : mainImage}`}
             alt="none"
             width={500}
             height={500}
+            onError={() => setIsImageNotFound(true)}
           />
         </AspectRatio>
       </div>
@@ -72,7 +74,16 @@ export default function Gallery({ product }: { product: Product }) {
                 height={100}
                 quality={60}
                 onError={(event) => {
-                  event.currentTarget.src = "/images/no-image.jpg";
+                  // event.currentTarget.src = "/images/no-image.jpg";
+                  const newImages = images.map((prevImage) => {
+                    if (prevImage === image) {
+                      return "images/no-image.jpg";
+                    }
+
+                    return prevImage;
+                  });
+
+                  setImages(newImages);
                 }}
               />
             </AspectRatio>

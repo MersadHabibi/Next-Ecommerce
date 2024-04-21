@@ -1,6 +1,5 @@
 import Details from "@/components/templates/Product/Details";
 import Gallery from "@/components/templates/Product/Gallery";
-import { Suspense } from "react";
 import Loading from "../../loading";
 import { PrismaClient } from "@prisma/client";
 import { Product } from "@/types/Product";
@@ -30,15 +29,13 @@ export default async function ProductPage({
   console.log(product);
 
   return (
-    <Suspense fallback={<Loading />}>
-      <div className="flex flex-col gap-8 pt-10 lg:flex-row xl:gap-x-10">
-        <div className="w-full">
-          <Gallery product={product as Product} />
-        </div>
-        <div className="w-full pt-5 xl:pt-8">
-          <Details product={product as Product} />
-        </div>
+    <div className="flex flex-col gap-8 pt-10 lg:flex-row xl:gap-x-10">
+      <div className="w-full">
+        <Gallery product={product as Product} />
       </div>
-    </Suspense>
+      <div className="w-full pt-5 xl:pt-8">
+        <Details product={product as Product} />
+      </div>
+    </div>
   );
 }

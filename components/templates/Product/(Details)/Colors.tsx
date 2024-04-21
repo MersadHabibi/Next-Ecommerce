@@ -1,14 +1,14 @@
 "use client";
 
 import { cn } from "@/lib/utils";
-import { useState } from "react";
+import { memo, useState } from "react";
 
 type ColorsProps = {
   colors: string[];
   onChangeColor: (color: string) => void;
 };
 
-export default function Colors({ colors, onChangeColor }: ColorsProps) {
+export default memo(function Colors({ colors, onChangeColor }: ColorsProps) {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
 
   function onSelectColor(color: string) {
@@ -35,4 +35,4 @@ export default function Colors({ colors, onChangeColor }: ColorsProps) {
       </div>
     </div>
   );
-}
+});

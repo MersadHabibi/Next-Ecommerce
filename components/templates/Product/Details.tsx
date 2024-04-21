@@ -15,17 +15,29 @@ import {
 import { Product } from "@prisma/client";
 import Colors from "./(Details)/Colors";
 import Sizes from "./(Details)/Sizes";
-import { useRef, useState } from "react";
+import { useCallback, useRef, useState } from "react";
+import { useAuthStore } from "@/stores/authStore";
+import { addToCartAction } from "@/actions/cartActions";
+import { useToast } from "@/components/ui/use-toast";
+import Loader from "@/components/modules/Loader";
 
 export default function Details({ product }: { product: Product }) {
+  const [isLoading, setIsLoading] = useState(false);
   const [quantity, setQuantity] = useState(1);
-
   const selectedColor = useRef(product.colors[0]);
   const selectedSize = useRef(product.sizes[0]);
 
-  function onChangeColor(color: string) {
-    selectedColor.current = color;
-  }
+  const userId = useAuthStore((state) => state.id);
+
+  const { toast } = useToast();
+
+  const onChangeColor = useCallback(
+    (color: string) => {
+      selectedColor.current = color;
+    },
+    [selectedColor],
+  );
+
   function onChangeSize(size: number) {
     selectedSize.current = size;
   }
@@ -41,6 +53,29 @@ export default function Details({ product }: { product: Product }) {
       return;
     }
     setQuantity((prev) => prev - 1);
+  }
+
+  async function onAddToCart() {
+    setIsLoading(true);
+    const res = await addToCartAction(
+      userId,
+      product.id,
+      quantity,
+      selectedColor.current,
+      selectedSize.current,
+    );
+    setIsLoading(false);
+
+    if (res.status === 200) {
+      return toast({
+        description: res.message,
+      });
+    }
+
+    return toast({
+      variant: "destructive",
+      description: res.message,
+    });
   }
 
   return (
@@ -85,9 +120,11 @@ export default function Details({ product }: { product: Product }) {
           <Button
             variant="default"
             className={cn(
-              "col-span-5 h-12 rounded-none bg-black text-base text-white/90 shadow-none sm:col-span-4 sm:h-full",
-            )}>
-            Add to cart
+              "col-span-5 h-12 rounded-none bg-black text-base text-white/90 shadow-none disabled:opacity-70 sm:col-span-4 sm:h-full",
+            )}
+            onClick={onAddToCart}
+            disabled={isLoading}>
+            {isLoading ? <Loader /> : "Add to cart"}
           </Button>
         </div>
       </div>

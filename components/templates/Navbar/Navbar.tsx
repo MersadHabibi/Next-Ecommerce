@@ -6,6 +6,7 @@ import Menu from "@/components/templates/Navbar/Menu";
 import UserBtn from "./UserBtn";
 import Search from "./Search";
 import MobileMenu from "./MobileMenu";
+import CartBtn from "./CartBtn";
 
 export default function Navbar() {
   return (
@@ -21,12 +22,8 @@ export default function Navbar() {
 
           <Search />
 
-          <Button
-            className=" !bg-transparent hover:!bg-secondry dark:hover:!bg-secondry-dark"
-            variant="outline"
-            size="icon">
-            <ShoppingBasket size="20" />
-          </Button>
+          <CartBtn />
+
           <UserBtn />
         </div>
 

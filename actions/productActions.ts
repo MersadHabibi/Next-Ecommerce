@@ -98,8 +98,8 @@ export async function addProductAction(formData: FormData) {
       JSON.stringify({ status: 500, message: "upload image failed" }),
     );
 
-  const prisma = new PrismaClient();
-  try {
+    try {
+    const prisma = new PrismaClient();
     // Create Product
 
     const product = await prisma.product.create({
