@@ -1,11 +1,7 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
-import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Noto_Sans } from "next/font/google";
-import ProductCardActions from "./ProductCardActions";
-import { Product } from "@/types/Product";
 import { Skeleton } from "@/components/ui/skeleton";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });

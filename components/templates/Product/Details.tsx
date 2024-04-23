@@ -15,7 +15,7 @@ import {
 import { Product } from "@prisma/client";
 import Colors from "./(Details)/Colors";
 import Sizes from "./(Details)/Sizes";
-import { useCallback, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { useAuthStore } from "@/stores/authStore";
 import { addToCartAction } from "@/actions/cartActions";
 import { useToast } from "@/components/ui/use-toast";
@@ -31,13 +31,9 @@ export default function Details({ product }: { product: Product }) {
 
   const { toast } = useToast();
 
-  const onChangeColor = useCallback(
-    (color: string) => {
-      selectedColor.current = color;
-    },
-    [selectedColor],
-  );
-
+  function onChangeColor(color: string) {
+    selectedColor.current = color;
+  }
   function onChangeSize(size: number) {
     selectedSize.current = size;
   }

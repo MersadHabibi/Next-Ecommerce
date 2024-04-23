@@ -22,7 +22,6 @@ import { cn } from "@/lib/utils";
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
 export default function Info(product: Product) {
-  console.log(product);
   return (
     <Sheet>
       <SheetTrigger className="flex-center size-11 rounded-md bg-black text-white transition hover:opacity-80 dark:bg-white dark:text-black">

@@ -8,7 +8,7 @@ type ColorsProps = {
   onChangeColor: (color: string) => void;
 };
 
-export default memo(function Colors({ colors, onChangeColor }: ColorsProps) {
+export default function Colors({ colors, onChangeColor }: ColorsProps) {
   const [selectedColor, setSelectedColor] = useState(colors[0]);
 
   function onSelectColor(color: string) {
@@ -35,4 +35,4 @@ export default memo(function Colors({ colors, onChangeColor }: ColorsProps) {
       </div>
     </div>
   );
-});
+}
