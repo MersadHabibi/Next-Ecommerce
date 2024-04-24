@@ -26,7 +26,6 @@ export default async function ProductPage({
     notFound();
   }
 
-  console.log(product);
 
   return (
     <div className="flex flex-col gap-8 pt-10 lg:flex-row xl:gap-x-10">

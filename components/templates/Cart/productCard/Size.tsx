@@ -31,8 +31,6 @@ export default function Size({
     const res = await changeCartItemSizeAction(cartItemId, size);
     setIsLoading(false);
 
-    console.log(res);
-
     if (res.status === 202) {
       setCartItems(res.cart);
     }

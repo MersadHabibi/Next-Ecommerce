@@ -6,12 +6,6 @@ import { Minus, Plus } from "lucide-react";
 import { Noto_Sans } from "next/font/google";
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Product } from "@prisma/client";
 import Colors from "./(Details)/Colors";
 import Sizes from "./(Details)/Sizes";
@@ -39,7 +33,11 @@ export default function Details({ product }: { product: Product }) {
   }
 
   function increaseQuantity() {
-    if (quantity > product.quantity) {
+    if (quantity >= product.quantity) {
+      toast({
+        variant: "destructive",
+        description: "Max quantity",
+      });
       return;
     }
     setQuantity((prev) => prev + 1);
@@ -97,33 +95,43 @@ export default function Details({ product }: { product: Product }) {
 
       <Sizes sizes={product.sizes} onChangeSize={onChangeSize} />
 
-      <div className="mt-5 xl:mt-7">
-        <span className="text-lg font-medium text-gray-700 dark:text-gray-300">
-          Quantity
-        </span>
-        <div className="mt-3 grid grid-cols-5 sm:h-12">
-          <div className="col-span-5 mb-2 h-10 w-24 sm:col-span-1 sm:mb-0 sm:h-full sm:w-auto sm:p-1 sm:pr-2">
-            <div className="flex h-full items-center justify-around bg-gray-200/40 text-lg text-gray-700 dark:bg-neutral-900 dark:text-gray-300">
-              <button className="flex-center w-full" onClick={decreaseQuantity}>
-                <Minus className={cn("size-4")} />
-              </button>
-              <span className="flex-center w-full">{quantity}</span>
-              <button className="flex-center w-full" onClick={increaseQuantity}>
-                <Plus className={cn("size-4")} />
-              </button>
+      {product.quantity ? (
+        <div className="mt-5 xl:mt-7">
+          <span className="text-lg font-medium text-gray-700 dark:text-gray-300">
+            Quantity
+          </span>
+          <div className="mt-3 grid grid-cols-5 sm:h-12">
+            <div className="col-span-5 mb-2 h-10 w-24 sm:col-span-1 sm:mb-0 sm:h-full sm:w-auto sm:p-1 sm:pr-2">
+              <div className="flex h-full items-center justify-around bg-gray-200/40 text-lg text-gray-700 dark:bg-neutral-900 dark:text-gray-300">
+                <button
+                  className="flex-center w-full"
+                  onClick={decreaseQuantity}>
+                  <Minus className={cn("size-4")} />
+                </button>
+                <span className="flex-center w-full">{quantity}</span>
+                <button
+                  className="flex-center w-full"
+                  onClick={increaseQuantity}>
+                  <Plus className={cn("size-4")} />
+                </button>
+              </div>
             </div>
+            <Button
+              variant="default"
+              className={cn(
+                "col-span-5 h-12 rounded-none bg-black text-base text-white/90 shadow-none disabled:opacity-70 sm:col-span-4 sm:h-full",
+              )}
+              onClick={onAddToCart}
+              disabled={isLoading}>
+              {isLoading ? <Loader /> : "Add to cart"}
+            </Button>
           </div>
-          <Button
-            variant="default"
-            className={cn(
-              "col-span-5 h-12 rounded-none bg-black text-base text-white/90 shadow-none disabled:opacity-70 sm:col-span-4 sm:h-full",
-            )}
-            onClick={onAddToCart}
-            disabled={isLoading}>
-            {isLoading ? <Loader /> : "Add to cart"}
-          </Button>
         </div>
-      </div>
+      ) : (
+        <div className="mt-5 h-12 xl:mt-7">
+          <p className="text-center text-xl text-red-500">End of inventory</p>
+        </div>
+      )}
 
       {/* <div className="mt-10">
         <Accordion type="single" collapsible>

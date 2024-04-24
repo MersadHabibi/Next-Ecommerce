@@ -25,8 +25,6 @@ type ProductProps = {
 export default function ProductCard({ cartItem, product }: ProductProps) {
   const [isImageError, setImageError] = useState(false);
 
-  console.log(product);
-
   return (
     <div className="grid grid-cols-3 gap-x-6 rounded-lg border border-secondry p-3 dark:border-secondry-dark md:grid-cols-4 xl:grid-cols-5">
       <div className="flex-center col-span-3 mb-2 max-h-56 overflow-hidden rounded-md sm:col-span-1 sm:mb-0 sm:max-h-none">

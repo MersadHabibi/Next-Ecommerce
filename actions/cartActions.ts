@@ -3,6 +3,7 @@
 import { z } from "zod";
 import { getMeAction } from "./authActions";
 import { PrismaClient } from "@prisma/client";
+import { CartItem } from "@/types/CartItem";
 
 const addToCartSchema = z.object({
   userId: z.string(),
@@ -52,6 +53,21 @@ export async function addToCartAction(
 
   try {
     const prisma = new PrismaClient();
+
+    const product = await prisma.product.findFirst({
+      where: {
+        id: productId,
+      },
+    });
+
+    if ((product?.quantity as number) < quantity) {
+      return JSON.parse(
+        JSON.stringify({
+          status: 204,
+          message: "There are not enough product in stock",
+        }),
+      );
+    }
 
     const cart = await prisma.cartItem.findMany({
       where: {
@@ -352,6 +368,8 @@ export async function checkoutAction(address: string) {
   }
 
   try {
+    const prisma = new PrismaClient();
+
     const cart = await getCart(id);
 
     if (cart.length < 1) {
@@ -363,14 +381,54 @@ export async function checkoutAction(address: string) {
       );
     }
 
-    let totalPrice = 0;
+    const cartGroupByProductId: Record<string, CartItem[]> = {};
 
-    cart.map((cartItem) => {
-      totalPrice +=
-        ((cartItem.quantity * Number(cartItem.Product.price)) / 100) * 91;
+    cart.forEach((cartItem) => {
+      cartGroupByProductId[cartItem.Product.id] =
+        cartGroupByProductId[cartItem.Product.id] || [];
+      cartGroupByProductId[cartItem.Product.id].push(cartItem as CartItem);
     });
 
-    const prisma = new PrismaClient();
+    for (let key in cartGroupByProductId) {
+      const product = await prisma.product.findFirst({
+        where: {
+          id: key,
+        },
+      });
+      let allQuantity = 0;
+
+      cartGroupByProductId[key].forEach((cartItem) => {
+        allQuantity += cartItem.quantity;
+      });
+
+      if ((product?.quantity as number) < allQuantity)
+        return JSON.parse(
+          JSON.stringify({
+            status: 204,
+            message: `There are not enough ${product?.title} in stock`,
+          }),
+        );
+
+      await prisma.product.update({
+        where: {
+          id: key,
+        },
+        data: {
+          quantity: (product?.quantity as number) - allQuantity,
+        },
+      });
+    }
+
+    let totalPrice = 0;
+
+    cart.forEach((cartItem) => {
+      totalPrice += Number(
+        (
+          ((cartItem.quantity * Number(cartItem.Product.price)) / 100) *
+          91
+        ).toFixed(2),
+      );
+    });
 
     await prisma.cartItem.deleteMany({
       where: {

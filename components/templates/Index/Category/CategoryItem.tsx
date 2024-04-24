@@ -19,8 +19,6 @@ export default function CategoryItem({
 }) {
   const [isImageError, setImageError] = useState(false);
 
-  console.log(imageSrc);
-
   return (
     <Link href="./">
       <Card
@@ -28,10 +26,11 @@ export default function CategoryItem({
           "bg-neutral-100 shadow-none transition-colors hover:bg-neutral-200 dark:bg-neutral-950 dark:hover:bg-neutral-900",
         )}>
         <CardContent className={cn("p-0 pb-6")}>
-          <div className={cn("flex-center w-full p-5 rounded-md overflow-hidden")}>
+          <div
+            className={cn("flex-center w-full overflow-hidden rounded-md p-5")}>
             <AspectRatio ratio={16 / 9}>
               <Image
-                className={cn("h-full w-full object-cover rounded-md")}
+                className={cn("h-full w-full rounded-md object-cover")}
                 src={isImageError ? "/images/no-image.jpg" : imageSrc}
                 alt={title}
                 width={300}

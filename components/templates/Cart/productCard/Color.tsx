@@ -30,8 +30,6 @@ export default function Color({
     const res = await changeCartItemColorAction(cartItemId, color);
     setIsLoading(false);
 
-    console.log(res);
-
     if (res.status === 202) {
       setCartItems(res.cart);
     }

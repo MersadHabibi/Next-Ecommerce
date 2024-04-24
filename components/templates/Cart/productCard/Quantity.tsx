@@ -4,6 +4,7 @@ import {
 } from "@/actions/cartActions";
 import Loader from "@/components/modules/Loader";
 import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
 import { cn } from "@/lib/utils";
 import { useCartStore } from "@/stores/cartStore";
 import { CartItem } from "@/types/CartItem";
@@ -27,6 +28,8 @@ export default function Quantity({
 
   const setCartItems = useCartStore((state) => state.setCartItems);
 
+  const { toast } = useToast();
+
   useEffect(() => {
     if (quantity !== cartItem.quantity) {
       setIsChenged(true);
@@ -37,7 +40,13 @@ export default function Quantity({
   }, [quantity, cartItem.quantity]);
 
   const increaseQuantity = () => {
-    if (maxQuantity < quantity) return;
+    if (maxQuantity <= quantity) {
+      toast({
+        variant: "destructive",
+        description: "Max quantity",
+      });
+      return;
+    }
     setQuantity((prev) => prev + 1);
   };
 
@@ -65,6 +74,26 @@ export default function Quantity({
       setCartItems(res.cart || []);
     }
   };
+
+  if (maxQuantity === 0) {
+    return (
+      <div className="mt-auto flex flex-wrap items-center justify-end gap-2">
+        <p className="text-sm text-red-500">End of inventory</p>
+        <Button
+          variant="destructive"
+          size="icon"
+          className="size-8 disabled:opacity-70"
+          onClick={onDeleteCartItem}
+          disabled={isLoading}>
+          {isLoading ? (
+            <Loader classname="size-5" />
+          ) : (
+            <Trash className="size-5" />
+          )}
+        </Button>
+      </div>
+    );
+  }
 
   return (
     <div className="mt-auto w-9 space-y-2">

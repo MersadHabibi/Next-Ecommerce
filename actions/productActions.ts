@@ -275,7 +275,6 @@ export async function deleteProductAction(id: string) {
 }
 
 export async function updateProductAction(formData: FormData) {
-  console.log(formData);
   const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
 
   if (role !== "ADMIN")

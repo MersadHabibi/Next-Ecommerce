@@ -38,7 +38,7 @@ export default function Tax() {
           "text-gray-700 opacity-70 dark:text-gray-300",
           notoSans.className,
         )}>
-        ${(Number(totalPrice) / 100) * 9}
+        ${((Number(totalPrice) / 100) * 9).toFixed(2)}
       </span>
     </div>
   );

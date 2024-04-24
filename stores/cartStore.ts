@@ -21,6 +21,6 @@ export const useCartStore = create<State & Actions>()((set) => ({
       cartItems.map((cartItem) => {
         totalPrice += cartItem.quantity * Number(cartItem.Product.price);
       });
-      return { cartItems, totalPrice: totalPrice.toString() };
+      return { cartItems, totalPrice: totalPrice.toFixed(2) };
     }),
 }));

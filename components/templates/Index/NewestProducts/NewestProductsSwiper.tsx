@@ -21,8 +21,6 @@ export default function NewestProductsSwiper({
     return a.createdAt > b.createdAt ? -1 : b.createdAt > a.createdAt ? 1 : 0;
   });
 
-  console.log(sortedProducts);
-
   return (
     <Carousel
       opts={{
