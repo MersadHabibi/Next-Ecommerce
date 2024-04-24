@@ -1,10 +1,7 @@
 import { getMeAction } from "@/actions/authActions";
 import CartItemsList from "@/components/templates/Cart/CartItemsList";
-import EmptyCart from "@/components/templates/Cart/EmptyCart";
+import Checkout from "@/components/templates/Cart/Checkout";
 import Header from "@/components/templates/Cart/Header";
-import Pay from "@/components/templates/Cart/Pay";
-import ProductCard from "@/components/templates/Cart/productCard/ProductCard";
-import { PrismaClient } from "@prisma/client";
 import { redirect } from "next/navigation";
 
 export default async function CartPage() {
@@ -19,7 +16,7 @@ export default async function CartPage() {
         <div className="col-span-4 space-y-4 lg:col-span-3 xl:space-y-6">
           <CartItemsList userId={id} />
         </div>
-        <Pay />
+        <Checkout />
       </div>
     </div>
   );

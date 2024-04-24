@@ -4,7 +4,8 @@ import { CartItem as CartItemType } from "@/types/CartItem";
 import { create } from "zustand";
 
 export type State = {
-  cartItems: CartItemType[] ;
+  cartItems: CartItemType[];
+  totalPrice: string;
 };
 
 export type Actions = {
@@ -13,5 +14,13 @@ export type Actions = {
 
 export const useCartStore = create<State & Actions>()((set) => ({
   cartItems: [],
-  setCartItems: (cartItems) => set({ cartItems }),
+  totalPrice: "0",
+  setCartItems: (cartItems) =>
+    set((state) => {
+      let totalPrice = 0;
+      cartItems.map((cartItem) => {
+        totalPrice += cartItem.quantity * Number(cartItem.Product.price);
+      });
+      return { cartItems, totalPrice: totalPrice.toString() };
+    }),
 }));

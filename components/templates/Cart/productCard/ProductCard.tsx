@@ -13,6 +13,7 @@ import { useState } from "react";
 import Quantity from "./Quantity";
 import Size from "./Size";
 import Color from "./Color";
+import Link from "next/link";
 
 const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
@@ -44,7 +45,11 @@ export default function ProductCard({ cartItem, product }: ProductProps) {
       </div>
       <div className="col-span-3 flex h-full w-full justify-between pt-2 sm:col-span-2 md:col-span-3 xl:col-span-4">
         <div>
-          <h2 className="line-clamp-1 text-3xl font-medium">{product.title}</h2>
+          <Link
+            href={`/product/${product.id}`}
+            className="line-clamp-1 text-3xl font-medium">
+            {product.title}
+          </Link>
           <span
             className={cn(
               "block pt-2 text-2xl text-gray-700 opacity-70 dark:text-gray-300",

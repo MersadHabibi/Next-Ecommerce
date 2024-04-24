@@ -331,6 +331,69 @@ export async function changeCartItemColorAction(
   }
 }
 
+export async function checkoutAction(address: string) {
+  const { isLogin, id }: { isLogin: boolean; id: string } = await getMeAction();
+
+  if (!isLogin)
+    return JSON.parse(
+      JSON.stringify({
+        status: 401,
+        message: "You are not login",
+      }),
+    );
+
+  if (address.length < 10) {
+    return JSON.parse(
+      JSON.stringify({
+        status: 403,
+        message: "Address not entered",
+      }),
+    );
+  }
+
+  try {
+    const cart = await getCart(id);
+
+    if (cart.length < 1) {
+      return JSON.parse(
+        JSON.stringify({
+          status: 204,
+          message: "The cart is empty",
+        }),
+      );
+    }
+
+    let totalPrice = 0;
+
+    cart.map((cartItem) => {
+      totalPrice +=
+        ((cartItem.quantity * Number(cartItem.Product.price)) / 100) * 91;
+    });
+
+    const prisma = new PrismaClient();
+
+    await prisma.cartItem.deleteMany({
+      where: {
+        userId: id,
+      },
+    });
+
+    return JSON.parse(
+      JSON.stringify({
+        status: 200,
+        message: "Your order has been registered",
+      }),
+    );
+  } catch (error) {
+    return JSON.parse(
+      JSON.stringify({
+        status: 500,
+        error,
+      }),
+    );
+  }
+}
+
 async function getCart(userId: string) {
   const prisma = new PrismaClient();
 
