@@ -9,10 +9,10 @@ export default async function authLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="h-dvh pt-16 relative">
+    <div className="relative flex h-dvh flex-col justify-between pt-16">
       <Navbar />
 
-      <div className="container">
+      <div className="container mb-20">
         <Suspense fallback={<Loading />}>{children}</Suspense>
       </div>
 

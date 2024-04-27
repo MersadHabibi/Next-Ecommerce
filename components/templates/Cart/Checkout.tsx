@@ -4,6 +4,8 @@ import Address from "./Checkout/Address";
 import Tax from "./Checkout/Tax";
 import Total from "./Checkout/Total";
 import Pay from "./Checkout/Pay";
+import Link from "next/link";
+import { Button } from "@/components/ui/button";
 
 export default function Checkout() {
   return (
@@ -27,6 +29,13 @@ export default function Checkout() {
       <div className="space-y-3 pt-4">
         <Total />
         <Pay />
+        <Link href="/orders" className="mt-2 block">
+          <Button
+            variant="outline"
+            className="w-full shadow-none disabled:opacity-70">
+            Orders
+          </Button>
+        </Link>
       </div>
     </div>
   );

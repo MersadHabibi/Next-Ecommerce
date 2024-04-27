@@ -1,18 +1,10 @@
-import Logo from "@/components/modules/Logo";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { MenuIcon, ShoppingBasket } from "lucide-react";
 import Menu from "./Menu";
 import Search from "./Search";
 import UserBtn from "./UserBtn";
 import ThemeToggle from "@/components/modules/ThemeToggle";
+import CartBtn from "./CartBtn";
 
 export default function MobileMenu() {
   return (
@@ -25,12 +17,7 @@ export default function MobileMenu() {
           <Menu divice="mobile" />
           <div className="flex items-center gap-x-2">
             <UserBtn />
-            <Button
-              className=" !bg-transparent hover:!bg-secondry dark:hover:!bg-secondry-dark"
-              variant="outline"
-              size="icon">
-              <ShoppingBasket size="20" />
-            </Button>
+            <CartBtn />
             <Search />
             <ThemeToggle />
           </div>

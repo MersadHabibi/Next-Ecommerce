@@ -430,6 +430,26 @@ export async function checkoutAction(address: string) {
       );
     });
 
+    const order = await prisma.order.create({
+      data: {
+        totalPrice: totalPrice.toString(),
+        address,
+        userId: id,
+      },
+    });
+
+    cart.forEach(async (cartItem) => {
+      await prisma.orderItem.create({
+        data: {
+          quantity: cartItem.quantity,
+          color: cartItem.color,
+          size: cartItem.size,
+          productId: cartItem.Product.id,
+          orderId: order.id,
+        },
+      });
+    });
+
     await prisma.cartItem.deleteMany({
       where: {
         userId: id,

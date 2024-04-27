@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 export default function Footer() {
   return (
-    <footer className="mt-20 border-t border-secondry bg-white pt-5 dark:border-secondry-dark dark:bg-primary-dark">
+    <footer className="!mt-auto border-t border-secondry bg-white pt-5 dark:border-secondry-dark dark:bg-primary-dark">
       <div className="container grid grid-cols-1 gap-y-3 lg:grid-cols-5">
         <div className="pt-3 text-gray-700 dark:text-gray-300 lg:col-span-2">
           <div className="-ml-2 mb-4 h-20">

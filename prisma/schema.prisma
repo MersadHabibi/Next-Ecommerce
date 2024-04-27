@@ -39,11 +39,15 @@ model CartItem {
 }
 
 model Order {
-  id        String   @id @default(auto()) @map("_id") @db.ObjectId
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  User      User     @relation(fields: [userId], references: [id])
-  userId    String   @db.ObjectId
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+  isDone     Boolean  @default(false)
+  isCanceled Boolean  @default(false)
+  address    String
+  totalPrice String
+  User       User     @relation(fields: [userId], references: [id])
+  userId     String   @db.ObjectId
 
   OrderItems OrderItem[]
 }
@@ -57,6 +61,8 @@ model OrderItem {
   size      Int
   Product   Product @relation(fields: [productId], references: [id])
   productId String  @db.ObjectId
+
+  @@map("order-items")
 }
 
 model Product {
