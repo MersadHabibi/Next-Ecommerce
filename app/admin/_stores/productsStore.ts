@@ -1,14 +1,14 @@
 "use client";
 
-import { Product } from "@/types/Product";
+import { TProduct } from "@/types";
 import { create } from "zustand";
 
 export type State = {
-  products: Product[];
+  products: TProduct[];
 };
 
 export type Actions = {
-  setProducts: (products: Product[]) => void;
+  setProducts: (products: TProduct[]) => void;
 };
 
 export const useProducts = create<State & Actions>()((set) => ({

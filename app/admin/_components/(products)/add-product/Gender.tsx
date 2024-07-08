@@ -18,7 +18,7 @@ export default function Gender() {
           variant="outline"
           type="button"
           className={cn(
-            "hover:!bg-secondry/40 dark:hover:!bg-secondry-dark/40 [&.active]:!bg-secondry dark:[&.active]:!bg-secondry-dark",
+            "hover:!bg-secondary/40 dark:hover:!bg-secondary-dark/40 [&.active]:!bg-secondary dark:[&.active]:!bg-secondary-dark",
             gender === "men" ? "active" : "",
           )}
           onClick={() => setGender("men")}>
@@ -28,7 +28,7 @@ export default function Gender() {
           variant="outline"
           type="button"
           className={cn(
-            "hover:!bg-secondry/40 dark:hover:!bg-secondry-dark/40 [&.active]:!bg-secondry dark:[&.active]:!bg-secondry-dark",
+            "hover:!bg-secondary/40 dark:hover:!bg-secondary-dark/40 [&.active]:!bg-secondary dark:[&.active]:!bg-secondary-dark",
             gender === "women" ? "active" : "",
           )}
           onClick={() => setGender("women")}>

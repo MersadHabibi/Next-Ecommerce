@@ -1,7 +1,7 @@
 "use client";
 
-import { useEffect } from "react";
 import { useCategoriesStore } from "@/app/admin/_stores/categoriesStore";
+import { useEffect } from "react";
 import CategoryItem from "./CategoryItem";
 
 export type CategoryType = {

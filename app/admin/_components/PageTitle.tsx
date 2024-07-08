@@ -1,22 +1,20 @@
+import { notoSans } from "@/config/fonts";
 import { cn } from "@/lib/utils";
-import { Noto_Sans } from "next/font/google";
-
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600", "700"] });
 
 export default function PageTitle({
   title,
-  classname,
+  className,
   children,
 }: {
   title: string;
-  classname?: string;
+  className?: string;
   children?: React.ReactNode;
 }) {
   return (
     <div
       className={cn(
-        "flex h-14 w-full items-center justify-between rounded-md border border-secondry pl-5 dark:border-secondry-dark",
-        classname,
+        "border-secondary dark:border-secondary-dark flex h-14 w-full items-center justify-between rounded-md border pl-5",
+        className,
       )}>
       <div
         className={cn(

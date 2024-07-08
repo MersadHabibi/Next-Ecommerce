@@ -2,8 +2,8 @@
 
 import { z } from "zod";
 import { getMeAction } from "./authActions";
-import { PrismaClient } from "@prisma/client";
-import { CartItem } from "@/types/CartItem";
+import { TCartItem } from "@/types";
+import { prisma } from "@/lib/utils";
 
 const addToCartSchema = z.object({
   userId: z.string(),
@@ -45,15 +45,13 @@ export async function addToCartAction(
     return JSON.parse(
       JSON.stringify({
         errors: validatedFields.error.flatten().fieldErrors,
-        message: "datas invalid",
+        message: "data invalid",
         status: 403,
       }),
     );
   }
 
   try {
-    const prisma = new PrismaClient();
-
     const product = await prisma.product.findFirst({
       where: {
         id: productId,
@@ -134,8 +132,6 @@ export async function getCartItemsAction(userId: string) {
     );
 
   try {
-    const prisma = new PrismaClient();
-
     const cart = await getCart(userId);
 
     return JSON.parse(
@@ -162,13 +158,11 @@ export async function changeCartItemQuantityAction(
     return JSON.parse(
       JSON.stringify({
         status: 403,
-        message: "Datas invalid",
+        message: "Data invalid",
       }),
     );
 
   try {
-    const prisma = new PrismaClient();
-
     const cartItem = await prisma.cartItem.update({
       where: {
         id: cartItemId,
@@ -198,8 +192,6 @@ export async function changeCartItemQuantityAction(
 
 export async function deleteCartItemAction(cartItemId: string) {
   try {
-    const prisma = new PrismaClient();
-
     const cartItem = await prisma.cartItem.delete({
       where: {
         id: cartItemId,
@@ -230,14 +222,12 @@ export async function deleteAllCartItemsAction(userId: string) {
     return JSON.parse(
       JSON.stringify({
         status: 403,
-        message: "Datas invalid",
+        message: "Data invalid",
       }),
     );
   }
 
   try {
-    const prisma = new PrismaClient();
-
     await prisma.cartItem.deleteMany({
       where: {
         userId,
@@ -269,14 +259,12 @@ export async function changeCartItemSizeAction(
     return JSON.parse(
       JSON.stringify({
         status: 403,
-        message: "Datas invalid",
+        message: "Data invalid",
       }),
     );
   }
 
   try {
-    const prisma = new PrismaClient();
-
     const cartItem = await prisma.cartItem.update({
       where: {
         id: cartItemId,
@@ -312,14 +300,12 @@ export async function changeCartItemColorAction(
     return JSON.parse(
       JSON.stringify({
         status: 403,
-        message: "Datas invalid",
+        message: "Data invalid",
       }),
     );
   }
 
   try {
-    const prisma = new PrismaClient();
-
     const cartItem = await prisma.cartItem.update({
       where: {
         id: cartItemId,
@@ -368,8 +354,6 @@ export async function checkoutAction(address: string) {
   }
 
   try {
-    const prisma = new PrismaClient();
-
     const cart = await getCart(id);
 
     if (cart.length < 1) {
@@ -381,12 +365,12 @@ export async function checkoutAction(address: string) {
       );
     }
 
-    const cartGroupByProductId: Record<string, CartItem[]> = {};
+    const cartGroupByProductId: Record<string, TCartItem[]> = {};
 
     cart.forEach((cartItem) => {
       cartGroupByProductId[cartItem.Product.id] =
         cartGroupByProductId[cartItem.Product.id] || [];
-      cartGroupByProductId[cartItem.Product.id].push(cartItem as CartItem);
+      cartGroupByProductId[cartItem.Product.id].push(cartItem as TCartItem);
     });
 
     for (let key in cartGroupByProductId) {
@@ -473,8 +457,6 @@ export async function checkoutAction(address: string) {
 }
 
 async function getCart(userId: string) {
-  const prisma = new PrismaClient();
-
   return await prisma.cartItem.findMany({
     where: {
       userId,

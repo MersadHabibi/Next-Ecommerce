@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { cn } from "@/lib/utils";
 
-export default function ThemeToggle({ classname }: { classname?: string }) {
+export default function ThemeToggle({ className }: { className?: string }) {
   const { setTheme } = useTheme();
 
   return (
@@ -21,8 +21,8 @@ export default function ThemeToggle({ classname }: { classname?: string }) {
       <DropdownMenuTrigger asChild>
         <Button
           className={cn(
-            "dark:!border-secondry-dark !border-secondry !bg-transparent",
-            classname,
+            "dark:!border-secondary-dark !border-secondary !bg-transparent",
+            className,
           )}
           variant="outline"
           size="icon">

@@ -2,24 +2,11 @@
 
 import Logo from "@/components/modules/Logo";
 import NavLink from "@/components/modules/NavLink";
-import ThemeToggle from "@/components/modules/ThemeToggle";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { Boxes, Home, PackagePlus, SquareLibrary, X } from "lucide-react";
 import { useAdminNavbar } from "../_stores/adminNavbar";
-import {
-  Boxes,
-  Home,
-  PackagePlus,
-  PackageSearch,
-  PlusCircle,
-  PlusSquare,
-  SquareLibrary,
-  X,
-} from "lucide-react";
-import { Noto_Sans } from "next/font/google";
-import Link from "next/link";
-
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
+import { notoSans } from "@/config/fonts";
 
 export default function Sidebar() {
   const isOpenNavBar = useAdminNavbar((state) => state.isOpen);
@@ -37,11 +24,11 @@ export default function Sidebar() {
         )}></div>
       <div
         className={cn(
-          "absolute top-0 z-20 h-full w-64 border-r border-secondry bg-white px-5 transition-all dark:border-secondry-dark dark:bg-neutral-950 lg:static lg:w-full",
+          "border-secondary dark:border-secondary-dark absolute top-0 z-20 h-full w-64 border-r bg-white px-5 transition-all dark:bg-neutral-950 lg:static lg:w-full",
           isOpenNavBar ? "left-0" : "-left-full",
         )}>
-        <div className="flex items-center justify-between border-b border-secondry dark:border-secondry-dark">
-          <Logo classname="size-16" />
+        <div className="border-secondary dark:border-secondary-dark flex items-center justify-between border-b">
+          <Logo className="size-16" />
           <Button
             onClick={closeNavBar}
             variant="ghost"
@@ -60,11 +47,11 @@ export default function Sidebar() {
             </Button>
           </NavLink>
         </div>
-        {/* Product Managment */}
+        {/* Product Management */}
         <div>
           <p
             className={cn(
-              "mb-3 text-gray-700 dark:text-gray-300",
+              "mb-3 font-bold text-gray-700 dark:text-gray-300",
               notoSans.className,
             )}>
             Product Management
@@ -88,14 +75,14 @@ export default function Sidebar() {
             </NavLink>
           </div>
         </div>
-        {/* Category Managment */}
+        {/* Category Management */}
         <div className="mt-5">
           <p
             className={cn(
               "mb-3 text-gray-700 dark:text-gray-300",
               notoSans.className,
             )}>
-            Category Managment
+            Category Management
           </p>
           <div className="space-y-2 pl-3">
             <NavLink href="/admin/categories" className={NavLinkStyles}>

@@ -1,9 +1,9 @@
 "use server";
 
 import { saveFile } from "@/lib/saveFile";
-import { PrismaClient } from "@prisma/client";
 import { z } from "zod";
 import { getMeAction } from "./authActions";
+import { prisma } from "@/lib/utils";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = ["image/png", "image/webp"];
@@ -45,7 +45,7 @@ export async function addCategoryAction(formData: FormData) {
     return JSON.parse(
       JSON.stringify({
         errors: validatedFields.error.flatten().fieldErrors,
-        message: "datas invalid",
+        message: "data invalid",
         status: 403,
       }),
     );
@@ -66,8 +66,6 @@ export async function addCategoryAction(formData: FormData) {
       }),
     );
   }
-
-  const prisma = new PrismaClient();
 
   try {
     const category = await prisma.category.create({
@@ -97,7 +95,7 @@ export async function addCategoryAction(formData: FormData) {
   }
 }
 
-export async function deleteCategpryAction(categoryId: string) {
+export async function deleteCategoryAction(categoryId: string) {
   const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
 
   if (role !== "ADMIN")
@@ -107,8 +105,6 @@ export async function deleteCategpryAction(categoryId: string) {
         message: "You are not access",
       }),
     );
-
-  const prisma = new PrismaClient();
 
   try {
     const category = await prisma.category.delete({
@@ -137,8 +133,6 @@ export async function deleteCategpryAction(categoryId: string) {
 
 export async function getAllCategoriesAction() {
   try {
-    const prisma = new PrismaClient();
-
     const categories = await prisma.category.findMany();
 
     return JSON.parse(

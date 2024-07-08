@@ -16,9 +16,9 @@ export default async function authLayout({
 
   return (
     <div className="flex-center h-dvh ">
-      <header className="border-secondry dark:border-secondry-dark dark:bg-primary-dark fixed left-0 right-0 top-0 h-16 w-full border-b">
+      <header className="border-secondary dark:border-secondary-dark fixed left-0 right-0 top-0 h-16 w-full border-b dark:bg-primary-dark">
         <div className="container flex h-full items-center justify-between">
-          <Logo classname="w-20 h-20" />
+          <Logo className="w-20 h-20" />
           <ThemeToggle />
         </div>
       </header>

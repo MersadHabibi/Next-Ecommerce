@@ -1,7 +1,7 @@
-import Filter from "@/components/templates/Category/Filter";
-import Products from "@/components/templates/Category/Products";
-import Search from "@/components/templates/Category/Search";
-import Sort from "@/components/templates/Category/Sort";
+import Filter from "@/components/templates/(marketing)/Category/Filter";
+import Products from "@/components/templates/(marketing)/Category/Products";
+import Search from "@/components/templates/(marketing)/Category/Search";
+import Sort from "@/components/templates/(marketing)/Category/Sort";
 
 export default function CategoryPage() {
   return (

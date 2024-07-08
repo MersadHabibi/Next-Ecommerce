@@ -1,14 +1,11 @@
 "use client";
 
+import { useNewProduct } from "@/app/admin/_stores/newProduct";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 import { FolderSync, ImagePlus } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
 import FileInput from "../../FileInput";
-import { useNewProduct } from "@/app/admin/_stores/newProduct";
 
 export type imageType = {
   sortId: number;
@@ -23,14 +20,14 @@ export default function AddProductImages() {
 
   return (
     <>
-      <div className="w-full rounded-md border border-secondry bg-neutral-200 dark:border-secondry-dark dark:bg-neutral-950 lg:rounded-md">
+      <div className="border-secondary dark:border-secondary-dark w-full rounded-md border bg-neutral-200 dark:bg-neutral-950 lg:rounded-md">
         {mainImage ? (
           <AspectRatio
             ratio={16 / 14}
             className={cn("flex-center relative overflow-hidden rounded-md")}>
             <FileInput
               id="mainImage-2"
-              classname="absolute top-3 right-3 size-12 bg-neutral-100/50 hover:bg-neutral-100/80 dark:bg-neutral-900/50 dark:hover:bg-neutral-900/80 transition-colors"
+              className="absolute top-3 right-3 size-12 bg-neutral-100/50 hover:bg-neutral-100/80 dark:bg-neutral-900/50 dark:hover:bg-neutral-900/80 transition-colors"
               onchange={(event) => {
                 if (event.target.files) setMainImage(event.target.files[0]);
               }}>
@@ -68,7 +65,7 @@ export default function AddProductImages() {
                 className="relative w-full cursor-pointer overflow-hidden rounded-sm opacity-70 hover:opacity-100 lg:rounded-md">
                 <FileInput
                   id={`image-${index}-2`}
-                  classname="absolute inset-0 size-full z-10 !bg-transparent hover:!bg-transparent"
+                  className="absolute inset-0 size-full z-10 !bg-transparent hover:!bg-transparent"
                   onchange={(event) => {
                     let newImages = images.filter(
                       (item) => item.sortId !== index,
@@ -105,7 +102,7 @@ export default function AddProductImages() {
               <AspectRatio key={index} ratio={16 / 16} className="">
                 <FileInput
                   id={`image-${index}`}
-                  classname="size-full bg-neutral-200 dark:bg-neutral-950"
+                  className="size-full bg-neutral-200 dark:bg-neutral-950"
                   onchange={(event) => {
                     if (event.target.files)
                       setImages([

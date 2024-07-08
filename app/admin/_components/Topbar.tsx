@@ -6,20 +6,18 @@ import { cn } from "@/lib/utils";
 import { useAdminNavbar } from "../_stores/adminNavbar";
 import { useAuthStore } from "@/stores/authStore";
 import { Menu } from "lucide-react";
-import { Noto_Sans } from "next/font/google";
+import { notoSans } from "@/config/fonts";
 
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
-
-export default function Topbar() {
+export default function TopBar() {
   const openNavBar = useAdminNavbar((state) => state.open);
 
-  const username = useAuthStore((state) => state.username);
+  const username = useAuthStore((state) => state.user?.username);
 
   return (
-    <div className="flex w-full items-center justify-between border-b border-secondry px-5 py-2 dark:border-secondry-dark dark:bg-neutral-950">
-      <p className={cn("text-lg ", notoSans.className)}>{username}</p>
+    <div className="border-secondary dark:border-secondary-dark flex w-full items-center justify-between border-b px-5 py-2 dark:bg-neutral-950">
+      <p className={cn("text-lg font-bold", notoSans.className)}>{username}</p>
       <div className="flex items-center gap-x-3">
-        <ThemeToggle classname="shadow-none" />
+        <ThemeToggle className="shadow-none" />
         <Button
           variant="outline"
           size="icon"

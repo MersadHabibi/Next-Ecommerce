@@ -1,9 +1,8 @@
-import { cn } from "@/lib/utils";
 
-export default function Logo({ classname }: { classname?: string }) {
+export default function Logo({ className }: { className?: string }) {
   return (
     <svg
-      className={classname}
+      className={className}
       xmlns="http://www.w3.org/2000/svg"
       viewBox="0 0 192.756 192.756"
       fill="currentColor">

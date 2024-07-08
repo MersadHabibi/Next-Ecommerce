@@ -1,27 +1,17 @@
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
 import { InfoIcon } from "lucide-react";
-import Link from "next/link";
 
 import {
   Sheet,
   SheetContent,
-  SheetDescription,
   SheetHeader,
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { Product } from "@/types/Product";
-import { Noto_Sans } from "next/font/google";
+import { notoSans } from "@/config/fonts";
 import { cn } from "@/lib/utils";
+import { TProduct } from "@/types";
 
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
-
-export default function Info(product: Product) {
+export default function Info(product: TProduct) {
   return (
     <Sheet>
       <SheetTrigger className="flex-center size-11 rounded-md bg-black text-white transition hover:opacity-80 dark:bg-white dark:text-black">
@@ -29,7 +19,8 @@ export default function Info(product: Product) {
       </SheetTrigger>
       <SheetContent side="left" className="justify-start">
         <SheetHeader>
-          <SheetTitle className={cn("mb-4 text-xl", notoSans.className)}>
+          <SheetTitle
+            className={cn("mb-4 text-xl font-bold", notoSans.className)}>
             Product Info
           </SheetTitle>
         </SheetHeader>

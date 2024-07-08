@@ -1,5 +1,5 @@
-import { useToast } from "@/components/ui/use-toast";
 import { useNewProduct } from "@/app/admin/_stores/newProduct";
+import { useToast } from "@/components/ui/use-toast";
 import ColorsUi from "../ColorsUi";
 
 export default function Colors() {

@@ -1,25 +1,23 @@
 import { cn } from "@/lib/utils";
 import { Button } from "../ui/button";
-import { Noto_Sans } from "next/font/google";
-
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
+import { notoSans } from "@/config/fonts";
 
 export default function SectionHeader({
   title,
   description,
-  classname,
+  className,
   hasButton,
 }: {
   title: string;
   description?: string;
-  classname?: string;
+  className?: string;
   hasButton: boolean;
 }) {
   return (
     <div
       className={cn(
-        "flex items-center justify-between border-t border-secondry py-6 dark:border-secondry-dark",
-        classname,
+        "border-secondary dark:border-secondary-dark flex items-center justify-between border-t py-6",
+        className,
       )}>
       <div>
         {description ? (

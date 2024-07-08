@@ -1,11 +1,9 @@
 "use server";
 
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/utils";
 
 export async function cancelOrderAction(orderId: string) {
   try {
-    const prisma = new PrismaClient();
-
     const order = await prisma.order.update({
       where: {
         id: orderId,

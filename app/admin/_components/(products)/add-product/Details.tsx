@@ -1,25 +1,17 @@
 "use client";
 
 import { Edit } from "lucide-react";
-import { Noto_Sans } from "next/font/google";
 
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
-import Colors from "./Colors";
-import Sizes from "./Sizes";
-import Quantity from "./Quantity";
+import { notoSans } from "@/config/fonts";
 import { UseFormRegister } from "react-hook-form";
-import Gender from "./Gender";
 import Category from "./Category";
-
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
+import Colors from "./Colors";
+import Gender from "./Gender";
+import Quantity from "./Quantity";
+import Sizes from "./Sizes";
 
 export const inputResetStyles =
   "w-full border-none bg-transparent outline-none";
@@ -78,7 +70,7 @@ export default function AddProductDetails({
         </Button>
         <div
           className={cn(
-            "flex items-center text-xl text-gray-700 opacity-70 dark:text-gray-300",
+            "flex font-semibold items-center text-xl text-gray-700 opacity-70 dark:text-gray-300",
             notoSans.className,
           )}>
           $

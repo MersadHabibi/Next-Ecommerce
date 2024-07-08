@@ -2,30 +2,30 @@ import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export default function Menu({
-  divice = "desktop",
+  device = "desktop",
 }: {
-  divice?: "desktop" | "mobile";
+  device?: "desktop" | "mobile";
 }) {
-  if (divice === "desktop") {
+  if (device === "desktop") {
     return (
       <ul className="hidden items-center gap-x-2 sm:flex">
         <Button
-          className="!bg-transparent hover:!bg-secondry/70 dark:hover:!bg-secondry-dark"
+          className="hover:!bg-secondary/70 dark:hover:!bg-secondary-dark !bg-transparent"
           variant="ghost">
           <Link href="./"> Home </Link>
         </Button>
         <Button
-          className="!bg-transparent hover:!bg-secondry/70 dark:hover:!bg-secondry-dark"
+          className="hover:!bg-secondary/70 dark:hover:!bg-secondary-dark !bg-transparent"
           variant="ghost">
           <Link href="./"> Women </Link>
         </Button>
         <Button
-          className="!bg-transparent hover:!bg-secondry/70 dark:hover:!bg-secondry-dark"
+          className="hover:!bg-secondary/70 dark:hover:!bg-secondary-dark !bg-transparent"
           variant="ghost">
           <Link href="./"> Men </Link>
         </Button>
         <Button
-          className="!bg-transparent hover:!bg-secondry/70 dark:hover:!bg-secondry-dark"
+          className="hover:!bg-secondary/70 dark:hover:!bg-secondary-dark !bg-transparent"
           variant="ghost">
           <Link href="./"> Best sellers </Link>
         </Button>
@@ -33,24 +33,24 @@ export default function Menu({
     );
   } else {
     return (
-      <ul className="space-y-2 border-b border-secondry py-5 mb-5 text-start dark:border-secondry-dark">
+      <ul className="border-secondary dark:border-secondary-dark mb-5 space-y-2 border-b py-5 text-start">
         <Button
-          className="block w-full !bg-transparent text-left hover:!bg-secondry/70 dark:hover:!bg-secondry-dark"
+          className="hover:!bg-secondary/70 dark:hover:!bg-secondary-dark block w-full !bg-transparent text-left"
           variant="ghost">
           <Link href="./"> Home </Link>
         </Button>
         <Button
-          className="block w-full !bg-transparent text-left hover:!bg-secondry/70 dark:hover:!bg-secondry-dark"
+          className="hover:!bg-secondary/70 dark:hover:!bg-secondary-dark block w-full !bg-transparent text-left"
           variant="ghost">
           <Link href="./"> Women </Link>
         </Button>
         <Button
-          className="block w-full !bg-transparent text-left hover:!bg-secondry/70 dark:hover:!bg-secondry-dark"
+          className="hover:!bg-secondary/70 dark:hover:!bg-secondary-dark block w-full !bg-transparent text-left"
           variant="ghost">
           <Link href="./"> Men </Link>
         </Button>
         <Button
-          className="block w-full !bg-transparent text-left hover:!bg-secondry/70 dark:hover:!bg-secondry-dark"
+          className="hover:!bg-secondary/70 dark:hover:!bg-secondary-dark block w-full !bg-transparent text-left"
           variant="ghost">
           <Link href="./"> Best sellers </Link>
         </Button>

@@ -1,4 +1,4 @@
-import Footer from "@/components/templates/Footer/Footer";
+import Footer from "@/components/templates/(marketing)/Footer/Footer";
 import Navbar from "@/components/templates/Navbar/Navbar";
 import { Suspense } from "react";
 import Loading from "./loading";
@@ -17,6 +17,7 @@ export default async function authLayout({
       </div>
 
       <Footer />
+      <select name="" id=""></select>
     </div>
   );
 }

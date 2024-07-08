@@ -1,9 +1,9 @@
 "use server";
 
 import { saveFile } from "@/lib/saveFile";
-import { Prisma, PrismaClient } from "@prisma/client";
 import { z } from "zod";
 import { getMeAction } from "./authActions";
+import { prisma } from "@/lib/utils";
 
 const schema = z.object({
   title: z.string().min(4).max(40),
@@ -74,7 +74,7 @@ export async function addProductAction(formData: FormData) {
     return JSON.parse(
       JSON.stringify({
         errors: validatedFields.error.flatten().fieldErrors,
-        message: "datas invalid",
+        message: "data invalid",
         status: 403,
       }),
     );
@@ -98,8 +98,7 @@ export async function addProductAction(formData: FormData) {
       JSON.stringify({ status: 500, message: "upload image failed" }),
     );
 
-    try {
-    const prisma = new PrismaClient();
+  try {
     // Create Product
 
     const product = await prisma.product.create({
@@ -110,8 +109,8 @@ export async function addProductAction(formData: FormData) {
         colors,
         sizes,
         quantity,
-        mainImage: uploadImageRes.pathes.mainImage,
-        images: uploadImageRes.pathes.images,
+        mainImage: uploadImageRes.paths.mainImage,
+        images: uploadImageRes.paths.images,
         gender,
         categoryId: category,
       },
@@ -136,7 +135,7 @@ export async function addProductAction(formData: FormData) {
 }
 
 async function uploadImages(mainImage: File, images: File[]) {
-  const pathes: {
+  const paths: {
     mainImage: string;
     images: string[];
   } = {
@@ -148,25 +147,23 @@ async function uploadImages(mainImage: File, images: File[]) {
 
   if (res.status === 500) return false;
 
-  pathes.mainImage = res.path as string;
+  paths.mainImage = res.path as string;
 
   for (let i = 0; i < images.length; i++) {
     const res = await saveFile(images.at(i) as File, "images");
 
     if (res.status === 500) return false;
 
-    pathes.images[i] = res.path as string;
+    paths.images[i] = res.path as string;
   }
 
   return {
-    pathes,
+    paths,
   };
 }
 
 export async function getAllProductsAction() {
   try {
-    const prisma = new PrismaClient();
-
     const products = await prisma.product.findMany({
       include: {
         Category: true,
@@ -191,7 +188,6 @@ export async function getAllProductsAction() {
 
 // export async function getProductById(id: string) {
 //   try {
-//     const prisma = new PrismaClient();
 
 //     const product = await prisma.product.findFirst({
 //       where: {
@@ -243,8 +239,6 @@ export async function deleteProductAction(id: string) {
   }
 
   try {
-    const prisma = new PrismaClient();
-
     const product = await prisma.product.delete({
       where: {
         id,
@@ -325,15 +319,13 @@ export async function updateProductAction(formData: FormData) {
     return JSON.parse(
       JSON.stringify({
         errors: validatedFields.error.flatten().fieldErrors,
-        message: "datas invalid",
+        message: "data invalid",
         status: 403,
       }),
     );
   }
 
   try {
-    const prisma = new PrismaClient();
-
     const product = await prisma.product.update({
       where: {
         id,

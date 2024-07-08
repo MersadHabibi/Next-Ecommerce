@@ -1,10 +1,9 @@
 "use client";
 
-import ProductCard from "./productCard/ProductCard";
-import { useEffect, useState } from "react";
-import { useProducts } from "@/app/admin/_stores/productsStore";
 import { getAllProductsAction } from "@/actions/productActions";
-import Loader from "@/components/modules/Loader";
+import { useProducts } from "@/app/admin/_stores/productsStore";
+import { useEffect, useState } from "react";
+import ProductCard from "./productCard/ProductCard";
 import SkeletonCard from "./productCard/Skeleton";
 
 export default function ProductsContainer() {

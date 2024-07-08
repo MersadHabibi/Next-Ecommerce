@@ -1,14 +1,14 @@
 "use client";
 
-import { Order } from "@/types/OrderItem";
+import { TOrder } from "@/types";
 import { create } from "zustand";
 
 export type State = {
-  orders: Order[];
+  orders: TOrder[];
 };
 
 export type Actions = {
-  setOrders: (orders: Order[]) => void;
+  setOrders: (orders: TOrder[]) => void;
 };
 
 export const useOrdersStore = create<State & Actions>()((set) => ({

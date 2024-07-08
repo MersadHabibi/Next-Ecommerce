@@ -1,8 +1,8 @@
-import Link from "next/link";
-import PageTitle from "../../_components/PageTitle";
-import { Plus } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import Link from "next/link";
 import ProductsContainer from "../../_components/(products)/products/ProductsContainer";
+import PageTitle from "../../_components/PageTitle";
 
 export default function Products() {
   return (

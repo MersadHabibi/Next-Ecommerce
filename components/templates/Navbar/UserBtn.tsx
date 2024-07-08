@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button";
 import {
   Dialog,
   DialogContent,
-  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -17,7 +16,7 @@ import Link from "next/link";
 
 export default function UserBtn() {
   const isLogin = useAuthStore((state) => state.isLogin);
-  const username = useAuthStore((state) => state.username);
+  const username = useAuthStore((state) => state.user?.username);
   const logout = useAuthStore((state) => state.logout);
 
   async function logoutHandler() {
@@ -36,16 +35,18 @@ export default function UserBtn() {
     });
   }
 
+  console.log(isLogin);
+
   return (
     <Dialog>
-      <DialogTrigger className="flex-center h-9 w-9 rounded-md border border-secondry hover:bg-secondry dark:border-secondry-dark dark:hover:bg-secondry-dark">
+      <DialogTrigger className="flex-center h-9 w-9 rounded-md border border-secondary hover:bg-secondary dark:border-secondary-dark dark:hover:bg-secondary-dark">
         <User size="20" />
       </DialogTrigger>
       <DialogContent className="max-w-80">
         {isLogin ? (
           <DialogHeader>
             <DialogTitle className="mb-3"> {username} </DialogTitle>
-            <div className="w-full border-b border-secondry dark:border-secondry-dark"></div>
+            <div className="w-full border-b border-secondary dark:border-secondary-dark"></div>
             <div className="w-full pt-3">
               <Button
                 variant="outline"
@@ -64,7 +65,7 @@ export default function UserBtn() {
           </DialogHeader>
         ) : (
           <DialogHeader>
-            {/* <div className="border-secondry dark:border-secondry-dark w-full border-b"></div> */}
+            {/* <div className="border-secondary dark:border-secondary-dark w-full border-b"></div> */}
             <div className="w-full pt-6">
               <Link href="/sign-in">
                 <Button

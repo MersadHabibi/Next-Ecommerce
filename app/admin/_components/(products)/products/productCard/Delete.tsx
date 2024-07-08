@@ -1,5 +1,8 @@
 import { Trash } from "lucide-react";
 
+import { deleteProductAction } from "@/actions/productActions";
+import { useProducts } from "@/app/admin/_stores/productsStore";
+import Loader from "@/components/modules/Loader";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -10,11 +13,8 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { deleteProductAction } from "@/actions/productActions";
 import { useToast } from "@/components/ui/use-toast";
 import { useState } from "react";
-import Loader from "@/components/modules/Loader";
-import { useProducts } from "@/app/admin/_stores/productsStore";
 
 export default function Delete({ id }: { id: string }) {
   const [isLoading, setIsLoading] = useState(false);

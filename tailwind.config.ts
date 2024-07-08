@@ -42,8 +42,8 @@ const config = {
       colors: {
         primary: "rgb(243 244 246)",
         "primary-dark": "rgb(10 10 10)",
-        secondry: "rgb(209 213 219)",
-        "secondry-dark": "rgb(64 64 64)",
+        secondary: "rgb(209 213 219)",
+        "secondary-dark": "rgb(64 64 64)",
         text: "#171717",
         "text-dark": "rgb(64 64 64)",
         gray: {

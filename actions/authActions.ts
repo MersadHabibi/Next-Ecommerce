@@ -6,7 +6,7 @@ import {
   generateToken,
   verifyToken,
 } from "@/lib/authUtils";
-import { PrismaClient } from "@prisma/client";
+import { prisma } from "@/lib/utils";
 import { cookies } from "next/headers";
 import { z } from "zod";
 
@@ -45,8 +45,6 @@ export async function signUpAction(formData: FormData) {
   try {
     const username: string = formData.get("username") as string;
     const password: string = formData.get("password") as string;
-
-    const prisma = new PrismaClient();
 
     // Check unique
     try {
@@ -95,7 +93,7 @@ export async function signUpAction(formData: FormData) {
     return JSON.parse(
       JSON.stringify({
         message: "user create successfully",
-        data: user,
+        // data: user,
         status: 201,
       }),
     );
@@ -125,8 +123,6 @@ export async function signInAction(formData: FormData) {
   try {
     const username = formData.get("username") as string;
     const password = formData.get("password") as string;
-
-    const prisma = new PrismaClient();
 
     const user = await prisma.user.findUnique({
       where: {
@@ -165,6 +161,7 @@ export async function signInAction(formData: FormData) {
 
     return JSON.parse(
       JSON.stringify({
+        user,
         message: "Sign in successfully",
         status: 200,
       }),
@@ -208,8 +205,6 @@ export async function getMeAction() {
       );
     }
 
-    const prisma = new PrismaClient();
-
     const user = await prisma.user.findUnique({
       where: {
         username: payload?.username,
@@ -228,9 +223,7 @@ export async function getMeAction() {
 
     return JSON.parse(
       JSON.stringify({
-        id: user.id,
-        username: user.username,
-        role: user.role,
+        user,
         isLogin: true,
         status: 200,
       }),

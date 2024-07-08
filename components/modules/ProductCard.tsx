@@ -1,18 +1,16 @@
 "use client";
 
-import { cn } from "@/lib/utils";
-import Image from "next/image";
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Heart, ShoppingBag } from "lucide-react";
-import { Noto_Sans } from "next/font/google";
-import { Button } from "../ui/button";
+import { notoSans } from "@/config/fonts";
+import { cn } from "@/lib/utils";
+import { ShoppingBag } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { Product } from "@/types/Product";
 import { useState } from "react";
+import { Button } from "../ui/button";
+import { TProduct } from "@/types";
 
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
-
-export default function ProductCard({ id, title, mainImage, price }: Product) {
+export default function ProductCard({ id, title, mainImage, price }: TProduct) {
   const [isImageError, setImageError] = useState(false);
 
   return (
@@ -39,14 +37,14 @@ export default function ProductCard({ id, title, mainImage, price }: Product) {
       <CardFooter className="flex items-center justify-between px-4 py-3">
         <span
           className={cn(
-            "text-2xl text-gray-700 opacity-70 dark:text-gray-300",
+            "text-2xl font-bold text-gray-700 opacity-70 dark:text-gray-300",
             notoSans.className,
           )}>
           ${price}
         </span>
       </CardFooter>
       <div className="absolute bottom-0 right-0 z-10 size-fit rounded-ss-xl bg-white outline outline-[2px]  outline-white dark:bg-black dark:outline-black">
-        <div className="w-full rounded-ss-xl border-l border-t border-secondry p-2 dark:border-secondry-dark">
+        <div className="border-secondary dark:border-secondary-dark w-full rounded-ss-xl border-l border-t p-2">
           <Link href={`/product/${id}`}>
             <Button size="icon" className="size-11 bg-black dark:bg-white">
               <ShoppingBag />

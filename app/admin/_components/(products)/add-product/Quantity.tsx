@@ -1,11 +1,9 @@
 import { Minus, Plus } from "lucide-react";
-import { useState } from "react";
 
 import { cn } from "@/lib/utils";
 
-import { inputResetStyles } from "./Details";
-import { UseFormRegister } from "react-hook-form";
 import { useNewProduct } from "@/app/admin/_stores/newProduct";
+import { inputResetStyles } from "./Details";
 
 export default function Quantity() {
   const quantity = useNewProduct((state) => state.quantity);

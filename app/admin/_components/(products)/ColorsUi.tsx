@@ -1,10 +1,5 @@
 import { Plus } from "lucide-react";
 
-import { cn, isValidColor } from "@/lib/utils";
-import { Noto_Sans } from "next/font/google";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { useState } from "react";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -15,7 +10,12 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
+import { notoSans } from "@/config/fonts";
+import { cn, isValidColor } from "@/lib/utils";
+import { useState } from "react";
 
 type ColorsUiProps = {
   colors: string[];
@@ -26,8 +26,6 @@ type ColorsUiProps = {
   onRemove: (color: string) => void;
   label?: string;
 };
-
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
 
 export default function ColorsUi({
   colors,
@@ -72,8 +70,9 @@ export default function ColorsUi({
             <Plus />
           </AlertDialogTrigger>
           <AlertDialogContent>
-            <AlertDialogHeader className="border-b border-secondry pb-4 dark:border-secondry-dark">
-              <AlertDialogTitle className={cn("text-xl", notoSans.className)}>
+            <AlertDialogHeader className="border-secondary dark:border-secondary-dark border-b pb-4">
+              <AlertDialogTitle
+                className={cn("text-xl font-semibold", notoSans.className)}>
                 Add new color
               </AlertDialogTitle>
             </AlertDialogHeader>

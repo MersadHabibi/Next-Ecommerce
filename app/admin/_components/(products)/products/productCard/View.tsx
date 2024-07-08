@@ -4,7 +4,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import { Eye, Info, Pencil, Trash } from "lucide-react";
+import { Eye } from "lucide-react";
 import Link from "next/link";
 
 export default function View({ id }: { id: string }) {

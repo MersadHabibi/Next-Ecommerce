@@ -1,28 +1,23 @@
-import { SearchIcon } from "lucide-react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@/components/ui/dialog";
 import {
   Command,
-  CommandDialog,
   CommandEmpty,
   CommandGroup,
   CommandInput,
   CommandItem,
   CommandList,
-  CommandSeparator,
-  CommandShortcut,
+  CommandSeparator
 } from "@/components/ui/command";
+import {
+  Dialog,
+  DialogContent,
+  DialogTrigger
+} from "@/components/ui/dialog";
+import { SearchIcon } from "lucide-react";
 
 export default function Search() {
   return (
     <Dialog>
-      <DialogTrigger className="flex-center h-9 w-9 rounded-md border border-secondry hover:bg-secondry dark:border-secondry-dark dark:hover:bg-secondry-dark">
+      <DialogTrigger className="flex-center border-secondary hover:bg-secondary dark:border-secondary-dark dark:hover:bg-secondary-dark h-9 w-9 rounded-md border">
         <SearchIcon size="20" />
       </DialogTrigger>
       <DialogContent>

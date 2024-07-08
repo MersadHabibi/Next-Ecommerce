@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from "react";
 
+import { getAllCategoriesAction } from "@/actions/categoryActions";
+import { useNewProduct } from "@/app/admin/_stores/newProduct";
 import {
   Select,
   SelectContent,
@@ -10,8 +12,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { getAllCategoriesAction } from "@/actions/categoryActions";
-import { useNewProduct } from "@/app/admin/_stores/newProduct";
 
 export default function Category() {
   const [categories, setCategories] = useState<{ id: string; title: string }[]>(

@@ -13,7 +13,7 @@ export default function CartBtn() {
   return (
     <Link href="/cart">
       <Button
-        className="!bg-transparent hover:!bg-secondry dark:hover:!bg-secondry-dark"
+        className="hover:!bg-secondary dark:hover:!bg-secondary-dark !bg-transparent"
         variant="outline"
         size="icon">
         <ShoppingBasket size="20" />

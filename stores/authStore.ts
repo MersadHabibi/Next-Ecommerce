@@ -1,31 +1,26 @@
 "use client";
 
+import { TUser } from "@/types";
 import { create } from "zustand";
 
 export type State = {
-  id: string;
-  username: string | null;
-  role: "ADMIN" | "USER";
+  user: TUser | null;
   isLogin: boolean;
 };
 
 export type Actions = {
-  signIn: (id: string, username: string, role?: "ADMIN" | "USER") => void;
+  signIn: (user: TUser) => void;
   logout: () => void;
 };
 
 export const useAuthStore = create<State & Actions>()((set) => ({
-  id: "",
-  username: null,
-  role: "USER",
+  user: null,
   isLogin: false,
-  signIn: (id, username, role) => {
+  signIn: (user) => {
     set((state) => ({
-      id,
-      username,
-      role: role ? role : "USER",
+      user,
       isLogin: true,
     }));
   },
-  logout: () => set((state) => ({ isLogin: false, username: null })),
+  logout: () => set((state) => ({ isLogin: false, user: null })),
 }));

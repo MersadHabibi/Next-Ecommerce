@@ -1,17 +1,17 @@
 "use client";
 
-import AddProductImages from "../../_components/(products)/add-product/Images";
-import AddProductDetails from "../../_components/(products)/add-product/Details";
-import { Button } from "@/components/ui/button";
-import { z } from "zod";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useNewProduct } from "../../_stores/newProduct";
 import { addProductAction } from "@/actions/productActions";
-import { useToast } from "@/components/ui/use-toast";
-import { useState } from "react";
 import Loader from "@/components/modules/Loader";
+import { Button } from "@/components/ui/button";
+import { useToast } from "@/components/ui/use-toast";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
+import AddProductDetails from "../../_components/(products)/add-product/Details";
+import AddProductImages from "../../_components/(products)/add-product/Images";
 import PageTitle from "../../_components/PageTitle";
+import { useNewProduct } from "../../_stores/newProduct";
 
 const formSchema = z.object({
   title: z
@@ -38,7 +38,7 @@ export default function AddProductPage() {
     },
   });
 
-  const newProductsDatas = useNewProduct((state) => state);
+  const newProductsData = useNewProduct((state) => state);
 
   const { toast } = useToast();
 
@@ -47,7 +47,7 @@ export default function AddProductPage() {
 
     // Validation
 
-    if (!newProductsDatas.mainImage || !(newProductsDatas.images.length > 0)) {
+    if (!newProductsData.mainImage || !(newProductsData.images.length > 0)) {
       return toast({
         variant: "destructive",
         description: "you must to choose main image and at least 1 other image",
@@ -55,8 +55,8 @@ export default function AddProductPage() {
     }
 
     if (
-      !(newProductsDatas.colors.length > 0) ||
-      !(newProductsDatas.sizes.length > 0)
+      !(newProductsData.colors.length > 0) ||
+      !(newProductsData.sizes.length > 0)
     ) {
       return toast({
         variant: "destructive",
@@ -66,16 +66,13 @@ export default function AddProductPage() {
 
     setIsLoading(true);
 
-    formData.append("mainImage", newProductsDatas.mainImage);
-    newProductsDatas.images
+    formData.append("mainImage", newProductsData.mainImage);
+    newProductsData.images
       .sort((image) => image.sortId)
       .forEach((image, index) =>
         formData.append(`image-${index}`, image.image),
       );
-    formData.append(
-      "details",
-      JSON.stringify({ ...data, ...newProductsDatas }),
-    );
+    formData.append("details", JSON.stringify({ ...data, ...newProductsData }));
 
     const res = await addProductAction(formData);
 
@@ -84,7 +81,7 @@ export default function AddProductPage() {
     if (res.status === 201) {
       form.reset();
 
-      newProductsDatas.reset();
+      newProductsData.reset();
 
       return toast({
         description: res.message,
@@ -111,7 +108,7 @@ export default function AddProductPage() {
           </div>
         </div>
 
-        <div className="mt-10 flex justify-end border-t border-secondry pt-6 dark:border-secondry-dark">
+        <div className="border-secondary dark:border-secondary-dark mt-10 flex justify-end border-t pt-6">
           <Button
             type="submit"
             className="bg-black dark:bg-white"

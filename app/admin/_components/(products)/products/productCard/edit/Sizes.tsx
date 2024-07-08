@@ -1,6 +1,6 @@
 import { useEditProductStore } from "@/app/admin/_stores/editProductStore";
-import SizesUi from "../../../SizesUi";
 import { useToast } from "@/components/ui/use-toast";
+import SizesUi from "../../../SizesUi";
 
 export default function Sizes() {
   const sizes = useEditProductStore((state) => state.sizes);

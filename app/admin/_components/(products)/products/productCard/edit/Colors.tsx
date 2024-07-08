@@ -1,6 +1,6 @@
 import { useEditProductStore } from "@/app/admin/_stores/editProductStore";
-import ColorsUi from "../../../ColorsUi";
 import { useToast } from "@/components/ui/use-toast";
+import ColorsUi from "../../../ColorsUi";
 
 export default function Colors() {
   const colors = useEditProductStore((state) => state.colors);

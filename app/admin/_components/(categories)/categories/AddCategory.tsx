@@ -1,8 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { FolderSync, ImagePlus, Plus, PlusCircle } from "lucide-react";
+import { ImagePlus, Plus } from "lucide-react";
 
+import { addCategoryAction } from "@/actions/categoryActions";
+import { useCategoriesStore } from "@/app/admin/_stores/categoriesStore";
+import Loader from "@/components/modules/Loader";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -13,22 +15,17 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
-import { Noto_Sans } from "next/font/google";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import FileInput from "../../FileInput";
-import { useRef, useState } from "react";
-import Image from "next/image";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
-import { addCategoryAction } from "@/actions/categoryActions";
-import Loader from "@/components/modules/Loader";
-import { useCategoriesStore } from "@/app/admin/_stores/categoriesStore";
+import { notoSans } from "@/config/fonts";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { useRef, useState } from "react";
+import FileInput from "../../FileInput";
 
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
-
-export default function AddCategpry() {
+export default function AddCategory() {
   const [isLoading, setIsLoading] = useState(false);
   const titleRef = useRef("");
   const [image, setImage] = useState<File | null>(null);
@@ -93,8 +90,9 @@ export default function AddCategpry() {
         {isLoading ? <Loader /> : <Plus />}
       </AlertDialogTrigger>
       <AlertDialogContent>
-        <AlertDialogHeader className="border-b border-secondry pb-4 dark:border-secondry-dark">
-          <AlertDialogTitle className={cn("text-xl", notoSans.className)}>
+        <AlertDialogHeader className="border-secondary dark:border-secondary-dark border-b pb-4">
+          <AlertDialogTitle
+            className={cn("text-xl font-semibold", notoSans.className)}>
             Add new category
           </AlertDialogTitle>
         </AlertDialogHeader>
@@ -129,7 +127,7 @@ export default function AddCategpry() {
                   <FileInput
                     id="image"
                     onchange={onSelectImage}
-                    classname="dark:bg-neutral-900 dark:hover:bg-neutral-800 bg-neutral-200/60">
+                    className="dark:bg-neutral-900 dark:hover:bg-neutral-800 bg-neutral-200/60">
                     <ImagePlus className="size-12" />
                   </FileInput>
                 )}

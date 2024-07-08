@@ -1,6 +1,5 @@
 "use client";
 
-import { Product } from "@/types/Product";
 import { Pencil } from "lucide-react";
 
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -16,28 +15,29 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
+import { updateProductAction } from "@/actions/productActions";
+import { useEditProductStore } from "@/app/admin/_stores/editProductStore";
+import { useProducts } from "@/app/admin/_stores/productsStore";
+import Loader from "@/components/modules/Loader";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import Sizes from "./edit/Sizes";
-import { useEditProductStore } from "@/app/admin/_stores/editProductStore";
-import { useEffect, useState } from "react";
-import Colors from "./edit/Colors";
-import { updateProductAction } from "@/actions/productActions";
 import { useToast } from "@/components/ui/use-toast";
-import Loader from "@/components/modules/Loader";
-import { useProducts } from "@/app/admin/_stores/productsStore";
+import { useState } from "react";
+import Colors from "./edit/Colors";
+import Sizes from "./edit/Sizes";
+import { TProduct } from "@/types";
 
 const formSchema = z.object({
   title: z
     .string()
     .min(4, { message: "Title must be at least 4 characters." })
     .max(40),
-  price: z.string().min(1, { message: "Price must be at least 1 Dollor." }),
+  price: z.string().min(1, { message: "Price must be at least 1 Dolor." }),
   description: z
     .string()
     .min(8, { message: "Description must be at least 8 characters." })
@@ -45,7 +45,7 @@ const formSchema = z.object({
   quantity: z.number().min(1, { message: "Quantity must be at least 2." }),
 });
 
-export default function Edit({ product }: { product: Product }) {
+export default function Edit({ product }: { product: TProduct }) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {

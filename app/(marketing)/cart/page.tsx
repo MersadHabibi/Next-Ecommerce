@@ -1,7 +1,7 @@
 import { getMeAction } from "@/actions/authActions";
-import CartItemsList from "@/components/templates/Cart/CartItemsList";
-import Checkout from "@/components/templates/Cart/Checkout";
-import Header from "@/components/templates/Cart/Header";
+import CartItemsList from "@/components/templates/(marketing)/Cart/CartItemsList";
+import Checkout from "@/components/templates/(marketing)/Cart/Checkout";
+import Header from "@/components/templates/(marketing)/Cart/Header";
 import { redirect } from "next/navigation";
 
 export default async function CartPage() {

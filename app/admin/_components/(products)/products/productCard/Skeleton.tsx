@@ -1,10 +1,7 @@
 import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Noto_Sans } from "next/font/google";
 import { Skeleton } from "@/components/ui/skeleton";
-
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
 
 export default function SkeletonCard() {
   return (
@@ -19,9 +16,9 @@ export default function SkeletonCard() {
         </CardTitle>
       </CardHeader>
       <CardFooter className="flex items-center justify-between p-0 px-2 pt-2">
-        <Skeleton className="h-6 w-[70%] mt-2" />
+        <Skeleton className="mt-2 h-6 w-[70%]" />
       </CardFooter>
-      <div className="flex flex-wrap gap-4 justify-end pt-4 mt-4">
+      <div className="mt-4 flex flex-wrap justify-end gap-4 pt-4">
         <Skeleton className="size-11" />
         <Skeleton className="size-11" />
         <Skeleton className="size-11" />

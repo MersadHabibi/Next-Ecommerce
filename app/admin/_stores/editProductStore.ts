@@ -1,6 +1,5 @@
 "use client";
 
-import { CategoryType } from "../_components/(categories)/categories/CategoryList";
 import { create } from "zustand";
 
 export type State = {

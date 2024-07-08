@@ -1,12 +1,12 @@
-import { Product } from "@/types/Product";
+import { TProduct } from "@/types";
 import Delete from "./Delete";
 import Edit from "./Edit";
 import Info from "./Info";
 import View from "./View";
 
-export default function ProductCardActions(product: Product) {
+export default function ProductCardActions(product: TProduct) {
   return (
-    <div className="mt-4 flex w-full flex-wrap items-center justify-end gap-4 border-t border-secondry pt-4 dark:border-secondry-dark">
+    <div className="border-secondary dark:border-secondary-dark mt-4 flex w-full flex-wrap items-center justify-end gap-4 border-t pt-4">
       <View id={product.id} />
       <Info {...product} />
       <Edit product={product} />

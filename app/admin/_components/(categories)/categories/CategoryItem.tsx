@@ -1,7 +1,8 @@
 "use client";
 
-import Image from "next/image";
-import Link from "next/link";
+import { deleteCategoryAction } from "@/actions/categoryActions";
+import { useCategoriesStore } from "@/app/admin/_stores/categoriesStore";
+import Loader from "@/components/modules/Loader";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -12,37 +13,34 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 import { Card, CardContent, CardTitle } from "@/components/ui/card";
+import { useToast } from "@/components/ui/use-toast";
+import { notoSans } from "@/config/fonts";
 import { cn } from "@/lib/utils";
 import { Trash } from "lucide-react";
-import { CategoryType } from "./CategoryList";
-import { Noto_Sans } from "next/font/google";
+import Image from "next/image";
+import Link from "next/link";
 import { useState } from "react";
-import Loader from "@/components/modules/Loader";
-import { deleteCategpryAction } from "@/actions/categoryActions";
-import { useToast } from "@/components/ui/use-toast";
-import { useCategoriesStore } from "@/app/admin/_stores/categoriesStore";
-import { AspectRatio } from "@/components/ui/aspect-ratio";
+import { CategoryType } from "./CategoryList";
 
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["700"] });
-
-export default function CatgeoryItem({ category }: { category: CategoryType }) {
+export default function CategoryItem({ category }: { category: CategoryType }) {
   const [isImageError, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 
-  const setCategpries = useCategoriesStore((state) => state.setCategories);
+  const setCategories = useCategoriesStore((state) => state.setCategories);
 
   const { toast } = useToast();
 
   async function onDeleteCategory(categoryId: string) {
     setIsLoading(true);
 
-    const res = await deleteCategpryAction(categoryId);
+    const res = await deleteCategoryAction(categoryId);
 
     setIsLoading(false);
 
     if (res.status === 202) {
-      setCategpries(res.categories);
+      setCategories(res.categories);
 
       return toast({
         description: res.message,
@@ -63,7 +61,7 @@ export default function CatgeoryItem({ category }: { category: CategoryType }) {
             <div className="flex-center w-full p-4">
               <AspectRatio ratio={16 / 9}>
                 <Image
-                  className="h-full w-full object-cover rounded-md"
+                  className="h-full w-full rounded-md object-cover"
                   src={`/${isImageError ? "images/no-image.jpg" : category.image}`}
                   alt="running shoes"
                   width={250}
@@ -75,7 +73,10 @@ export default function CatgeoryItem({ category }: { category: CategoryType }) {
               </AspectRatio>
             </div>
             <CardTitle
-              className={cn("text-center text-2xl", notoSans.className)}>
+              className={cn(
+                "text-center text-2xl font-bold",
+                notoSans.className,
+              )}>
               {category.title}
             </CardTitle>
           </CardContent>

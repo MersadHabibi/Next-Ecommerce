@@ -1,4 +1,3 @@
-import { Noto_Sans } from "next/font/google";
 import { Plus } from "lucide-react";
 import { useState } from "react";
 
@@ -13,11 +12,10 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { Input } from "@/components/ui/input";
-import { cn } from "@/lib/utils";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/components/ui/use-toast";
-
-const notoSans = Noto_Sans({ subsets: ["latin"], weight: ["600"] });
+import { notoSans } from "@/config/fonts";
+import { cn } from "@/lib/utils";
 
 type SizesUiProps = {
   sizes: number[];
@@ -44,7 +42,7 @@ export default function SizesUi({
       <div className="select-size flex gap-x-2 pt-2">
         {sizes?.map((size) => (
           <AlertDialog key={size}>
-            <AlertDialogTrigger className="size-9 rounded-none border border-secondry text-base text-gray-700 dark:border-secondry-dark dark:text-gray-300">
+            <AlertDialogTrigger className="border-secondary dark:border-secondary-dark size-9 rounded-none border text-base text-gray-700 dark:text-gray-300">
               {size}
             </AlertDialogTrigger>
             <AlertDialogContent>
@@ -69,8 +67,9 @@ export default function SizesUi({
             <Plus />
           </AlertDialogTrigger>
           <AlertDialogContent>
-            <AlertDialogHeader className="border-b border-secondry pb-4 dark:border-secondry-dark">
-              <AlertDialogTitle className={cn("text-xl", notoSans.className)}>
+            <AlertDialogHeader className="border-secondary dark:border-secondary-dark border-b pb-4">
+              <AlertDialogTitle
+                className={cn("text-xl font-semibold", notoSans.className)}>
                 Add new size
               </AlertDialogTitle>
             </AlertDialogHeader>

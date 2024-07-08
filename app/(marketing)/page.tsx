@@ -1,20 +1,26 @@
-import Banners from "@/components/templates/Index/Banners";
-import BestSellers from "@/components/templates/Index/BestSellers";
-import Categories from "@/components/templates/Index/Categories";
-import ChooseUs from "@/components/templates/Index/ChooseUs";
-import { NewestProducts } from "@/components/templates/Index/NewestProducts";
-import { PrismaClient } from "@prisma/client";
+import Banners from "@/components/templates/(marketing)/Index/Banners";
+import BestSellers from "@/components/templates/(marketing)/Index/BestSellers";
+import Categories from "@/components/templates/(marketing)/Index/Categories";
+import ChooseUs from "@/components/templates/(marketing)/Index/ChooseUs";
+import { NewestProducts } from "@/components/templates/(marketing)/Index/NewestProducts";
+import { prisma } from "@/lib/utils";
+import { cache } from "react";
+
+const getProductsAndCategories = cache(
+  async function() {
+    return await Promise.all([
+      prisma.product.findMany({
+        include: {
+          Category: true,
+        },
+      }),
+      prisma.category.findMany({}),
+    ]);
+  },
+);
 
 export default async function Home() {
-  const prisma = new PrismaClient();
-
-  const products = await prisma.product.findMany({
-    include: {
-      Category: true,
-    },
-  });
-
-  const categories = await prisma.category.findMany({});
+  const [products, categories] = await getProductsAndCategories();
 
   return (
     <div className="w-full">
