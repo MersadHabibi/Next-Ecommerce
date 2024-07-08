@@ -1,14 +1,14 @@
 "use client";
 
-import { CategoryType } from "../_components/(categories)/categories/CategoryList";
+import { TCategory } from "@/types";
 import { create } from "zustand";
 
 export type State = {
-  categories: CategoryType[] | null;
+  categories: TCategory[] | null;
 };
 
 export type Actions = {
-  setCategories: (categories: CategoryType[]) => void;
+  setCategories: (categories: TCategory[]) => void;
 };
 
 export const useCategoriesStore = create<State & Actions>()((set) => ({

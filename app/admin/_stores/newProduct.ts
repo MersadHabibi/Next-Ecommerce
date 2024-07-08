@@ -1,7 +1,6 @@
 "use client";
 
-import { imageType } from "@/app/admin/_components/(products)/add-product/Images";
-
+import { TImage } from "@/components/templates/admin/(products)/add-product/Images";
 import { create } from "zustand";
 
 export type State = {
@@ -9,14 +8,14 @@ export type State = {
   sizes: number[];
   quantity: number | string;
   mainImage: File | null;
-  images: imageType[];
+  images: TImage[];
   gender: "men" | "women";
   category: string;
 };
 
 export type Actions = {
   setMainImage: (mainImage: File | null) => void;
-  setImages: (images: imageType[]) => void;
+  setImages: (images: TImage[]) => void;
   setColors: (color: string) => void;
   removeColor: (color: string) => void;
   setSizes: (size: number) => void;

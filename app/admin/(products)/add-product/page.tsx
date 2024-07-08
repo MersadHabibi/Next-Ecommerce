@@ -8,9 +8,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import AddProductDetails from "../../_components/(products)/add-product/Details";
-import AddProductImages from "../../_components/(products)/add-product/Images";
-import PageTitle from "../../_components/PageTitle";
+import AddProductDetails from "@/components/templates/admin/(products)/add-product/Details";
+import AddProductImages from "@/components/templates/admin/(products)/add-product/Images";
+import PageTitle from "@/components/templates/admin/PageTitle";
 import { useNewProduct } from "../../_stores/newProduct";
 
 const formSchema = z.object({
@@ -108,7 +108,7 @@ export default function AddProductPage() {
           </div>
         </div>
 
-        <div className="border-secondary dark:border-secondary-dark mt-10 flex justify-end border-t pt-6">
+        <div className="mt-10 flex justify-end border-t border-secondary pt-6 dark:border-secondary-dark">
           <Button
             type="submit"
             className="bg-black dark:bg-white"

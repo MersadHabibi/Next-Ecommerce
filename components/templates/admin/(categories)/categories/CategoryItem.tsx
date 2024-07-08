@@ -18,13 +18,13 @@ import { Card, CardContent, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 import { notoSans } from "@/config/fonts";
 import { cn } from "@/lib/utils";
+import { TCategory } from "@/types";
 import { Trash } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { CategoryType } from "./CategoryList";
 
-export default function CategoryItem({ category }: { category: CategoryType }) {
+export default function CategoryItem({ category }: { category: TCategory }) {
   const [isImageError, setImageError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
 

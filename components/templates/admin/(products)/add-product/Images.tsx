@@ -7,7 +7,7 @@ import { FolderSync, ImagePlus } from "lucide-react";
 import Image from "next/image";
 import FileInput from "../../FileInput";
 
-export type imageType = {
+export type TImage = {
   sortId: number;
   image: File;
 };
@@ -20,14 +20,14 @@ export default function AddProductImages() {
 
   return (
     <>
-      <div className="border-secondary dark:border-secondary-dark w-full rounded-md border bg-neutral-200 dark:bg-neutral-950 lg:rounded-md">
+      <div className="w-full rounded-md border border-secondary bg-neutral-200 dark:border-secondary-dark dark:bg-neutral-950 lg:rounded-md">
         {mainImage ? (
           <AspectRatio
             ratio={16 / 14}
             className={cn("flex-center relative overflow-hidden rounded-md")}>
             <FileInput
               id="mainImage-2"
-              className="absolute top-3 right-3 size-12 bg-neutral-100/50 hover:bg-neutral-100/80 dark:bg-neutral-900/50 dark:hover:bg-neutral-900/80 transition-colors"
+              className="absolute right-3 top-3 size-12 bg-neutral-100/50 transition-colors hover:bg-neutral-100/80 dark:bg-neutral-900/50 dark:hover:bg-neutral-900/80"
               onchange={(event) => {
                 if (event.target.files) setMainImage(event.target.files[0]);
               }}>
@@ -65,7 +65,7 @@ export default function AddProductImages() {
                 className="relative w-full cursor-pointer overflow-hidden rounded-sm opacity-70 hover:opacity-100 lg:rounded-md">
                 <FileInput
                   id={`image-${index}-2`}
-                  className="absolute inset-0 size-full z-10 !bg-transparent hover:!bg-transparent"
+                  className="absolute inset-0 z-10 size-full !bg-transparent hover:!bg-transparent"
                   onchange={(event) => {
                     let newImages = images.filter(
                       (item) => item.sortId !== index,

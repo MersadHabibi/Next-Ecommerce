@@ -3,17 +3,12 @@
 import { useCategoriesStore } from "@/app/admin/_stores/categoriesStore";
 import { useEffect } from "react";
 import CategoryItem from "./CategoryItem";
-
-export type CategoryType = {
-  id: string;
-  title: string;
-  image: string;
-};
+import { TCategory } from "@/types";
 
 export default function CategoryList({
   categoriesEntry,
 }: {
-  categoriesEntry: CategoryType[];
+  categoriesEntry: TCategory[];
 }) {
   const setCategories = useCategoriesStore((state) => state.setCategories);
   const categories = useCategoriesStore((state) => state.categories);

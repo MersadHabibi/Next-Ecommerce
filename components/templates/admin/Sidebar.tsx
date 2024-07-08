@@ -5,7 +5,7 @@ import NavLink from "@/components/modules/NavLink";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { Boxes, Home, PackagePlus, SquareLibrary, X } from "lucide-react";
-import { useAdminNavbar } from "../_stores/adminNavbar";
+import { useAdminNavbar } from "@/app/admin/_stores/adminNavbar";
 import { notoSans } from "@/config/fonts";
 
 export default function Sidebar() {
@@ -24,10 +24,10 @@ export default function Sidebar() {
         )}></div>
       <div
         className={cn(
-          "border-secondary dark:border-secondary-dark absolute top-0 z-20 h-full w-64 border-r bg-white px-5 transition-all dark:bg-neutral-950 lg:static lg:w-full",
+          "absolute top-0 z-20 h-full w-64 border-r border-secondary bg-white px-5 transition-all dark:border-secondary-dark dark:bg-neutral-950 lg:static lg:w-full",
           isOpenNavBar ? "left-0" : "-left-full",
         )}>
-        <div className="border-secondary dark:border-secondary-dark flex items-center justify-between border-b">
+        <div className="flex items-center justify-between border-b border-secondary dark:border-secondary-dark">
           <Logo className="size-16" />
           <Button
             onClick={closeNavBar}

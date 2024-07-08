@@ -1,7 +1,7 @@
 import { getMeAction } from "@/actions/authActions";
 import { Suspense } from "react";
-import Sidebar from "./_components/Sidebar";
-import TopBar from "./_components/TopBar";
+import Sidebar from "@/components/templates/admin/Sidebar";
+import TopBar from "@/components/templates/admin/TopBar";
 import Loading from "./loading";
 
 export default async function AdminLayout({
