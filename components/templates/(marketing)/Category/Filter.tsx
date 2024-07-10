@@ -1,64 +1,162 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import ComboBox, { Status } from "./ComboBox";
+import ComboBox, { TOption } from "./ComboBox";
 
 import { useMediaQuery } from "usehooks-ts";
-
-const statuses: Status[] = [
-  {
-    value: "backlog",
-    label: "Backlog",
-  },
-  {
-    value: "todo",
-    label: "Todo",
-  },
-  {
-    value: "in progress",
-    label: "In Progress",
-  },
-  {
-    value: "done",
-    label: "Done",
-  },
-  {
-    value: "canceled",
-    label: "Canceled",
-  },
-];
+import { genderOptions, sizeOptions, sortByOptions } from "./filterOptions";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import useAddQueryString from "@/hooks/useAddQueryString";
+import { getAllCategoriesAction } from "@/actions/categoryActions";
+import { TCategory } from "@/types";
 
 export default function Filter() {
-  const matches = useMediaQuery("(min-width: 640px)");
+  const [categoryOptions, setCategoriesOptions] = useState<TOption[]>([]);
   const [isClient, setIsClient] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState<TOption | null>(
+    null,
+  );
+  const [selectedSortBy, setSelectedSortBy] = useState<TOption | null>(null);
+  const [selectedGender, setSelectedGender] = useState<TOption | null>(null);
+  const [selectedSize, setSelectedSize] = useState<TOption | null>(null);
+
+  const matches = useMediaQuery("(min-width: 640px)");
+
+  const router = useRouter();
+  const pathname = usePathname();
+  const createQueryString = useAddQueryString();
+  const params = useSearchParams();
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
+  // Fetch categories
+  useEffect(() => {
+    async function fetchCategories() {
+      const categories = await getAllCategoriesAction();
+
+      setCategoriesOptions(
+        categories.categories.map((category: TCategory) => ({
+          value: category.title,
+          label: category.title,
+        })),
+      );
+    }
+
+    fetchCategories();
+  }, []);
+
+  // Get params and show default values
+  useEffect(() => {
+    const category = params.get("category");
+    const sortBy = params.get("sortBy");
+    const gender = params.get("gender");
+    const size = params.get("size");
+
+    if (category) {
+      onSelectCategory({
+        label: category,
+        value: category,
+      });
+    }
+
+    if (sortBy) {
+      const selectedSortByInURL = sortByOptions.findIndex(
+        (option) => option.value == sortBy,
+      );
+
+      if (selectedSortByInURL)
+        onSelectSortBy(sortByOptions[selectedSortByInURL]);
+    }
+
+    if (gender) {
+      const selectedGenderInURL = genderOptions.findIndex(
+        (option) => option.value == gender,
+      );
+
+      if (selectedGenderInURL)
+        onSelectGender(genderOptions[selectedGenderInURL]);
+    }
+
+    if (size) {
+      const selectedSizeInURL = sizeOptions.findIndex(
+        (option) => option.value == size,
+      );
+
+      if (selectedSizeInURL) onSelectSize(sizeOptions[selectedSizeInURL]);
+    }
+  }, []);
+
+  const onSelectCategory = (category: TOption | null) => {
+    setSelectedCategory(category);
+
+    if (!category)
+      return router.push(pathname + "?" + createQueryString("category", ""));
+
+    router.push(
+      pathname + "?" + createQueryString("category", category?.value),
+    );
+  };
+
+  const onSelectSortBy = (sortBy: TOption | null) => {
+    setSelectedSortBy(sortBy);
+
+    if (!sortBy)
+      return router.push(pathname + "?" + createQueryString("sortBy", ""));
+
+    router.push(pathname + "?" + createQueryString("sortBy", sortBy?.value));
+  };
+
+  const onSelectGender = (gender: TOption | null) => {
+    setSelectedGender(gender);
+
+    if (!gender)
+      return router.push(pathname + "?" + createQueryString("gender", ""));
+
+    router.push(pathname + "?" + createQueryString("gender", gender?.value));
+  };
+
+  const onSelectSize = (size: TOption | null) => {
+    setSelectedSize(size);
+
+    if (!size)
+      return router.push(pathname + "?" + createQueryString("size", ""));
+
+    router.push(pathname + "?" + createQueryString("size", size?.value));
+  };
+
   return (
-    <div className="border-secondary dark:border-secondary-dark w-full space-y-4 rounded-lg border bg-neutral-100 p-3 dark:bg-neutral-950 xl:p-4">
+    <div className="w-full space-y-4 rounded-lg border border-secondary bg-neutral-100 p-3 dark:border-secondary-dark dark:bg-neutral-950 xl:p-4">
       {!matches && isClient ? (
         <ComboBox
-          statuses={statuses}
+          options={sortByOptions}
           title="Sort by"
           className="h-11 w-full rounded-md !bg-white !shadow-none dark:!bg-black sm:hidden"
+          setSelectedOption={onSelectSortBy}
+          selectedOption={selectedSortBy}
         />
       ) : null}
       <ComboBox
-        statuses={statuses}
+        options={categoryOptions}
+        title="Category"
+        className="h-11 w-full rounded-md !bg-white !shadow-none dark:!bg-black"
+        setSelectedOption={onSelectCategory}
+        selectedOption={selectedCategory}
+      />
+      <ComboBox
+        options={genderOptions}
         title="Gender"
         className="h-11 w-full rounded-md !bg-white !shadow-none dark:!bg-black"
+        setSelectedOption={onSelectGender}
+        selectedOption={selectedGender}
       />
       <ComboBox
-        statuses={statuses}
-        title="Color"
-        className="h-11 w-full rounded-md !bg-white !shadow-none dark:!bg-black"
-      />
-      <ComboBox
-        statuses={statuses}
+        options={sizeOptions}
         title="Size"
         className="h-11 w-full rounded-md !bg-white !shadow-none dark:!bg-black"
+        setSelectedOption={onSelectSize}
+        selectedOption={selectedSize}
       />
     </div>
   );

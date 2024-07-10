@@ -16,6 +16,7 @@ export type TProduct = {
   mainImage: string;
   images: string[];
   gender: string;
+  sales: number;
   categoryId: string;
   createdAt: Date;
   updatedAt: Date;

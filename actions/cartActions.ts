@@ -370,7 +370,9 @@ export async function checkoutAction(address: string) {
     cart.forEach((cartItem) => {
       cartGroupByProductId[cartItem.Product.id] =
         cartGroupByProductId[cartItem.Product.id] || [];
-      cartGroupByProductId[cartItem.Product.id].push(cartItem as TCartItem);
+      cartGroupByProductId[cartItem.Product.id].push(
+        cartItem as unknown as TCartItem,
+      );
     });
 
     for (let key in cartGroupByProductId) {
@@ -399,6 +401,7 @@ export async function checkoutAction(address: string) {
         },
         data: {
           quantity: (product?.quantity as number) - allQuantity,
+          sales: (product?.sales as number) + allQuantity,
         },
       });
     }

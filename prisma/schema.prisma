@@ -76,6 +76,7 @@ model Product {
   mainImage   String
   images      String[]
   gender      String
+  sales       Int?
   categoryId  String   @db.ObjectId
   Category    Category @relation(fields: [categoryId], references: [id])
   createdAt   DateTime @default(now())

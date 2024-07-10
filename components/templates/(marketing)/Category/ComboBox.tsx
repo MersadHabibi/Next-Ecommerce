@@ -8,7 +8,7 @@ import {
   CommandEmpty,
   CommandGroup,
   CommandItem,
-  CommandList
+  CommandList,
 } from "@/components/ui/command";
 import {
   Popover,
@@ -18,73 +18,76 @@ import {
 import { cn } from "@/lib/utils";
 import { useState } from "react";
 
-export type Status = {
+export type TOption = {
   value: string;
   label: string;
 };
 
 export default function ComboBox({
-  statuses,
+  options,
   title,
   className,
+  selectedOption,
+  setSelectedOption,
 }: {
-  statuses: Status[];
+  options: TOption[];
   title: string;
   className?: string;
+  selectedOption: TOption | null;
+  setSelectedOption: (option: TOption | null) => void;
 }) {
   const [open, setOpen] = useState(false);
-  const [selectedStatus, setSelectedStatus] = useState<Status | null>(null);
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>
         <Button variant="outline" className={cn("justify-start", className)}>
-          {selectedStatus ? <>{selectedStatus.label}</> : <>+ {title}</>}
+          {selectedOption ? <>{selectedOption.label}</> : <>+ {title}</>}
         </Button>
       </PopoverTrigger>
       <PopoverContent className="w-[200px] p-0" align="start">
-        <StatusList
-          statuses={statuses}
+        <OptionList
+          options={options}
           setOpen={setOpen}
-          setSelectedStatus={setSelectedStatus}
+          setSelectedOption={setSelectedOption}
         />
       </PopoverContent>
     </Popover>
   );
 }
 
-function StatusList({
+function OptionList({
   setOpen,
-  setSelectedStatus,
-  statuses,
+  setSelectedOption,
+  options,
 }: {
   setOpen: (open: boolean) => void;
-  setSelectedStatus: (status: Status | null) => void;
-  statuses: Status[];
+  setSelectedOption: (option: TOption | null) => void;
+  options: TOption[];
 }) {
   return (
     <Command>
-      {/* <CommandInput placeholder="Filter status..." /> */}
+      {/* <CommandInput placeholder="Filter option..." /> */}
       <CommandList>
         <CommandEmpty>No results found.</CommandEmpty>
         <CommandGroup value="backlog">
-          {statuses.map((status) => {
+          {options.map((option) => {
             return (
               <CommandItem
                 className={cn("data")}
-                key={status.value}
-                value={status.value}
+                key={option.value}
+                value={option.value}
                 data-value={true}
                 data-disabled={false}
                 disabled={false}
                 onSelect={(value) => {
-                  setSelectedStatus(
-                    statuses.find((priority) => priority.value === value) ||
+                  setSelectedOption(
+                    options.find((priority) => priority.value === value) ||
                       null,
                   );
                   setOpen(false);
                 }}>
-                {status.label}
+                {option.label}
               </CommandItem>
             );
           })}

@@ -18,7 +18,7 @@ export default function CategoryItem({
   const [isImageError, setImageError] = useState(false);
 
   return (
-    <Link href="./">
+    <Link href={`./category?category=${title}`}>
       <Card
         className={cn(
           "bg-neutral-100 shadow-none transition-colors hover:bg-neutral-200 dark:bg-neutral-950 dark:hover:bg-neutral-900",

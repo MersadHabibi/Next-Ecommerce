@@ -1,42 +1,53 @@
+"use client";
+
 import {
   Command,
-  CommandEmpty,
-  CommandGroup,
   CommandInput,
   CommandItem,
-  CommandList,
-  CommandSeparator
+  CommandList
 } from "@/components/ui/command";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger
-} from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import useAllProducts from "@/hooks/useAllProducts";
 import { SearchIcon } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
 export default function Search() {
+  const [isOpen, setIsOpen] = useState(false);
+  const { allProducts } = useAllProducts();
+
+  const router = useRouter();
+
   return (
-    <Dialog>
-      <DialogTrigger className="flex-center border-secondary hover:bg-secondary dark:border-secondary-dark dark:hover:bg-secondary-dark h-9 w-9 rounded-md border">
+    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+      <DialogTrigger className="flex-center h-9 w-9 rounded-md border border-secondary hover:bg-secondary dark:border-secondary-dark dark:hover:bg-secondary-dark">
         <SearchIcon size="20" />
       </DialogTrigger>
       <DialogContent>
         <div>
           <Command>
-            <CommandInput placeholder="Type a command or search..." />
+            <CommandInput
+              placeholder="Type product name..."
+              onKeyDown={(event) => {
+                if (event.key === "Enter") {
+                  event.preventDefault();
+                  router.push(`/category?search=${event.currentTarget.value}`);
+                  setIsOpen(false);
+                }
+              }}
+            />
             <CommandList>
-              <CommandEmpty>No results found.</CommandEmpty>
-              <CommandGroup heading="History">
-                <CommandItem>Calendar</CommandItem>
-                <CommandItem>Search Emoji</CommandItem>
-                <CommandItem>Calculator</CommandItem>
-              </CommandGroup>
-              <CommandSeparator />
-              <CommandGroup heading="Products">
-                <CommandItem>Profile</CommandItem>
-                <CommandItem>Billing</CommandItem>
-                <CommandItem>Settings</CommandItem>
-              </CommandGroup>
+              {allProducts?.map((product) => (
+                <CommandItem
+                  key={product.id}
+                  onSelect={() => {
+                    console.log("click");
+                    router.push(`/product/${product.id}`);
+                    setIsOpen(false);
+                  }}>
+                  {product.title}
+                </CommandItem>
+              ))}
             </CommandList>
           </Command>
         </div>
