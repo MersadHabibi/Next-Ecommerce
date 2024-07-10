@@ -401,7 +401,7 @@ export async function checkoutAction(address: string) {
         },
         data: {
           quantity: (product?.quantity as number) - allQuantity,
-          sales: (product?.sales as number) + allQuantity,
+          sales: (product?.sales || 0) + allQuantity,
         },
       });
     }

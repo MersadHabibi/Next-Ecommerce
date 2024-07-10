@@ -6,18 +6,16 @@ import { NewestProducts } from "@/components/templates/(marketing)/Index/NewestP
 import { prisma } from "@/lib/utils";
 import { cache } from "react";
 
-const getProductsAndCategories = cache(
-  async function() {
-    return await Promise.all([
-      prisma.product.findMany({
-        include: {
-          Category: true,
-        },
-      }),
-      prisma.category.findMany({}),
-    ]);
-  },
-);
+const getProductsAndCategories = cache(async function () {
+  return await Promise.all([
+    prisma.product.findMany({
+      include: {
+        Category: true,
+      },
+    }),
+    prisma.category.findMany(),
+  ]);
+});
 
 export default async function Home() {
   const [products, categories] = await getProductsAndCategories();

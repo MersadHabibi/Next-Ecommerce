@@ -44,7 +44,7 @@ export default function Products() {
       newFilteredProducts =
         sortBy == sortByEnum.BEST_SELLER
           ? [...(newFilteredProducts as TProduct[])].sort(
-              (a, b) => b.sales - a.sales,
+              (a, b) => (b.sales || 0) - (a.sales || 0),
             )
           : sortBy == sortByEnum.CHEAPEST
             ? [...(newFilteredProducts as TProduct[])].sort(

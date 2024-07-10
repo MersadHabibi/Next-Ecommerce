@@ -113,6 +113,7 @@ export async function addProductAction(formData: FormData) {
         images: uploadImageRes.paths.images,
         gender,
         categoryId: category,
+        sales: 0
       },
     });
 
