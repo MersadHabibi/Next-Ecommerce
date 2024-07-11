@@ -1,6 +1,6 @@
 import { X } from "lucide-react";
 
-import { cancelOrderAction } from "@/actions/orderActions";
+import { cancelOrderAction, rejectOrderAction } from "@/actions/orderActions";
 import Loader from "@/components/modules/Loader";
 import {
   AlertDialog,
@@ -13,11 +13,10 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/components/ui/use-toast";
-import { ORDER_STATUS } from "@/enums";
-import { useOrdersStore } from "@/stores/ordersStore";
 import { useState } from "react";
+import { ORDER_STATUS } from "@/enums";
 
-export default function CancelBtn({
+export default function RejectOrder({
   orderId,
   status,
 }: {
@@ -28,9 +27,9 @@ export default function CancelBtn({
 
   const { toast } = useToast();
 
-  const onCancelOrder = async () => {
+  const onRejectOrder = async () => {
     setIsLoading(true);
-    const res = await cancelOrderAction(orderId);
+    const res = await rejectOrderAction(orderId);
     setIsLoading(false);
 
     if (res.status === 200) {
@@ -45,6 +44,8 @@ export default function CancelBtn({
     });
   };
 
+  console.log(status !== ORDER_STATUS.PROGRESS);
+
   return (
     <AlertDialog>
       <AlertDialogTrigger
@@ -55,13 +56,13 @@ export default function CancelBtn({
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Are you sure want to cancel this order?
+            Are you sure want to reject this order?
           </AlertDialogTitle>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>No</AlertDialogCancel>
           <AlertDialogAction
-            onClick={onCancelOrder}
+            onClick={onRejectOrder}
             className="bg-black dark:bg-white">
             Yes
           </AlertDialogAction>

@@ -1,6 +1,6 @@
-import { X } from "lucide-react";
+import { Check, SendHorizonal } from "lucide-react";
 
-import { cancelOrderAction } from "@/actions/orderActions";
+import { acceptOrderAction } from "@/actions/orderActions";
 import Loader from "@/components/modules/Loader";
 import {
   AlertDialog,
@@ -14,10 +14,9 @@ import {
 } from "@/components/ui/alert-dialog";
 import { useToast } from "@/components/ui/use-toast";
 import { ORDER_STATUS } from "@/enums";
-import { useOrdersStore } from "@/stores/ordersStore";
 import { useState } from "react";
 
-export default function CancelBtn({
+export default function AcceptOrder({
   orderId,
   status,
 }: {
@@ -28,9 +27,9 @@ export default function CancelBtn({
 
   const { toast } = useToast();
 
-  const onCancelOrder = async () => {
+  const onAcceptOrder = async () => {
     setIsLoading(true);
-    const res = await cancelOrderAction(orderId);
+    const res = await acceptOrderAction(orderId);
     setIsLoading(false);
 
     if (res.status === 200) {
@@ -48,20 +47,20 @@ export default function CancelBtn({
   return (
     <AlertDialog>
       <AlertDialogTrigger
-        className="flex-center size-9 rounded-md !bg-red-500 !text-white transition-opacity hover:opacity-80 disabled:opacity-70"
+        className="flex-center size-9 rounded-md !bg-gray-500 !text-white transition-opacity hover:opacity-80 disabled:opacity-70"
         disabled={isLoading || status !== ORDER_STATUS.PROGRESS}>
-        {isLoading ? <Loader /> : <X />}
+        {isLoading ? <Loader /> : <SendHorizonal />}
       </AlertDialogTrigger>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>
-            Are you sure want to cancel this order?
+            Are you sure want to accept this order?
           </AlertDialogTitle>
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>No</AlertDialogCancel>
           <AlertDialogAction
-            onClick={onCancelOrder}
+            onClick={onAcceptOrder}
             className="bg-black dark:bg-white">
             Yes
           </AlertDialogAction>

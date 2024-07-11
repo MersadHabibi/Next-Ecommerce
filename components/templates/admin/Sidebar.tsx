@@ -1,12 +1,20 @@
 "use client";
 
+import { useAdminNavbar } from "@/app/admin/_stores/adminNavbar";
 import Logo from "@/components/modules/Logo";
 import NavLink from "@/components/modules/NavLink";
 import { Button } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import { Boxes, Home, PackagePlus, SquareLibrary, X } from "lucide-react";
-import { useAdminNavbar } from "@/app/admin/_stores/adminNavbar";
 import { notoSans } from "@/config/fonts";
+import { cn } from "@/lib/utils";
+import {
+  BadgeDollarSign,
+  Boxes,
+  Home,
+  ListOrdered,
+  PackagePlus,
+  SquareLibrary,
+  X,
+} from "lucide-react";
 import Link from "next/link";
 
 export default function Sidebar() {
@@ -94,6 +102,26 @@ export default function Sidebar() {
                 className="w-full justify-start gap-x-2 hover:!bg-transparent dark:hover:!bg-transparent">
                 <SquareLibrary className="size-5" />
                 Categories
+              </Button>
+            </NavLink>
+          </div>
+        </div>
+        {/* Orders Management */}
+        <div className="mt-5">
+          <p
+            className={cn(
+              "mb-3 font-bold text-gray-700 dark:text-gray-300",
+              notoSans.className,
+            )}>
+            Order Management
+          </p>
+          <div className="space-y-2 pl-3">
+            <NavLink href="/admin/orders" className={NavLinkStyles}>
+              <Button
+                variant="outline"
+                className="w-full justify-start gap-x-2 hover:!bg-transparent dark:hover:!bg-transparent">
+                <BadgeDollarSign className="size-5" />
+                Orders
               </Button>
             </NavLink>
           </div>

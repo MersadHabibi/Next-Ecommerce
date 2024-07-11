@@ -4,6 +4,7 @@ import { z } from "zod";
 import { getMeAction } from "./authActions";
 import { TCartItem, TUser } from "@/types";
 import { prisma } from "@/lib/utils";
+import { ORDER_STATUS } from "@/enums";
 
 const addToCartSchema = z.object({
   userId: z.string(),
@@ -367,47 +368,6 @@ export async function checkoutAction(address: string) {
       );
     }
 
-    const cartGroupByProductId: Record<string, TCartItem[]> = {};
-
-    cart.forEach((cartItem) => {
-      cartGroupByProductId[cartItem.Product.id] =
-        cartGroupByProductId[cartItem.Product.id] || [];
-      cartGroupByProductId[cartItem.Product.id].push(
-        cartItem as unknown as TCartItem,
-      );
-    });
-
-    for (let key in cartGroupByProductId) {
-      const product = await prisma.product.findFirst({
-        where: {
-          id: key,
-        },
-      });
-      let allQuantity = 0;
-
-      cartGroupByProductId[key].forEach((cartItem) => {
-        allQuantity += cartItem.quantity;
-      });
-
-      if ((product?.quantity as number) < allQuantity)
-        return JSON.parse(
-          JSON.stringify({
-            status: 204,
-            message: `There are not enough ${product?.title} in stock`,
-          }),
-        );
-
-      await prisma.product.update({
-        where: {
-          id: key,
-        },
-        data: {
-          quantity: (product?.quantity as number) - allQuantity,
-          sales: (product?.sales || 0) + allQuantity,
-        },
-      });
-    }
-
     let totalPrice = 0;
 
     cart.forEach((cartItem) => {
@@ -424,6 +384,7 @@ export async function checkoutAction(address: string) {
         totalPrice: totalPrice.toString(),
         address,
         userId: user.id,
+        status: ORDER_STATUS.PROGRESS,
       },
     });
 
@@ -461,7 +422,7 @@ export async function checkoutAction(address: string) {
   }
 }
 
-async function getCart(userId: string) {
+export async function getCart(userId: string) {
   return await prisma.cartItem.findMany({
     where: {
       userId,

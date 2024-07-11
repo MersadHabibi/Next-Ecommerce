@@ -42,8 +42,7 @@ model Order {
   id         String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt  DateTime @default(now())
   updatedAt  DateTime @updatedAt
-  isDone     Boolean  @default(false)
-  isCanceled Boolean  @default(false)
+  status     String   @default("inProgress")
   address    String
   totalPrice String
   User       User     @relation(fields: [userId], references: [id])

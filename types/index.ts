@@ -1,4 +1,4 @@
-import { USER_ROLE } from "@/enums";
+import { ORDER_STATUS, USER_ROLE } from "@/enums";
 
 export type TUser = {
   id: string;
@@ -49,8 +49,7 @@ export type TOrder = {
   id: string;
   createdAt: Date;
   updatedAt: Date;
-  isDone: boolean;
-  isCanceled: boolean;
+  status: ORDER_STATUS | string;
   address: string;
   totalPrice: string;
   userId: string;

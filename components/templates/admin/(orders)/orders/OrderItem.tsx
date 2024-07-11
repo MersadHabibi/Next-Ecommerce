@@ -1,9 +1,12 @@
+import CancelBtn from "@/components/templates/(marketing)/Orders/Order/CancelBtn";
+import View from "@/components/templates/(marketing)/Orders/Order/View";
 import { notoSans } from "@/config/fonts";
+import { ORDER_STATUS } from "@/enums";
 import { cn } from "@/lib/utils";
 import { TOrder } from "@/types";
-import CancelBtn from "./CancelBtn";
-import View from "./View";
-import { ORDER_STATUS } from "@/enums";
+import RejectOrder from "./RejectOrder";
+import AcceptOrder from "./AcceptOrder";
+import CompleteOrder from "./CompleteOrder";
 
 export default function OrderItem({
   order,
@@ -13,7 +16,13 @@ export default function OrderItem({
   index: number;
 }) {
   return (
-    <div className="flex w-full flex-col space-y-4 rounded-lg border border-secondary p-2 dark:border-secondary-dark dark:bg-neutral-950 md:h-16 md:flex-row md:items-center md:justify-between md:space-y-0 md:p-0">
+    <div
+      className={cn(
+        "flex w-full flex-col space-y-4 rounded-lg border border-secondary p-2 dark:border-secondary-dark dark:bg-neutral-950 md:h-16 md:flex-row md:items-center md:justify-between md:space-y-0 md:p-0",
+        order.status === ORDER_STATUS.COMPLETED && "border-2 !border-green-500",
+        order.status === ORDER_STATUS.CANCELED && "opacity-70",
+        order.status === ORDER_STATUS.REJECTED && "border-2 !border-red-500",
+      )}>
       <div className="flex flex-col gap-x-6 space-y-2 sm:flex-row sm:items-center sm:space-y-0">
         <div className="sm:flex-center md:pl-2">
           <span
@@ -53,7 +62,12 @@ export default function OrderItem({
       </div>
       <div className="flex items-center gap-x-2 self-end md:self-auto md:pr-3.5">
         <View orderItems={JSON.stringify(order.OrderItems)} />
-        <CancelBtn orderId={order.id} status={order.status as ORDER_STATUS} />
+        <RejectOrder orderId={order.id} status={order.status as ORDER_STATUS} />
+        <AcceptOrder orderId={order.id} status={order.status as ORDER_STATUS} />
+        <CompleteOrder
+          orderId={order.id}
+          status={order.status as ORDER_STATUS}
+        />
       </div>
     </div>
   );
