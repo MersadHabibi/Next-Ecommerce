@@ -5,6 +5,7 @@ import { getMeAction } from "./authActions";
 import { TCartItem, TUser } from "@/types";
 import { prisma } from "@/lib/utils";
 import { ORDER_STATUS } from "@/enums";
+import { revalidatePath } from "next/cache";
 
 const addToCartSchema = z.object({
   userId: z.string(),
@@ -405,6 +406,8 @@ export async function checkoutAction(address: string) {
         userId: user.id,
       },
     });
+
+    revalidatePath("/");
 
     return JSON.parse(
       JSON.stringify({
