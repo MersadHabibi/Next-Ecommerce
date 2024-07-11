@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { Boxes, Home, PackagePlus, SquareLibrary, X } from "lucide-react";
 import { useAdminNavbar } from "@/app/admin/_stores/adminNavbar";
 import { notoSans } from "@/config/fonts";
+import Link from "next/link";
 
 export default function Sidebar() {
   const isOpenNavBar = useAdminNavbar((state) => state.isOpen);
@@ -28,7 +29,9 @@ export default function Sidebar() {
           isOpenNavBar ? "left-0" : "-left-full",
         )}>
         <div className="flex items-center justify-between border-b border-secondary dark:border-secondary-dark">
-          <Logo className="size-16" />
+          <Link href={"/"}>
+            <Logo className="size-16" />
+          </Link>
           <Button
             onClick={closeNavBar}
             variant="ghost"
@@ -79,7 +82,7 @@ export default function Sidebar() {
         <div className="mt-5">
           <p
             className={cn(
-              "mb-3 text-gray-700 dark:text-gray-300",
+              "mb-3 font-bold text-gray-700 dark:text-gray-300",
               notoSans.className,
             )}>
             Category Management

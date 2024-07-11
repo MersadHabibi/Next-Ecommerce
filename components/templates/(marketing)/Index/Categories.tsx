@@ -1,12 +1,15 @@
 import { TCategory } from "@/types";
 import CategoryItem from "./Category/CategoryItem";
 import SectionHeader from "@/components/modules/SectionHeader";
+import { shuffleArray } from "@/lib/utils";
 
 export default function Categories({
   categories,
 }: {
   categories: TCategory[];
 }) {
+  shuffleArray(categories);
+
   return (
     <section>
       <SectionHeader

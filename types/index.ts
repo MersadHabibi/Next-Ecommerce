@@ -1,6 +1,8 @@
+import { USER_ROLE } from "@/enums";
+
 export type TUser = {
   id: string;
-  role: string;
+  role: USER_ROLE;
   username: string;
   password: string;
 };

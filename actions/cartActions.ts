@@ -2,7 +2,7 @@
 
 import { z } from "zod";
 import { getMeAction } from "./authActions";
-import { TCartItem } from "@/types";
+import { TCartItem, TUser } from "@/types";
 import { prisma } from "@/lib/utils";
 
 const addToCartSchema = z.object({
@@ -334,7 +334,8 @@ export async function changeCartItemColorAction(
 }
 
 export async function checkoutAction(address: string) {
-  const { isLogin, id }: { isLogin: boolean; id: string } = await getMeAction();
+  const { isLogin, user }: { isLogin: boolean; user: TUser } =
+    await getMeAction();
 
   if (!isLogin)
     return JSON.parse(
@@ -344,7 +345,8 @@ export async function checkoutAction(address: string) {
       }),
     );
 
-  if (address.length < 10) {
+  if (!address || address?.length < 10) {
+    console.log("address error");
     return JSON.parse(
       JSON.stringify({
         status: 403,
@@ -354,7 +356,7 @@ export async function checkoutAction(address: string) {
   }
 
   try {
-    const cart = await getCart(id);
+    const cart = await getCart(user.id);
 
     if (cart.length < 1) {
       return JSON.parse(
@@ -421,7 +423,7 @@ export async function checkoutAction(address: string) {
       data: {
         totalPrice: totalPrice.toString(),
         address,
-        userId: id,
+        userId: user.id,
       },
     });
 
@@ -439,7 +441,7 @@ export async function checkoutAction(address: string) {
 
     await prisma.cartItem.deleteMany({
       where: {
-        userId: id,
+        userId: user.id,
       },
     });
 

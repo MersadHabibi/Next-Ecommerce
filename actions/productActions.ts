@@ -4,6 +4,8 @@ import { saveFile } from "@/lib/saveFile";
 import { z } from "zod";
 import { getMeAction } from "./authActions";
 import { prisma } from "@/lib/utils";
+import { USER_ROLE } from "@/enums";
+import { TUser } from "@/types";
 
 const schema = z.object({
   title: z.string().min(4).max(40),
@@ -17,9 +19,9 @@ const schema = z.object({
 });
 
 export async function addProductAction(formData: FormData) {
-  const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
+  const { user }: { user: TUser } = await getMeAction();
 
-  if (role !== "ADMIN")
+  if (user.role !== USER_ROLE.ADMIN)
     return JSON.parse(
       JSON.stringify({
         status: 401,
@@ -113,7 +115,7 @@ export async function addProductAction(formData: FormData) {
         images: uploadImageRes.paths.images,
         gender,
         categoryId: category,
-        sales: 0
+        sales: 0,
       },
     });
 
@@ -220,9 +222,9 @@ export async function getAllProductsAction() {
 // }
 
 export async function deleteProductAction(id: string) {
-  const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
+  const { user }: { user: TUser } = await getMeAction();
 
-  if (role !== "ADMIN")
+  if (user.role !== USER_ROLE.ADMIN)
     return JSON.parse(
       JSON.stringify({
         status: 401,
@@ -270,9 +272,9 @@ export async function deleteProductAction(id: string) {
 }
 
 export async function updateProductAction(formData: FormData) {
-  const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
+  const { user }: { user: TUser } = await getMeAction();
 
-  if (role !== "ADMIN")
+  if (user.role !== USER_ROLE.ADMIN)
     return JSON.parse(
       JSON.stringify({
         status: 401,

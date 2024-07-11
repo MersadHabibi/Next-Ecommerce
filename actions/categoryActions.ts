@@ -4,6 +4,8 @@ import { saveFile } from "@/lib/saveFile";
 import { z } from "zod";
 import { getMeAction } from "./authActions";
 import { prisma } from "@/lib/utils";
+import { USER_ROLE } from "@/enums";
+import { TUser } from "@/types";
 
 const MAX_FILE_SIZE = 5000000;
 const ACCEPTED_IMAGE_TYPES = ["image/png", "image/webp"];
@@ -20,9 +22,9 @@ const schema = z.object({
 });
 
 export async function addCategoryAction(formData: FormData) {
-  const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
+  const { user }: { user: TUser } = await getMeAction();
 
-  if (role !== "ADMIN")
+  if (user.role !== USER_ROLE.ADMIN)
     return JSON.parse(
       JSON.stringify({
         status: 401,
@@ -96,9 +98,9 @@ export async function addCategoryAction(formData: FormData) {
 }
 
 export async function deleteCategoryAction(categoryId: string) {
-  const { role }: { role: "ADMIN" | "USER" } = await getMeAction();
+  const { user }: { user: TUser } = await getMeAction();
 
-  if (role !== "ADMIN")
+  if (user.role !== USER_ROLE.ADMIN)
     return JSON.parse(
       JSON.stringify({
         status: 401,
