@@ -55,7 +55,7 @@ export default function Filter() {
     const size = params.get("size");
 
     if (category) {
-      onSelectCategory({
+      setSelectedCategory({
         label: category,
         value: category,
       });
@@ -66,8 +66,8 @@ export default function Filter() {
         (option) => option.value == sortBy,
       );
 
-      if (selectedSortByInURL)
-        onSelectSortBy(sortByOptions[selectedSortByInURL]);
+      if (selectedSortByInURL > -1)
+        setSelectedSortBy(sortByOptions[selectedSortByInURL]);
     }
 
     if (gender) {
@@ -75,8 +75,10 @@ export default function Filter() {
         (option) => option.value == gender,
       );
 
-      if (selectedGenderInURL)
-        onSelectGender(genderOptions[selectedGenderInURL]);
+      console.log(selectedGenderInURL);
+
+      if (selectedGenderInURL > -1)
+        setSelectedGender(genderOptions[selectedGenderInURL]);
     }
 
     if (size) {
@@ -84,13 +86,12 @@ export default function Filter() {
         (option) => option.value == size,
       );
 
-      if (selectedSizeInURL) onSelectSize(sizeOptions[selectedSizeInURL]);
+      if (selectedSizeInURL > -1)
+        setSelectedSize(sizeOptions[selectedSizeInURL]);
     }
-  }, []);
+  }, [params]);
 
   const onSelectCategory = (category: TOption | null) => {
-    setSelectedCategory(category);
-
     if (!category)
       return router.push(pathname + "?" + createQueryString("category", ""));
 
@@ -100,8 +101,6 @@ export default function Filter() {
   };
 
   const onSelectSortBy = (sortBy: TOption | null) => {
-    setSelectedSortBy(sortBy);
-
     if (!sortBy)
       return router.push(pathname + "?" + createQueryString("sortBy", ""));
 
@@ -109,8 +108,6 @@ export default function Filter() {
   };
 
   const onSelectGender = (gender: TOption | null) => {
-    setSelectedGender(gender);
-
     if (!gender)
       return router.push(pathname + "?" + createQueryString("gender", ""));
 
@@ -118,8 +115,6 @@ export default function Filter() {
   };
 
   const onSelectSize = (size: TOption | null) => {
-    setSelectedSize(size);
-
     if (!size)
       return router.push(pathname + "?" + createQueryString("size", ""));
 

@@ -7,6 +7,7 @@ import { TOption } from "./ComboBox";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 import useAddQueryString from "@/hooks/useAddQueryString";
+import { sortByEnum } from "./sortByEnums";
 
 export default function Sort() {
   const [selectedSortBy, setSelectedSortBy] = useState<TOption | null>(null);
@@ -25,10 +26,10 @@ export default function Sort() {
         (option) => option.value == sortBy,
       );
 
-      if (selectedSortByInURL)
+      if (selectedSortByInURL > -1)
         setSelectedSortBy(sortByOptions[selectedSortByInURL]);
     }
-  }, []);
+  }, [params]);
 
   return (
     <div className="hidden h-12 w-full items-center gap-x-10 rounded-md border border-secondary px-4 dark:border-secondary-dark sm:flex">
@@ -43,10 +44,9 @@ export default function Sort() {
             className={cn(
               "h-full px-2 hover:text-gray-700/90 dark:hover:text-gray-300/90",
               selectedSortBy == option && "active",
+              !selectedSortBy && option.value == sortByEnum.NEWEST && "active",
             )}
             onClick={() => {
-              setSelectedSortBy(option);
-
               return router.push(
                 pathname + "?" + createQueryString("sortBy", option.value),
               );
