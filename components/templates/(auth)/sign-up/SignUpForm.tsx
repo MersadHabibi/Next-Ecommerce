@@ -15,7 +15,9 @@ import { Input } from "@/components/ui/input";
 import { useToast } from "@/components/ui/use-toast";
 import { notoSans } from "@/config/fonts";
 import { cn } from "@/lib/utils";
+import { useAuthStore } from "@/stores/authStore";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { revalidatePath } from "next/cache";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -37,6 +39,9 @@ export function SignUpForm() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+
+  const signIn = useAuthStore((state) => state.signIn);
+
   const router = useRouter();
 
   const { toast } = useToast();
@@ -57,6 +62,8 @@ export function SignUpForm() {
 
     if (res.status === 201) {
       router.push("/");
+
+      signIn(res.user);
 
       return toast({
         description: "sign up successfully",
