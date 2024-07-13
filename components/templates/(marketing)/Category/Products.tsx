@@ -30,7 +30,7 @@ export default function Products() {
     const size = params.get("size");
 
     newFilteredProducts = newFilteredProducts?.filter((product) =>
-      product.title.includes(search || ""),
+      product.title.toLowerCase().includes(search?.toLowerCase() || ""),
     );
 
     newFilteredProducts = newFilteredProducts?.filter(

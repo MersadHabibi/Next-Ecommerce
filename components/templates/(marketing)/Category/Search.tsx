@@ -20,7 +20,7 @@ export default function Search() {
     const search = params.get("search");
 
     setSearchValue(search || "");
-  }, []);
+  }, [params]);
 
   const onSearch = () => {
     router.push(pathname + "?" + createQueryString("search", searchValue));
