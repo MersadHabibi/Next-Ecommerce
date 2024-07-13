@@ -33,32 +33,34 @@ export default function OrderItem({
             {index + 1}
           </span>
         </div>
-        <p>
-          <span className="font-medium">Status : </span>
-          <span className="text-gray-700 dark:text-gray-300">
-            {order.status === ORDER_STATUS.CANCELED
-              ? "Canceled"
-              : order.status === ORDER_STATUS.SENDING
-                ? "Sending"
-                : order.status === ORDER_STATUS.REJECTED
-                  ? "Rejected"
-                  : order.status === ORDER_STATUS.COMPLETED
-                    ? "Completed"
-                    : "Pending"}
-          </span>
-        </p>
-        <p>
-          <span className="font-medium">Date : </span>
-          <span className="text-gray-700 dark:text-gray-300">
-            {new Date(order.createdAt).toLocaleDateString()}
-          </span>
-        </p>
-        <p>
-          <span className="font-medium">TotalPrice : </span>
-          <span className="text-gray-700 dark:text-gray-300">
-            ${order.totalPrice}
-          </span>
-        </p>
+        <div className="pl-1">
+          <p>
+            <span className="font-medium">Status : </span>
+            <span className="text-gray-700 dark:text-gray-300">
+              {order.status === ORDER_STATUS.CANCELED
+                ? "Canceled"
+                : order.status === ORDER_STATUS.SENDING
+                  ? "Sending"
+                  : order.status === ORDER_STATUS.REJECTED
+                    ? "Rejected"
+                    : order.status === ORDER_STATUS.COMPLETED
+                      ? "Completed"
+                      : "Pending"}
+            </span>
+          </p>
+          <p>
+            <span className="font-medium">Date : </span>
+            <span className="text-gray-700 dark:text-gray-300">
+              {new Date(order.createdAt).toLocaleDateString()}
+            </span>
+          </p>
+          <p>
+            <span className="font-medium">TotalPrice : </span>
+            <span className="text-gray-700 dark:text-gray-300">
+              ${order.totalPrice}
+            </span>
+          </p>
+        </div>
       </div>
       <div className="flex items-center gap-x-2 self-end md:self-auto md:pr-3.5">
         <View orderItems={JSON.stringify(order.OrderItems)} />

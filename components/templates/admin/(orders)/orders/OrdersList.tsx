@@ -3,9 +3,14 @@
 import { TOrder } from "@/types";
 import OrderItem from "./OrderItem";
 import { ORDER_STATUS } from "@/enums";
+import { useEffect, useState } from "react";
 
 export default function OrdersList({ orders }: { orders: TOrder[] }) {
-  console.log(orders);
+  const [isClient, setIsCLient] = useState(false);
+
+  useEffect(() => {
+    setIsCLient(true);
+  }, []);
 
   const completedOrders = orders.filter(
     (order) => order.status === ORDER_STATUS.COMPLETED,
@@ -25,7 +30,7 @@ export default function OrdersList({ orders }: { orders: TOrder[] }) {
 
   return (
     <div className="space-y-2 pt-5">
-      {orders.length > 0 ? (
+      {orders.length > 0 && isClient ? (
         <>
           {notCompletedOrders
             .sort(

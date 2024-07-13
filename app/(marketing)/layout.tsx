@@ -17,7 +17,6 @@ export default async function authLayout({
       </div>
 
       <Footer />
-      <select name="" id=""></select>
     </div>
   );
 }
