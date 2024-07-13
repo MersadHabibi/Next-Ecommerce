@@ -55,7 +55,7 @@ export default function CategoryItem({ category }: { category: TCategory }) {
 
   return (
     <div className="relative" key={category.id}>
-      <Link href="./">
+      <Link href={`/category?category=${category.title}`}>
         <Card className="bg-neutral-100 shadow-none transition-colors hover:bg-neutral-200 dark:bg-neutral-950 dark:hover:bg-neutral-900">
           <CardContent className="p-0 pb-6">
             <div className="flex-center w-full p-4">

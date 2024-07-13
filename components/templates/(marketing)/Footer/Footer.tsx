@@ -2,7 +2,7 @@ import Logo from "@/components/modules/Logo";
 
 export default function Footer() {
   return (
-    <footer className="border-secondary dark:border-secondary-dark !mt-auto border-t bg-white pt-5 dark:bg-primary-dark">
+    <footer className="!mt-auto border-t border-secondary bg-white pt-5 dark:border-secondary-dark dark:bg-primary-dark">
       <div className="container grid grid-cols-1 gap-y-3 lg:grid-cols-5">
         <div className="pt-3 text-gray-700 dark:text-gray-300 lg:col-span-2">
           <div className="-ml-2 mb-4 h-20">
@@ -39,7 +39,7 @@ export default function Footer() {
             </ul>
           </div>
           <div>
-            <p className="mb-5 text-lg font-medium">Suppurt</p>
+            <p className="mb-5 text-lg font-medium">Support</p>
             <ul className="space-y-5 text-gray-700 dark:text-gray-300">
               <li>Privacy policy</li>
               <li>Terms & conditian</li>
@@ -49,7 +49,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="container">
-        <div className="border-secondary dark:border-secondary-dark mt-10 w-full border-t py-5 text-center">
+        <div className="mt-10 w-full border-t border-secondary py-5 text-center dark:border-secondary-dark">
           <p className="text-gray-700 dark:text-gray-300">
             Copyright &copy;. Designed By{" "}
             <a

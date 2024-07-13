@@ -4,7 +4,7 @@ import {
   Command,
   CommandInput,
   CommandItem,
-  CommandList
+  CommandList,
 } from "@/components/ui/command";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 import useAllProducts from "@/hooks/useAllProducts";
@@ -12,7 +12,7 @@ import { SearchIcon } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 
-export default function Search() {
+export default function Search({ onClick }: { onClick?: () => void }) {
   const [isOpen, setIsOpen] = useState(false);
   const { allProducts } = useAllProducts();
 
@@ -44,6 +44,7 @@ export default function Search() {
                     console.log("click");
                     router.push(`/product/${product.id}`);
                     setIsOpen(false);
+                    onClick && onClick();
                   }}>
                   {product.title}
                 </CommandItem>

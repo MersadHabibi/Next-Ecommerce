@@ -7,28 +7,27 @@ import { redirect } from "next/navigation";
 import { cache } from "react";
 
 const getOrders = cache(async (id: string) => {
-  return await Promise.all([
-    prisma.order.findMany({
-      where: {
-        userId: id,
-      },
-      include: {
-        OrderItems: {
-          include: {
-            Product: true,
-          },
+  return await prisma.order.findMany({
+    where: {
+      userId: id,
+    },
+    include: {
+      OrderItems: {
+        include: {
+          Product: true,
         },
       },
-    }),
-  ]);
+    },
+  });
 });
 
 export default async function orders() {
-  const { isLogin, user }: { isLogin: boolean; user: TUser } = await getMeAction();
+  const { isLogin, user }: { isLogin: boolean; user: TUser } =
+    await getMeAction();
 
   if (!isLogin) redirect("/");
 
-  const [orders] = await getOrders(user.id);
+  const orders = await getOrders(user.id);
 
   return (
     <div className="mt-10">

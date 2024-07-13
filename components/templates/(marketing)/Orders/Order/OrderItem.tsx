@@ -52,7 +52,7 @@ export default function OrderItem({
         </p>
       </div>
       <div className="flex items-center gap-x-2 self-end md:self-auto md:pr-3.5">
-        <View orderItems={JSON.stringify(order.OrderItems)} />
+        <View orderItems={order.OrderItems} address={order.address} />
         <CancelBtn orderId={order.id} status={order.status as ORDER_STATUS} />
       </div>
     </div>

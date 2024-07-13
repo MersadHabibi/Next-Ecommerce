@@ -33,7 +33,7 @@ export default function OrderItem({
             {index + 1}
           </span>
         </div>
-        <div className="pl-1">
+        <div className="flex gap-x-6 pl-1">
           <p>
             <span className="font-medium">Status : </span>
             <span className="text-gray-700 dark:text-gray-300">
@@ -63,7 +63,7 @@ export default function OrderItem({
         </div>
       </div>
       <div className="flex items-center gap-x-2 self-end md:self-auto md:pr-3.5">
-        <View orderItems={JSON.stringify(order.OrderItems)} />
+        <View orderItems={order.OrderItems} address={order.address} />
         <RejectOrder orderId={order.id} status={order.status as ORDER_STATUS} />
         <AcceptOrder orderId={order.id} status={order.status as ORDER_STATUS} />
         <CompleteOrder

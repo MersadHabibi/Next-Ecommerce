@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Banners() {
   return (
@@ -14,7 +15,9 @@ export default function Banners() {
           alt="Banner"
         />
         <div className="absolute bottom-0 right-0 rounded-ss-lg bg-white p-3 outline outline-[3px] -outline-offset-[2px] outline-white dark:bg-black dark:outline-black">
-          <Button variant="outline">SHOP NOW</Button>
+          <Link href={"/category"}>
+            <Button variant="outline">SHOP NOW</Button>
+          </Link>
         </div>
       </div>
       <div className="z-10 col-span-4 h-full w-full sm:hidden lg:col-span-1 lg:block">
