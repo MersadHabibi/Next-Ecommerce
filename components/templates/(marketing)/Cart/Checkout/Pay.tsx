@@ -20,8 +20,6 @@ export default function Pay() {
     const res = await checkoutAction(address);
     setIsLoading(false);
 
-    console.log(res);
-
     if (res.status === 200) {
       setCartItems([]);
       return toast({

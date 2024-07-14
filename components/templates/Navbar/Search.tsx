@@ -41,7 +41,6 @@ export default function Search({ onClick }: { onClick?: () => void }) {
                 <CommandItem
                   key={product.id}
                   onSelect={() => {
-                    console.log("click");
                     router.push(`/product/${product.id}`);
                     setIsOpen(false);
                     onClick && onClick();

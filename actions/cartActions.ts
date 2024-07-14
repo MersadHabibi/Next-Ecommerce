@@ -348,7 +348,6 @@ export async function checkoutAction(address: string) {
     );
 
   if (!address || address?.length < 10) {
-    console.log("address error");
     return JSON.parse(
       JSON.stringify({
         status: 403,

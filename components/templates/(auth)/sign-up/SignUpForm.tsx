@@ -56,8 +56,6 @@ export function SignUpForm() {
 
     const res = await signUpAction(formData);
 
-    console.log(res);
-
     setIsLoading(false);
 
     if (res.status === 201) {

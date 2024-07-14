@@ -14,8 +14,6 @@ export default function useAllProducts() {
 
       const allProducts = (await getProductsWithCache())[0].products;
 
-      console.log(allProducts);
-
       setAllProducts(allProducts);
       setIsLoading(false);
     }

@@ -17,7 +17,6 @@ export default function View({
   orderItems: TOrderItem[];
   address: string;
 }) {
-  console.log(orderItems);
   return (
     <Dialog>
       <DialogTrigger className="flex-center size-9 rounded-md bg-black !text-white transition-opacity  hover:opacity-90 dark:bg-white dark:!text-black">

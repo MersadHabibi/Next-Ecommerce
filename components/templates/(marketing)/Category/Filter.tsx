@@ -75,8 +75,6 @@ export default function Filter() {
         (option) => option.value == gender,
       );
 
-      console.log(selectedGenderInURL);
-
       if (selectedGenderInURL > -1)
         setSelectedGender(genderOptions[selectedGenderInURL]);
     }

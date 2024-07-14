@@ -44,8 +44,6 @@ export default function UserBtn() {
     });
   }
 
-  console.log(isLogin);
-
   return (
     <Dialog>
       <DialogTrigger className="flex-center h-9 w-9 rounded-md border border-secondary hover:bg-secondary dark:border-secondary-dark dark:hover:bg-secondary-dark">

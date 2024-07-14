@@ -1,12 +1,13 @@
-import CancelBtn from "@/components/templates/(marketing)/Orders/Order/CancelBtn";
+"use client";
+
 import View from "@/components/templates/(marketing)/Orders/Order/View";
 import { notoSans } from "@/config/fonts";
 import { ORDER_STATUS } from "@/enums";
 import { cn } from "@/lib/utils";
 import { TOrder } from "@/types";
-import RejectOrder from "./RejectOrder";
 import AcceptOrder from "./AcceptOrder";
 import CompleteOrder from "./CompleteOrder";
+import RejectOrder from "./RejectOrder";
 
 export default function OrderItem({
   order,

@@ -44,8 +44,6 @@ export default function RejectOrder({
     });
   };
 
-  console.log(status !== ORDER_STATUS.PROGRESS);
-
   return (
     <AlertDialog>
       <AlertDialogTrigger

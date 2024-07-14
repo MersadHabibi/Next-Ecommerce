@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import ThemeProvider from "@/providers/theme-provider";
 import type { Metadata } from "next";
 import "./globals.css";
+import VisitCounter from "@/components/templates/VisitCounter";
 
 export const metadata: Metadata = {
   title: "Next e-commerce",
@@ -16,6 +17,7 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  console.log("render");
   return (
     <html lang="en">
       <body className={cn("bg-white dark:bg-black", roboto.className)}>
@@ -25,7 +27,7 @@ export default async function RootLayout({
             defaultTheme="dark"
             enableSystem
             disableTransitionOnChange>
-            {children}
+            <VisitCounter>{children}</VisitCounter>
             <Toaster />
           </ThemeProvider>
         </GetMe>

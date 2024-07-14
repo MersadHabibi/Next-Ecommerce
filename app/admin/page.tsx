@@ -1,3 +1,42 @@
-export default function AdminPage() {
-  return <div className=" w-full "></div>;
+import { getVisitsAction } from "@/actions/visitActions";
+import DailyInformation from "@/components/templates/admin/DailyInformation";
+import LastOrders from "@/components/templates/admin/LastOrders";
+import MonthIncomeChart from "@/components/templates/admin/MonthIncomeChart";
+import { prisma } from "@/lib/utils";
+import { cache } from "react";
+
+const getOrdersAndVisits = cache(async () => {
+  return await Promise.all([
+    prisma.order.findMany({
+      include: {
+        OrderItems: {
+          include: {
+            Product: true,
+          },
+        },
+      },
+    }),
+    prisma.visit.findMany({}),
+  ]);
+});
+
+export default async function AdminPage() {
+  const [allOrders, visits] = await getOrdersAndVisits();
+
+  console.log(visits);
+
+  return (
+    <div className="w-full">
+      <DailyInformation allOrders={allOrders} visits={visits} />
+      <MonthIncomeChart allOrders={allOrders} />
+      <LastOrders
+        lastOrders={allOrders
+          .sort(
+            (a, b) =>
+              new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+          )
+          .slice(0, 5)}
+      />
+    </div>
+  );
 }

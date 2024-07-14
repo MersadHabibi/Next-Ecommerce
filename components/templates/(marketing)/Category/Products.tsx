@@ -21,7 +21,6 @@ export default function Products() {
   // Apply filters
   useEffect(() => {
     let newFilteredProducts = allProducts;
-    console.log(allProducts);
 
     const search = params.get("search");
     const sortBy = params.get("sortBy");

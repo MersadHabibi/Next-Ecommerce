@@ -1,6 +1,6 @@
 // Import necessary modules
-import path from "path";
 import { writeFile } from "fs/promises";
+import path from "path";
 
 // Define the POST handler for the file upload
 export const saveFile = async (file: File, filePath: string) => {
@@ -30,7 +30,6 @@ export const saveFile = async (file: File, filePath: string) => {
     return { Message: "Success", status: 201, path: newFilePath };
   } catch (error) {
     // If an error occurs during file writing, log the error and return a JSON response with a failure message and a 500 status code
-    console.log("Error occurred ", error);
     return { Message: "Failed", status: 500 };
   }
 };
