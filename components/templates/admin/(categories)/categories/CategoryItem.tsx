@@ -58,10 +58,10 @@ export default function CategoryItem({ category }: { category: TCategory }) {
       <Link href={`/category?category=${category.title}`}>
         <Card className="bg-neutral-100 shadow-none transition-colors hover:bg-neutral-200 dark:bg-neutral-950 dark:hover:bg-neutral-900">
           <CardContent className="p-0 pb-6">
-            <div className="flex-center w-full p-4">
-              <AspectRatio ratio={16 / 9}>
+            <div className="flex-center w-full px-4 py-6">
+              <AspectRatio ratio={16 / 9} className="">
                 <Image
-                  className="h-full w-full rounded-md object-cover"
+                  className="h-full w-full overflow-visible rounded-md object-cover"
                   src={`/${isImageError ? "images/no-image.jpg" : category.image}`}
                   alt="running shoes"
                   width={250}

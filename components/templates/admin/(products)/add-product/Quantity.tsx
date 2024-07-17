@@ -38,7 +38,7 @@ export default function Quantity() {
                   return;
                 }
 
-                setQuantity(event.currentTarget.value);
+                setQuantity(Number(event.currentTarget.value));
               }}
               maxLength={4}
             />

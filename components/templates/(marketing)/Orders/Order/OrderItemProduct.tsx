@@ -15,7 +15,7 @@ export default function OrderItemProduct({
       <div className="basis-full">
         <AspectRatio ratio={16 / 13}>
           <Image
-            className="size-full rounded-md object-cover"
+            className="size-full rounded-md object-contain"
             src={`/${isImageError ? "images/no-image.jpg" : orderItem.Product.mainImage}`}
             alt={orderItem.Product.title}
             width={300}

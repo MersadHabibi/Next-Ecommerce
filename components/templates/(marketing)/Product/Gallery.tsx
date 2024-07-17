@@ -43,7 +43,7 @@ export default function Gallery({ product }: { product: TProduct }) {
             "flex-center overflow-hidden rounded-sm lg:rounded-md",
           )}>
           <Image
-            className={cn("h-full w-full object-cover")}
+            className={cn("h-full w-full object-contain")}
             src={`/${isImageNotFound ? "images/no-image.jpg" : mainImage}`}
             alt="none"
             width={500}
@@ -67,7 +67,7 @@ export default function Gallery({ product }: { product: TProduct }) {
               )}>
               <Image
                 onClick={(event) => imageClickHandler(event, image)}
-                className={cn("h-full w-full object-cover")}
+                className={cn("h-full w-full object-contain")}
                 src={`/${image}`}
                 alt=""
                 width={100}

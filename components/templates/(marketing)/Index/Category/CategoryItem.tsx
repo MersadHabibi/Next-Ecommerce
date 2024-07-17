@@ -25,10 +25,10 @@ export default function CategoryItem({
         )}>
         <CardContent className={cn("p-0 pb-6")}>
           <div
-            className={cn("flex-center w-full overflow-hidden rounded-md p-5")}>
+            className={cn("flex-center w-full overflow-hidden rounded-md p-2")}>
             <AspectRatio ratio={16 / 9}>
               <Image
-                className={cn("h-full w-full rounded-md object-cover")}
+                className={cn("h-full w-full rounded-md object-contain")}
                 src={isImageError ? "/images/no-image.jpg" : imageSrc}
                 alt={title}
                 width={300}

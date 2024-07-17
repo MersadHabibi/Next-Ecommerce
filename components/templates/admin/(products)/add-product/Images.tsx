@@ -29,13 +29,14 @@ export default function AddProductImages() {
               id="mainImage-2"
               className="absolute right-3 top-3 size-12 bg-neutral-100/50 transition-colors hover:bg-neutral-100/80 dark:bg-neutral-900/50 dark:hover:bg-neutral-900/80"
               onchange={(event) => {
-                if (event.target.files) setMainImage(event.target.files[0]);
+                if (event.target.files && event.target.files[0])
+                  setMainImage(event.target.files[0]);
               }}>
               <FolderSync className="size-6" />
             </FileInput>
             <Image
               src={URL.createObjectURL(mainImage)}
-              className="h-full w-full object-cover"
+              className="h-full w-full object-contain"
               alt="none"
               width={500}
               height={500}
@@ -46,7 +47,8 @@ export default function AddProductImages() {
             <FileInput
               id="mainImage"
               onchange={(event) => {
-                if (event.target.files) setMainImage(event.target.files[0]);
+                if (event.target.files && event.target.files[0])
+                  setMainImage(event.target.files[0]);
               }}>
               <ImagePlus className="size-12" />
               <span className="mt-2">Choose Image</span>
@@ -87,7 +89,7 @@ export default function AddProductImages() {
                     "flex-center overflow-hidden rounded-sm lg:rounded-md",
                   )}>
                   <Image
-                    className={cn("h-full w-full object-cover")}
+                    className={cn("h-full w-full object-contain")}
                     src={URL.createObjectURL(isSelected.image)}
                     alt=""
                     width={100}
@@ -104,7 +106,7 @@ export default function AddProductImages() {
                   id={`image-${index}`}
                   className="size-full bg-neutral-200 dark:bg-neutral-950"
                   onchange={(event) => {
-                    if (event.target.files)
+                    if (event.target.files && event.target.files[0])
                       setImages([
                         ...images,
                         {

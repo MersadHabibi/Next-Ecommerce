@@ -20,7 +20,7 @@ export default function ProductCard({ id, title, mainImage, price }: TProduct) {
 
         <div className="flex-center max-h-56 w-full overflow-hidden rounded-md sm:h-72 sm:max-h-none md:h-60 lg:h-[145px] xl:h-44">
           <Image
-            className="rounded-md object-cover"
+            className="size-full overflow-visible rounded-md object-contain p-2"
             src={`/${isImageError ? "images/no-image.jpg" : mainImage}`}
             width={300}
             height={300}
@@ -44,7 +44,7 @@ export default function ProductCard({ id, title, mainImage, price }: TProduct) {
         </span>
       </CardFooter>
       <div className="absolute bottom-0 right-0 z-10 size-fit rounded-ss-xl bg-white outline outline-[2px]  outline-white dark:bg-black dark:outline-black">
-        <div className="border-secondary dark:border-secondary-dark w-full rounded-ss-xl border-l border-t p-2">
+        <div className="w-full rounded-ss-xl border-l border-t border-secondary p-2 dark:border-secondary-dark">
           <Link href={`/product/${id}`}>
             <Button size="icon" className="size-11 bg-black dark:bg-white">
               <ShoppingBag />

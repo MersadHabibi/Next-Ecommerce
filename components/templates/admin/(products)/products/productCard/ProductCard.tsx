@@ -19,7 +19,7 @@ export default function ProductCard(product: TProduct) {
 
         <AspectRatio ratio={16 / 11}>
           <Image
-            className="size-full rounded-md object-cover"
+            className="size-full rounded-md object-contain p-2"
             src={`/${isImageError ? "images/no-image.jpg" : product.mainImage}`}
             width={300}
             height={300}

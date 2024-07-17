@@ -21,11 +21,13 @@ export default function ProductCard({ cartItem, product }: ProductProps) {
   const [isImageError, setImageError] = useState(false);
 
   return (
-    <div className="border-secondary dark:border-secondary-dark grid grid-cols-3 gap-x-6 rounded-lg border p-3 md:grid-cols-4 xl:grid-cols-5">
+    <div className="grid grid-cols-3 gap-x-6 rounded-lg border border-secondary p-3 dark:border-secondary-dark md:grid-cols-4 xl:grid-cols-5">
       <div className="flex-center col-span-3 mb-2 max-h-56 overflow-hidden rounded-md sm:col-span-1 sm:mb-0 sm:max-h-none">
         <AspectRatio ratio={16 / 16} className="flex-center">
           <Image
-            className={cn("h-full w-full rounded-md object-cover")}
+            className={cn(
+              "h-full w-full overflow-visible rounded-md object-contain p-2",
+            )}
             src={`/${isImageError ? "images/no-image.jpg" : product.mainImage}`}
             alt="product"
             width={400}
