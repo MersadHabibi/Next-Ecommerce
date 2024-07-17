@@ -14,11 +14,11 @@ export default function ProductCard({ id, title, mainImage, price }: TProduct) {
   const [isImageError, setImageError] = useState(false);
 
   return (
-    <Card className="card-inverted-border relative bg-neutral-100 shadow-none dark:bg-neutral-950">
-      <CardHeader className="relative bg-transparent p-4">
+    <Card className="card-inverted-border relative grid h-full grid-rows-1 bg-neutral-100 shadow-none dark:bg-neutral-950">
+      <CardHeader className="relative h-full !gap-0 bg-transparent p-4">
         {/* <Heart className="absolute right-3 top-3 cursor-pointer text-red-600 transition-all hover:fill-red-600" /> */}
 
-        <div className="flex-center max-h-56 w-full overflow-hidden rounded-md sm:h-72 sm:max-h-none md:h-60 lg:h-[145px] xl:h-44">
+        <div className="flex-center !h-full max-h-56 w-full overflow-hidden rounded-md py-2 sm:h-72 sm:max-h-none md:h-60 lg:h-[145px] xl:h-44">
           <Image
             className="size-full overflow-visible rounded-md object-contain p-2"
             src={`/${isImageError ? "images/no-image.jpg" : mainImage}`}
@@ -34,7 +34,7 @@ export default function ProductCard({ id, title, mainImage, price }: TProduct) {
           {title}
         </CardTitle>
       </CardHeader>
-      <CardFooter className="flex items-center justify-between px-4 py-3">
+      <CardFooter className="mt-auto flex !h-fit !min-h-0 items-center justify-between px-4 py-5 sm:py-3">
         <span
           className={cn(
             "text-2xl font-bold text-gray-700 opacity-70 dark:text-gray-300",

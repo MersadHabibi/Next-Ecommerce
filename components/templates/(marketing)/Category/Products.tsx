@@ -64,7 +64,7 @@ export default function Products() {
   }, [params, allProducts]);
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 xl:gap-6">
+    <div className="grid auto-rows-fr gap-4 md:grid-cols-2 lg:grid-cols-3 xl:gap-6">
       {isLoading ? (
         new Array(8)
           .fill("")
