@@ -14,11 +14,6 @@ import PageTitle from "@/components/templates/admin/PageTitle";
 import { useNewProduct } from "../../_stores/newProduct";
 import { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: 'Add products',
-  description: '...',
-}
-
 const formSchema = z.object({
   title: z
     .string()
