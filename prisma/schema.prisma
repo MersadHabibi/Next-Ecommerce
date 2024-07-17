@@ -96,3 +96,8 @@ model Visit {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   createdAt DateTime @default(now())
 }
+
+model Subscribe {
+  id    String @id @default(auto()) @map("_id") @db.ObjectId
+  email String @unique
+}

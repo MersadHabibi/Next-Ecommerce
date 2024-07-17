@@ -1,6 +1,7 @@
 import { PrismaClient } from "@prisma/client";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
+import nodemailer from "nodemailer";
 
 export const prisma = new PrismaClient();
 
@@ -50,3 +51,13 @@ export function checkSameDay(d1: Date, d2: Date) {
     d1.getDate() === d2.getDate()
   );
 }
+
+export const transporter = nodemailer.createTransport({
+  host: process.env.SMTP_HOST,
+  port: Number(process.env.SMTP_PORT),
+  secure: false, // Use `true` for port 465, `false` for all other ports
+  auth: {
+    user: process.env.SMTP_USERNAME,
+    pass: process.env.SMTP_PASSWORD,
+  },
+});
