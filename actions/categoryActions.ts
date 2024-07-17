@@ -70,14 +70,14 @@ export async function addCategoryAction(formData: FormData) {
   }
 
   try {
-    const category = await prisma.category.create({
+    await prisma.category.create({
       data: {
         title,
         image: imagePath,
       },
     });
 
-    const categories = await prisma.category.findMany();
+    const categories = await prisma.category.findMany({});
 
     return JSON.parse(
       JSON.stringify({
