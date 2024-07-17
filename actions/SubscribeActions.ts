@@ -1,6 +1,7 @@
 "use server";
 
-import { prisma, transporter } from "@/lib/utils";
+import { transporter } from "@/lib/server-utils";
+import { prisma } from "@/lib/utils";
 import { z } from "zod";
 
 const schema = z.object({
@@ -54,7 +55,7 @@ export async function subscribeAction(email: string) {
 
     //
 
-    await prisma.subscribe.create({
+    const newSub = await prisma.subscribe.create({
       data: {
         email,
       },
@@ -62,7 +63,7 @@ export async function subscribeAction(email: string) {
 
     //
 
-    await sendEmailAction({
+    const sendEmailRes = await sendEmailAction({
       from: "next@mersadhabibi.ir",
       to: "mersad.up@gmail.com",
       subject: "Welcome",
