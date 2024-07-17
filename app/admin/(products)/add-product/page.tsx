@@ -12,6 +12,12 @@ import AddProductDetails from "@/components/templates/admin/(products)/add-produ
 import AddProductImages from "@/components/templates/admin/(products)/add-product/Images";
 import PageTitle from "@/components/templates/admin/PageTitle";
 import { useNewProduct } from "../../_stores/newProduct";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Add products',
+  description: '...',
+}
 
 const formSchema = z.object({
   title: z

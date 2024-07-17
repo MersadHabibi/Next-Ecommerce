@@ -2,7 +2,13 @@ import OrdersList from "@/components/templates/admin/(orders)/orders/OrdersList"
 import ReloadOrders from "@/components/templates/admin/(orders)/orders/ReloadOrders";
 import PageTitle from "@/components/templates/admin/PageTitle";
 import { prisma } from "@/lib/utils";
+import { Metadata } from "next";
 import { cache } from "react";
+
+export const metadata: Metadata = {
+  title: 'Orders',
+  description: '...',
+}
 
 const getOrders = cache(async () => {
   return await prisma.order.findMany({

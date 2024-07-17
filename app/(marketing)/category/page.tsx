@@ -2,6 +2,12 @@ import Filter from "@/components/templates/(marketing)/Category/Filter";
 import Products from "@/components/templates/(marketing)/Category/Products";
 import Search from "@/components/templates/(marketing)/Category/Search";
 import Sort from "@/components/templates/(marketing)/Category/Sort";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Category',
+  description: '...',
+}
 
 export default function CategoryPage() {
   return (

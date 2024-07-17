@@ -3,7 +3,13 @@ import DailyInformation from "@/components/templates/admin/DailyInformation";
 import LastOrders from "@/components/templates/admin/LastOrders";
 import MonthIncomeChart from "@/components/templates/admin/MonthIncomeChart";
 import { prisma } from "@/lib/utils";
+import { Metadata } from "next";
 import { cache } from "react";
+
+export const metadata: Metadata = {
+  title: 'Home | Admin',
+  description: '...',
+}
 
 const getOrdersAndVisits = cache(async () => {
   return await Promise.all([

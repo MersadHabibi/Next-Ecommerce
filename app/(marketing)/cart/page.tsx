@@ -3,7 +3,13 @@ import CartItemsList from "@/components/templates/(marketing)/Cart/CartItemsList
 import Checkout from "@/components/templates/(marketing)/Cart/Checkout";
 import Header from "@/components/templates/(marketing)/Cart/Header";
 import { TUser } from "@/types";
+import { Metadata } from "next";
 import { redirect } from "next/navigation";
+
+export const metadata: Metadata = {
+  title: 'Cart',
+  description: '...',
+}
 
 export default async function CartPage() {
   const { isLogin, user }: { isLogin: boolean; user : TUser } = await getMeAction();

@@ -1,8 +1,21 @@
 import Details from "@/components/templates/(marketing)/Product/Details";
 import Gallery from "@/components/templates/(marketing)/Product/Gallery";
 import { prisma } from "@/lib/utils";
+import { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { cache } from "react";
+
+export async function generateMetadata({
+  params,
+}: {
+  params: { id: string };
+}): Promise<Metadata> {
+  const [product] = await getProduct(params.id);
+
+  return {
+    title: product?.title,
+  };
+}
 
 const getProduct = cache(async (id: string) => {
   return await Promise.all([

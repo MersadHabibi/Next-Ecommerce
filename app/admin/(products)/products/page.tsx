@@ -3,6 +3,12 @@ import { Plus } from "lucide-react";
 import Link from "next/link";
 import ProductsContainer from "@/components/templates/admin/(products)/products/ProductsContainer";
 import PageTitle from "@/components/templates/admin/PageTitle";
+import { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: 'Products',
+  description: '...',
+}
 
 export default function Products() {
   return (

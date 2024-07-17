@@ -4,7 +4,13 @@ import Categories from "@/components/templates/(marketing)/Index/Categories";
 import ChooseUs from "@/components/templates/(marketing)/Index/ChooseUs";
 import { NewestProducts } from "@/components/templates/(marketing)/Index/NewestProducts";
 import { prisma } from "@/lib/utils";
+import { Metadata } from "next";
 import { cache } from "react";
+
+export const metadata: Metadata = {
+  title: 'Home',
+  description: '...',
+}
 
 const getProductsAndCategories = cache(async function () {
   return await Promise.all([
