@@ -17,7 +17,7 @@ export default function Total() {
           "font-bold text-gray-700 opacity-70 dark:text-gray-300",
           notoSans.className,
         )}>
-        ${((Number(totalPrice) / 100) * 91).toFixed(2)}
+        ${(Number(totalPrice) + (Number(totalPrice) / 100) * 9).toFixed(2)}
       </span>
     </div>
   );
