@@ -77,7 +77,9 @@ export async function addCategoryAction(formData: FormData) {
       },
     });
 
-    const categories = await prisma.category.findMany({});
+    const categories = await prisma.category.findMany({
+      where: {},
+    });
 
     return JSON.parse(
       JSON.stringify({
