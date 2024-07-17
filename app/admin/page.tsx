@@ -23,8 +23,6 @@ const getOrdersAndVisits = cache(async () => {
 export default async function AdminPage() {
   const [allOrders, visits] = await getOrdersAndVisits();
 
-  console.log(visits);
-
   return (
     <div className="w-full">
       <DailyInformation allOrders={allOrders} visits={visits} />

@@ -17,7 +17,6 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  console.log("render");
   return (
     <html lang="en">
       <body className={cn("bg-white dark:bg-black", roboto.className)}>

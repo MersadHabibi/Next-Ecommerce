@@ -31,11 +31,10 @@ export default function Subscribe() {
     toast({
       description: res.message,
     });
-    console.log(res);
   };
 
   return (
-    <div className="flex w-full flex-col-reverse items-center justify-between rounded-lg border border-secondary px-5 py-2 dark:border-secondary-dark sm:flex-row sm:items-start lg:py-4 xl:py-7">
+    <div className="flex w-full flex-col-reverse items-center justify-between rounded-lg border border-secondary px-5 py-3 dark:border-secondary-dark sm:flex-row sm:items-start">
       <div className="w-full space-y-5 px-2 py-5 sm:w-auto sm:space-y-10">
         <h3
           className={cn(
