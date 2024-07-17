@@ -32,6 +32,7 @@ export default function Quantity({
     if (quantity !== cartItem.quantity) {
       setIsChanged(true);
       if (quantity === 0) setIsZero(true);
+      if (quantity !== 0) setIsZero(false);
     } else {
       setIsChanged(false);
     }
@@ -109,7 +110,7 @@ export default function Quantity({
         </Button>
       ) : null}
 
-      <div className="border-secondary dark:border-secondary-dark flex h-24 flex-col items-center justify-between rounded-md border p-1">
+      <div className="flex h-24 flex-col items-center justify-between rounded-md border border-secondary p-1 dark:border-secondary-dark">
         <Button
           variant="ghost"
           size="icon"
