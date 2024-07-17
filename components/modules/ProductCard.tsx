@@ -18,7 +18,7 @@ export default function ProductCard({ id, title, mainImage, price }: TProduct) {
       <CardHeader className="relative h-full !gap-0 bg-transparent p-4">
         {/* <Heart className="absolute right-3 top-3 cursor-pointer text-red-600 transition-all hover:fill-red-600" /> */}
 
-        <div className="flex-center !h-full max-h-56 w-full overflow-hidden rounded-md py-2 sm:h-72 sm:max-h-none md:h-60 lg:h-[145px] xl:h-44">
+        <div className="flex-center h-full max-h-56 w-full overflow-hidden rounded-md py-2 sm:h-72 sm:max-h-none md:h-60 lg:h-[145px] xl:h-44">
           <Image
             className="size-full overflow-visible rounded-md object-contain p-2"
             src={`/${isImageError ? "images/no-image.jpg" : mainImage}`}
