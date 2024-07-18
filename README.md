@@ -1,6 +1,6 @@
 # <img src="https://pngimg.com/uploads/nike/nike_PNG11.png" alt="✔️" style="width:50px;" /> Next-ecommerce 
 
-[View online](https://next-ecommerce-murex-mu.vercel.app/) | Login with { admin , admin } for view admin panel (dont change data`s)
+[View online](https://next-ecommerce-murex-mu.vercel.app/) | Login with { admin , admin } to see admin panel (dont change data`s)
 
 ![Stars](https://img.shields.io/github/stars/MersadHabibi/next-ecommerce.svg)
 <br/>
