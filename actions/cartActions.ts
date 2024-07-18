@@ -373,8 +373,8 @@ export async function checkoutAction(address: string) {
     cart.forEach((cartItem) => {
       totalPrice += Number(
         (
-          (cartItem.quantity * Number(cartItem.Product.price)) +
-          (Number(totalPrice) / 100) * 9
+          cartItem.quantity * Number(cartItem.Product.price) +
+          (Number(cartItem.Product.price) / 100) * 9
         ).toFixed(2),
       );
     });
