@@ -131,4 +131,51 @@ Open [http://localhost:3000](http://localhost:3000) with your browser to see the
 
 You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
+## Project Shots 📸
+
+### SignIn & SignUp page `/sign-in` , `/sign-up`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/sign-in.png?raw=true" alt="sign-in" />
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/sign-up.png?raw=true" alt="sign-up" />
+
+### Home page `/`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/home-dark.png?raw=true" alt="home-dark" />
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/home-light.png?raw=true" alt="home-light" />
+
+### Product page `/product/:id`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/product.png?raw=true" alt="product" />
+
+### Filters page `/category`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/category.png?raw=true" alt="category" />
+
+### Cart page `/cart`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/cart.png?raw=true" alt="sign-in" />
+
+### Orders page `/orders`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/orders.png?raw=true" alt="sign-in" />
+
+### Search
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/search.png?raw=true" alt="sign-in" />
+
+### Admin home page `/admin`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/admin-home.png?raw=true" alt="sign-in" />
+
+### Admin products page `/admin/products`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/admin-products.png?raw=true" alt="sign-in" />
+
+### Admin edit product `/admin/products`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/admin-edit-product.png?raw=true" alt="sign-in" />
+
+### Admin add product page `/admin/add-product`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/admin-add-product.png?raw=true" alt="sign-in" />
+
+### Admin categories page `/admin/categories`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/admin-categories.png?raw=true" alt="sign-in" />
+
+### Admin add category `/admin/categories`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/admin-add-category.png?raw=true" alt="sign-in" />
+
+### Admin orders page `/admin/orders`
+<img src="https://github.com/MersadHabibi/next-ecommerce/blob/master/public/README-files/admin-orders.png?raw=true" alt="sign-in" />
+
+
 ![](http://ForTheBadge.com/images/badges/built-with-love.svg)
