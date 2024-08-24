@@ -61,7 +61,7 @@ export function SignInForm() {
       toast({
         description: res.message,
       });
-      signIn(res.user);
+      signIn(res.data);
       return router.push("/");
     }
 

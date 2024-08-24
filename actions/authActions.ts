@@ -93,7 +93,7 @@ export async function signUpAction(formData: FormData) {
     return JSON.parse(
       JSON.stringify({
         message: "user create successfully",
-        // data: user,
+        user,
         status: 201,
       }),
     );

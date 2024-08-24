@@ -116,6 +116,7 @@ export async function addToCartAction(
     return JSON.parse(
       JSON.stringify({
         status: 500,
+        message: "Server error",
         error,
       }),
     );
