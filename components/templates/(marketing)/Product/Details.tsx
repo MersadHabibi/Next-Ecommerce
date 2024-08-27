@@ -49,11 +49,9 @@ export default function Details({ product }: { product: TProduct }) {
   }
 
   async function onAddToCart() {
-    if (!userId) return;
-
     setIsLoading(true);
     const res = await addToCartAction(
-      userId,
+      userId || "",
       product.id,
       quantity,
       selectedColor.current,
