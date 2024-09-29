@@ -8,7 +8,7 @@ export default function Banners() {
       <div className="banner-inverted-border relative col-span-4 hidden h-[430px] w-full rounded-lg sm:block lg:col-span-3">
         <Image
           className="relative h-full w-full rounded-lg object-cover"
-          src="/images/nike-banner-1.jfif"
+          src="/images/nike-banner-1.webp"
           width={900}
           height={500}
           quality={80}
